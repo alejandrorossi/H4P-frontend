@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LandingComponent } from './landing/landing.component';
 
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: 'home',
-  //   component: HomeComponent
-  // },
+  {
+    path: '',
+    redirectTo: 'landing',
+    pathMatch: 'full'
+  },
+  {
+    path: 'landing',
+    component: LandingComponent
+  },
 ];
 
 @NgModule({
