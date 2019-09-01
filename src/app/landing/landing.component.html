@@ -1,25 +1,67 @@
-<mat-toolbar color="primary">
-        <span>Hero for Pets</span> <!-- TODO: cambiar por png de esto, mas lindo-->
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col nopadding">
+      <div class="lan-page">
 
-        <span class="rellenar"></span> 
-      
-        <button class="btn btn-outline-light mr-2">registrarme</button>
-        <button class="btn btn-success"> Ingresar </button>
-</mat-toolbar>
+        <mat-toolbar color="primary">
 
-<div style="height:85vh !important;">
-    
-    contenido de landing
+          <mat-toolbar-row style="height:50px!important"> 
+            <span>Hero for Pets</span>
+            <em class="ml-5"> --placeholder logo--</em>
+            <span class="rellenar"></span>
+          </mat-toolbar-row>
 
-    <app-login></app-login>
+          <mat-toolbar-row style="height:50px!important">
+              <span class="rellenar"></span>
+            <button class="btn btn-outline-light mr-2" (click)="register()">Registro</button>
+            <button class="btn btn-success" (click)="logIn()">Entrar</button>
+          </mat-toolbar-row>
 
+        </mat-toolbar>
+
+
+        <div class="container mt-3">
+          <div class="row">
+            <div class="col-sm-6 ">
+              <!-- <div *ngIf="!(verRegistrar || verIngresar)"> -->
+              <h1>Bienvenido a Hero for Pets</h1>
+              <p>Hero for pets, (héroe para mascotas en español) es una plataforma para mejorar el proceso de adopción
+                de
+                mascotas</p>
+              <p> mas info y cosas para poner en la portada</p>
+              <!-- </div> -->
+            </div>
+
+            <div class="col-sm-6">
+
+              <app-login *ngIf="verIngresar"></app-login>
+
+              <app-registro *ngIf="verRegistrar"></app-registro>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="container mt-3" *ngIf="verRegistrar || verIngresar">
+          <div class="row">
+            <div class="col">
+              <div class="text-center">
+                <button  color="primary" mat-mini-fab (click)="clean()">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div> -->
+
+
+
+        <mat-toolbar color="primary" class="footer">
+          <span>esto es un footer</span>
+          <span class="rellenar"></span>
+        </mat-toolbar>
+
+      </div>
+    </div>
+  </div>
 </div>
-
-<mat-toolbar color="primary" >
-        <span>footer de la aplicacion</span> <!-- TODO: cambiar por png de esto, mas lindo-->
-
-        <!-- <span class="rellenar"></span> 
-      
-        <button class="btn btn-outline-light mr-2">registrarme</button>
-        <button class="btn btn-success"> Ingresar </button> -->
-</mat-toolbar>

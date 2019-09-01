@@ -3,3 +3,17 @@
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
+
+  .lan-page{
+     height:100vh!important
+  }
+
+  .footer{
+   position: fixed;
+   bottom: 0;
+  }
+
+  .nopadding{
+   padding-right: 0!important; 
+   padding-left: 0!important;
+  }

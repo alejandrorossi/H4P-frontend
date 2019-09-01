@@ -8,13 +8,35 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private router: Router) { }
+
+  verIngresar:Boolean;
+  verRegistrar:Boolean;
+  // verLanding:Boolean;
+
+  constructor(private router: Router) { 
+    this.clean();
+  }
 
   ngOnInit() {
   }
 
 
-  irA(ruta){
+  logIn(){
+    this.verIngresar = true;
+    this.verRegistrar = !this.verIngresar;
+  }
+
+  register(){
+    this.verIngresar = false;
+    this.verRegistrar =  !this.verIngresar ;
+  }
+
+  clean(){
+    this.verIngresar = false;
+    this.verRegistrar = false;
+  }
+
+  goto(ruta){
     this.router.navigate([ruta]);
   }
 
