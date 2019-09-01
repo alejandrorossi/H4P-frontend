@@ -7,12 +7,12 @@
 
           <mat-toolbar-row style="height:50px!important"> 
             <span>Hero for Pets</span>
-            <em class="ml-5"> --placeholder logo--</em>
-            <span class="rellenar"></span>
+            <em class="ml-3">--logo--</em>
+            <span class="rellenar-tb"></span>
           </mat-toolbar-row>
 
           <mat-toolbar-row style="height:50px!important">
-              <span class="rellenar"></span>
+              <span class="rellenar-tb"></span>
             <button class="btn btn-outline-light mr-2" (click)="register()">Registro</button>
             <button class="btn btn-success" (click)="logIn()">Entrar</button>
           </mat-toolbar-row>
@@ -20,11 +20,11 @@
         </mat-toolbar>
 
 
-        <div class="container mt-3">
+        <div class="container">
           <div class="row">
-            <div class="col-sm-6 ">
+            <div class="col-sm-6 text-center">
               <!-- <div *ngIf="!(verRegistrar || verIngresar)"> -->
-              <h1>Bienvenido a Hero for Pets</h1>
+              <h3>Bienvenido a Hero for Pets</h3>
               <p>Hero for pets, (héroe para mascotas en español) es una plataforma para mejorar el proceso de adopción
                 de
                 mascotas</p>
@@ -32,7 +32,7 @@
               <!-- </div> -->
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6 ">
 
               <app-login *ngIf="verIngresar"></app-login>
 

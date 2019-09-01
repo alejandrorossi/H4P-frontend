@@ -8,10 +8,8 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit {
 
-
   verIngresar:Boolean;
   verRegistrar:Boolean;
-  // verLanding:Boolean;
 
   constructor(private router: Router) { 
     this.clean();

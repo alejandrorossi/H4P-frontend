@@ -19,6 +19,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { LandingComponent } from './landing/landing.component';
 import { H4pComponent } from './h4p/h4p.component';
 import { RegistroComponent } from './registro/registro.component';
+import { CardMascotaComponent } from './card-mascota/card-mascota.component';
 
 
 
@@ -29,7 +30,8 @@ import { RegistroComponent } from './registro/registro.component';
     PrincipalComponent,
     LandingComponent,
     H4pComponent,
-    RegistroComponent
+    RegistroComponent,
+    CardMascotaComponent
   ],
   imports: [
     BrowserModule,

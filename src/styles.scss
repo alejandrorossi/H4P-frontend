@@ -9,3 +9,21 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/brands"; 
 
 
+.nopadding{
+  padding-right: 0!important; 
+  padding-left: 0!important;
+ }
+
+ .rellenar-tb {
+  flex: 1 1 auto;
+}
+
+.tipo-btn:active{
+  color:rgb(73, 58, 102);
+}
+
+.tipo-btn:hover{
+  cursor:pointer;
+  font-size: 1.1em;
+
+}

@@ -1,3 +1,28 @@
+<div class="container-fluid ">
 
 
-LOGUEADO A HERO FOR PETS
+
+  <div class="row">
+    <div class="col nopadding">
+      <mat-toolbar color="primary">
+        <span>Hero for Pets</span>
+        <span class="rellenar-tb"></span>
+        <i class="fas fa-sign-out-alt tipo-btn" title="Salir" (click)="salir()"></i>
+      </mat-toolbar>
+    </div>
+  </div>
+
+  <h3>Mascotas en adopci&oacute;n</h3>
+  <hr>
+
+
+  <div class="row card-group">
+    <div class="col-md-4" *ngFor="let ma of mascotas">
+
+      <app-card-mascota [mascota]="ma"></app-card-mascota>
+
+    </div>
+  </div>
+
+
+</div>
