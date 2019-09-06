@@ -1,6 +1,8 @@
+import { StorageService } from './../service/storage.service';
+import { PublicationService } from '../service/publication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MascotasService } from '../service/mascotas.service';
+import { Publication } from '../model/publication.model';
 
 @Component({
   selector: 'app-principal',
@@ -9,10 +11,13 @@ import { MascotasService } from '../service/mascotas.service';
 })
 export class PrincipalComponent implements OnInit {
 
-  mascotas: any[]
+  publications: Publication[];
 
-  constructor(private router: Router, private mascotasService: MascotasService) {
-    this.getTemplatesPublicos();
+  constructor(
+    private router: Router, 
+    private publicationService: PublicationService,
+    public storageService: StorageService) {
+    this.getPublications();
   }
 
   ngOnInit() {
@@ -23,12 +28,15 @@ export class PrincipalComponent implements OnInit {
     this.router.navigate(["/"]);
   }
 
-  getTemplatesPublicos() {
-    this.mascotas = this.mascotasService.getAllMascotasSinAdoptar();
-    // this.mascotasService.getAllMascotasSinAdoptar().subscribe(res => {
-    //     console.log(res)
-    //     this.mascotas = res.result;
-    //   });
+  isOwner(publication: Publication): Boolean{
+    return this.storageService.getCurrentSession().data.username == publication.user.username;
+  }
+
+  getPublications() {
+    this.publicationService.getPublicaciones()
+    .subscribe(res => {
+        this.publications = res.data as Publication[];
+      });
   }
 
 

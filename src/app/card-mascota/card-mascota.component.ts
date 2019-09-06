@@ -1,3 +1,4 @@
+import { Pet } from './../model/pet.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -8,9 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardMascotaComponent implements OnInit {
 
   @Input()
-  mascota : any
+  pet : Pet;
+
+  @Input()
+  isOwner: Boolean;
   
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

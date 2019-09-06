@@ -4,29 +4,26 @@
     <!-- <hr> -->
     <form [formGroup]="myForm" (ngSubmit)="signIn()" class="login-form">
       <mat-form-field>
-        <input matInput placeholder="Email" formControlName="emailCtrl">
+        <input matInput placeholder="Username" formControlName="username">
 
-        <mat-error *ngIf="getEmail.hasError('email') && !getEmail.hasError('required')">
+        <mat-error *ngIf="getUsername.hasError('username') && !getUsername.hasError('required')">
           Debés ingresar un email válido.
         </mat-error>
-        <mat-error *ngIf="getEmail.hasError('required')">
-          El Email es <strong>requerido</strong>
+        <mat-error *ngIf="getUsername.hasError('required')">
+          El username es <strong>requerido</strong>
         </mat-error>
         <br>
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput placeholder="Contraseña" formControlName="contraseniaCtrl" [type]="hide ? 'password' : 'text'">
+        <input matInput placeholder="Contraseña" formControlName="password" [type]="hide ? 'password' : 'text'">
         <mat-icon style="cursor:pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}} </mat-icon>
         <mat-error *ngIf="submitted && error_password">Usuario o ontraseña incorrecta.</mat-error>
       </mat-form-field>
 
 
       <br><br>
-      <button type="submit"
-        class="btn btn-outline-dark  btn-block"
-        (click)="goto('principal')"
-        >Ingresar!</button>
+      <button type="submit" class="btn btn-outline-dark btn-block">Ingresar!</button>
     </form>
 
   <br>
