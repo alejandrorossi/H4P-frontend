@@ -22,6 +22,11 @@ const routes: Routes = [
     pathMatch: 'prefix',
     children:[
       {
+        path: '',
+        redirectTo: 'principal',
+        pathMatch: 'full'
+      },
+      {
         path: 'principal',
         component: PrincipalComponent
       },
