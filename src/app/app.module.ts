@@ -21,6 +21,7 @@ import { H4pComponent } from './h4p/h4p.component';
 import { RegistroComponent } from './registro/registro.component';
 import { CardMascotaComponent } from './card-mascota/card-mascota.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -40,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    
+    RouterModule.forRoot([]),
+    RouterModule.forChild([]),
     MatButtonModule,
     MatDialogModule,
     MatIconModule,

@@ -5,11 +5,11 @@
 
         <mat-toolbar color="primary" class="mat-elevation-z4">
 
-          <mat-toolbar-row >
+          <mat-toolbar-row>
             <span>Hero for Pets</span>
             <img src="/assets/img/logoH4Pblanco.png" class="ml-3" alt="H4P" height="45" width="45">
             <span class="rellenar-tb"></span>
-            <button class="btn btn-success" (click)="logIn()">Ingreso / registro</button>
+            <button class="btn btn-success" (click)="verIng()">Ingreso / registro</button>
           </mat-toolbar-row>
         </mat-toolbar>
 
@@ -28,9 +28,13 @@
             <div class="col-sm-6">
 
               <mat-tab-group *ngIf="verIngresar" mat-stretch-tabs class="example-stretched-tabs ">
-                <mat-tab label="Ingresar"> <app-login> </app-login> </mat-tab>
-                <mat-tab label="Registro"> <app-registro> </app-registro> </mat-tab>
-               
+                <mat-tab label="Ingresar">
+                  <app-login> </app-login>
+                </mat-tab>
+                <mat-tab label="Registro">
+                  <app-registro> </app-registro>
+                </mat-tab>
+
               </mat-tab-group>
 
             </div>

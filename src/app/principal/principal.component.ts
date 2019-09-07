@@ -24,9 +24,6 @@ export class PrincipalComponent implements OnInit {
 
   }
 
-  salir() {
-    this.router.navigate(["/"]);
-  }
 
   isOwner(publication: Publication): Boolean{
     // return this.storageService.getCurrentSession().data.username == publication.user.username;

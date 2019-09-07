@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-h4p',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class H4pComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+
+
+  salir() {
+    this.router.navigate(["/"]);
+  }  
 }

@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
             console.log('Error!');
           }else{
             this.storageService.setCurrentSession(res as Session);
-            this.router.navigate(['principal']);
+            this.router.navigate(['h4p']);
           }
         },
         error => {
