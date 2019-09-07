@@ -3,22 +3,15 @@
     <div class="col nopadding">
       <div class="lan-page">
 
-        <mat-toolbar color="primary">
+        <mat-toolbar color="primary" class="mat-elevation-z4">
 
-          <mat-toolbar-row style="height:50px!important"> 
+          <mat-toolbar-row >
             <span>Hero for Pets</span>
-            <em class="ml-3">--logo--</em>
+            <img src="/assets/img/logoH4Pblanco.png" class="ml-3" alt="H4P" height="45" width="45">
             <span class="rellenar-tb"></span>
+            <button class="btn btn-success" (click)="logIn()">Ingreso / registro</button>
           </mat-toolbar-row>
-
-          <mat-toolbar-row style="height:50px!important">
-              <span class="rellenar-tb"></span>
-            <button class="btn btn-outline-light mr-2" (click)="register()">Registro</button>
-            <button class="btn btn-success" (click)="logIn()">Entrar</button>
-          </mat-toolbar-row>
-
         </mat-toolbar>
-
 
         <div class="container">
           <div class="row">
@@ -32,32 +25,20 @@
               <!-- </div> -->
             </div>
 
-            <div class="col-sm-6 ">
+            <div class="col-sm-6">
 
-              <app-login *ngIf="verIngresar"></app-login>
-
-              <app-registro *ngIf="verRegistrar"></app-registro>
+              <mat-tab-group *ngIf="verIngresar" mat-stretch-tabs class="example-stretched-tabs ">
+                <mat-tab label="Ingresar"> <app-login> </app-login> </mat-tab>
+                <mat-tab label="Registro"> <app-registro> </app-registro> </mat-tab>
+               
+              </mat-tab-group>
 
             </div>
           </div>
         </div>
-        <!-- <div class="container mt-3" *ngIf="verRegistrar || verIngresar">
-          <div class="row">
-            <div class="col">
-              <div class="text-center">
-                <button  color="primary" mat-mini-fab (click)="clean()">
-                  <i class="fas fa-chevron-left"></i>
-                </button>
-              </div>
-
-            </div>
-          </div>
-        </div> -->
-
-
 
         <mat-toolbar color="primary" class="footer">
-          <span>esto es un footer</span>
+          <span>Creado por Alejandro Rossi y Emmanuel Pericon</span>
           <span class="rellenar"></span>
         </mat-toolbar>
 
