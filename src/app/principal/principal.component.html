@@ -1,13 +1,10 @@
+<h3>Mascotas en adopci&oacute;n</h3>
+<hr>
 
+<div class="row card-group">
+  <div class="col-md-4" *ngFor="let p of publications">
 
-  <h3>Mascotas en adopci&oacute;n</h3>
-  <hr>
-
-
-  <div class="row card-group">
-    <div class="col-md-4" *ngFor="let p of publications">
-
-      <app-card-mascota [pet]="p.pet" [isOwner]="isOwner(p)"></app-card-mascota>
-
-    </div>
+    <app-card-mascota [pet]="p.pet" [isOwner]="isOwner(p)"></app-card-mascota>
+    <!-- <app-card-mascota [pet]="p" [isOwner]="isOwner(p)"></app-card-mascota> --> <!-- para probar, ale -->
   </div>
+</div>

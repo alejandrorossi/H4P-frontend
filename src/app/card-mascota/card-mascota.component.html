@@ -1,11 +1,16 @@
-<div class="card" style="width: 18rem;">
-  
-  <img src="/assets/img/perro.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{pet.name}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{pet.type}}</h6>
-    <p class="card-text">{{pet.characteristics}}</p>
-    <button class="btn btn-primary" *ngIf="!isOwner">¡Quiero adoptarlo!</button>
-  </div>
-
-</div>
+<mat-card class="publicacion">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{pet.name}}</mat-card-title>
+    <mat-card-subtitle>{{pet.type}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="/assets/img/perro.jpg" alt="{{pet.name}}">
+  <mat-card-content>
+    <p>
+      {{pet.characteristics}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="btn btn-outline-primary" *ngIf="!isOwner">¡Quiero adoptarlo!</button>
+  </mat-card-actions>
+</mat-card>

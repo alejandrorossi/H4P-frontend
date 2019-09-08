@@ -14,15 +14,15 @@ export class MascotasService {
   constructor(private http: HttpClient) {
     this.mascotas = [
       {
-        nombre: "firulais",
-        especie: "Perro",
-        descripcion: "un perro como cualquier otro",
+        name: "firulais",
+        type: "Perro",
+        characteristics: "un perro como cualquier otro",
         imagen: "/assets/img/perro.jpg"
       },
       {
-        nombre: "Grumpy",
-        especie: "Gato",
-        descripcion: "Excelente humor, perfecto para los niños",
+        name: "Grumpy",
+        type: "Gato",
+        characteristics: "Excelente humor, perfecto para los niños",
         imagen: "/assets/img/gato.PNG"
       }
     ]

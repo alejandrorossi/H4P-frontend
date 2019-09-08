@@ -1,17 +1,20 @@
-<div class="container-fluid ">
+<div class="container-fluid fondo" style="min-height:100vh">
   <div class="row">
+
     <div class="col nopadding">
       <mat-toolbar color="primary" class="mat-elevation-z4">
- 
-        <i class="far fa-user-circle ml-3 tipo-btn " title="Perfil" ></i>
+        <i class="far fa-user-circle ml-3 tipo-btn " title="Perfil"></i>
         <span class="rellenar-tb"></span>
-        
-        
         <i class="fas fa-sign-out-alt tipo-btn ml-3" title="Salir" (click)="salir()"></i>
       </mat-toolbar>
+    </div>
 
+  </div>
+
+  <div class="row">
+    <div class="col ">
       <router-outlet></router-outlet>
     </div>
   </div>
-</div>
 
+</div>

@@ -3,6 +3,7 @@ import { PublicationService } from '../service/publication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Publication } from '../model/publication.model';
+import { MascotasService } from '../service/mascotas.service';
 
 @Component({
   selector: 'app-principal',
@@ -16,8 +17,10 @@ export class PrincipalComponent implements OnInit {
   constructor(
     private router: Router, 
     private publicationService: PublicationService,
-    public storageService: StorageService) {
-    this.getPublications();
+    public storageService: StorageService,
+    public masc: MascotasService) {
+    // this.getPublications();
+    this.getall()
   }
 
   ngOnInit() {
@@ -26,8 +29,8 @@ export class PrincipalComponent implements OnInit {
 
 
   isOwner(publication: Publication): Boolean{
-    // return this.storageService.getCurrentSession().data.username == publication.user.username;
-    return true
+    return this.storageService.getCurrentSession().data.username == publication.user.username;
+    // return false
   }
 
   getPublications() {
@@ -37,6 +40,10 @@ export class PrincipalComponent implements OnInit {
       });
   }
 
+  //para probar de mientras
+  getall(){
+    this.publications = this.masc.getAllMascotasSinAdoptar()
+  }
 
 
 
