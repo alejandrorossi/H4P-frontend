@@ -4,13 +4,13 @@
     <mat-card-title>{{pet.name}}</mat-card-title>
     <mat-card-subtitle>{{pet.type}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="/assets/img/perro.jpg" alt="{{pet.name}}">
+  <img mat-card-image src="https://github.com/alejandrorossi/H4P-central/blob/master/poc/image/perro.jpg?raw=true" alt="{{pet.name}}">
   <mat-card-content>
     <p>
       {{pet.characteristics}}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button class="btn btn-outline-primary" *ngIf="!isOwner">¡Quiero adoptarlo!</button>
+    <button class="btn btn-outline-primary" (click)="addPostulant()" *ngIf="!isOwner">¡Quiero adoptarlo!</button>
   </mat-card-actions>
 </mat-card>

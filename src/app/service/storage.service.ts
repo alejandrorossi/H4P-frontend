@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/user.model';
-import { Session } from '../model/session.model';
+import { Response } from '../model/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Session } from '../model/session.model';
 export class StorageService {
 
   private localStorageService;
-  private currentSession: Session = null;
+  private currentSession: Response = null;
 
   constructor(private router: Router) {
     this.localStorageService = localStorage;
@@ -20,23 +20,23 @@ export class StorageService {
   /**
    * Set the currentSession and the currentUser in localStorage.
    */
-  setCurrentSession(session: Session): void {
-    this.currentSession = session;
-    this.localStorageService.setItem('currentUser', JSON.stringify(session));
+  setCurrentSession(Response: Response): void {
+    this.currentSession = Response;
+    this.localStorageService.setItem('currentUser', JSON.stringify(Response));
   }
 
   /**
-   * Returns an object session, this contains the currentUser from the localStorage.
+   * Returns an object Response, this contains the currentUser from the localStorage.
    */
-  loadSessionData(): Session {
+  loadSessionData(): Response {
     const sessionStr = this.localStorageService.getItem('currentUser');
-    return (sessionStr) ? <Session> JSON.parse(sessionStr) : null;
+    return (sessionStr) ? <Response> JSON.parse(sessionStr) : null;
   }
 
   /**
-   * Returns the current session.
+   * Returns the current Response.
    */
-  getCurrentSession(): Session {
+  getCurrentSession(): Response {
     return this.currentSession;
   }
 
@@ -52,27 +52,27 @@ export class StorageService {
    * Returns the user from currentSession.
    */
   getCurrentUser(): User {
-    const session: Session = this.getCurrentSession();
-    return (session && session.value) ? session.value : null;
+    const Response: Response = this.getCurrentSession();
+    return (Response && Response.data) ? Response.data as User: null;
   }
 
   /**
    * Returns true if the currentToken not is null.
    */
-  isAuthenticated(): boolean {
-    return (this.getCurrentToken() != null) ? true : false;
-  }
+  // isAuthenticated(): boolean {
+  //   return (this.getCurrentToken() != null) ? true : false;
+  // }
 
   /**
    * Returns the token from the currentSession.
    */
-  getCurrentToken(): any {
-    const session = this.getCurrentSession();
-    return (session && session.token) ? session.token : null;
-  }
+  // getCurrentToken(): any {
+  //   const Response = this.getCurrentSession();
+  //   return (Response && Response.token) ? Response.token : null;
+  // }
 
   /**
-   * Remove the current session and redirect for route login.
+   * Remove the current Response and redirect for route login.
    */
   singOut(): void {
     this.removeCurrentSession();

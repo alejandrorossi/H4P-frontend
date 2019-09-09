@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // Imports necesary interfaces
 import { User } from '../model/user.model';
-import { Session } from './../model/session.model';
+import { Response } from './../model/response.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -20,12 +20,12 @@ export class AuthService {
 
   // METHODS
   // Register a user
-  public registerUser(user: User): Observable<Session> {
-    return this.httpClient.post<Session>(`${this.URL_API}/user`, user);
+  public registerUser(user: User): Observable<Response> {
+    return this.httpClient.post<Response>(`${this.URL_API}/user`, user);
   }
 
   // Sing in a user
-  public signIn(user: User): Observable<Session> {
-    return this.httpClient.post<Session>(`${this.URL_API}/login`, user);
+  public signIn(user: User): Observable<Response> {
+    return this.httpClient.post<Response>(`${this.URL_API}/login`, user);
   }
 }

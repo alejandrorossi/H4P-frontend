@@ -19,8 +19,8 @@ export class PrincipalComponent implements OnInit {
     private publicationService: PublicationService,
     public storageService: StorageService,
     public masc: MascotasService) {
-    // this.getPublications();
-    this.getall()
+    this.getPublications();
+    // this.getall()
   }
 
   ngOnInit() {
@@ -29,8 +29,11 @@ export class PrincipalComponent implements OnInit {
 
 
   isOwner(publication: Publication): Boolean{
-    return this.storageService.getCurrentSession().data.username == publication.user.username;
-    // return false
+    var currentUserName: String = this.storageService.getCurrentUser().username;
+    var owner : Boolean = currentUserName == publication.user.username;
+    var postulant : Boolean = publication.postulants.find(p => p.username == currentUserName);
+
+    return owner || postulant;
   }
 
   getPublications() {

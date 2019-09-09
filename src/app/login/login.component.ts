@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StorageService } from '../service/storage.service';
-import { Session } from '../model/session.model';
+import { Response } from './../model/response.model';
 // import { MatDialog } from '@angular/material/dialog';
 // import { ReactiveFormsModule  } from '@angular/forms'
 
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
           if(res.code == 404){
             console.log('Error!');
           }else{
-            this.storageService.setCurrentSession(res as Session);
+            this.storageService.setCurrentSession(res as Response);
             this.router.navigate(['h4p']);
           }
         },

@@ -29,4 +29,8 @@ export class PublicationService {
   deletePublicacion(){
     
   };
+
+  addPostulant(idUser: String, idPublication: String ): Observable<Response>{
+    return this.httpClient.post<Response>(`${this.URL_API}/${idUser}`, {publication: idPublication});
+  }
 }
