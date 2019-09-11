@@ -1,67 +1,65 @@
-<div class="container-fluid ">
+<div class="container-fluid lan-page">
   <div class="row">
     <div class="col nopadding">
-      <div class="lan-page">
-
-        <mat-toolbar color="primary">
-
-          <mat-toolbar-row style="height:50px!important"> 
-            <span>Hero for Pets</span>
-            <em class="ml-3">--logo--</em>
-            <span class="rellenar-tb"></span>
-          </mat-toolbar-row>
-
-          <mat-toolbar-row style="height:50px!important">
-              <span class="rellenar-tb"></span>
-            <button class="btn btn-outline-light mr-2" (click)="register()">Registro</button>
-            <button class="btn btn-success" (click)="logIn()">Entrar</button>
-          </mat-toolbar-row>
-
-        </mat-toolbar>
-
-
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6 text-center">
-              <!-- <div *ngIf="!(verRegistrar || verIngresar)"> -->
-              <h3>Bienvenido a Hero for Pets</h3>
-              <p>Hero for pets, (héroe para mascotas en español) es una plataforma para mejorar el proceso de adopción
-                de
-                mascotas</p>
-              <p> mas info y cosas para poner en la portada</p>
-              <!-- </div> -->
-            </div>
-
-            <div class="col-sm-6 ">
-
-              <app-login *ngIf="verIngresar"></app-login>
-
-              <app-registro *ngIf="verRegistrar"></app-registro>
-
-            </div>
-          </div>
-        </div>
-        <!-- <div class="container mt-3" *ngIf="verRegistrar || verIngresar">
-          <div class="row">
-            <div class="col">
-              <div class="text-center">
-                <button  color="primary" mat-mini-fab (click)="clean()">
-                  <i class="fas fa-chevron-left"></i>
-                </button>
-              </div>
-
-            </div>
-          </div>
-        </div> -->
-
-
-
-        <mat-toolbar color="primary" class="footer">
-          <span>esto es un footer</span>
-          <span class="rellenar"></span>
-        </mat-toolbar>
-
-      </div>
+      <mat-toolbar color="primary" class="mat-elevation-z4">
+        <mat-toolbar-row>
+          <span>Hero for Pets</span>
+          <img src="/assets/img/logoH4Pblanco.png" class="ml-3" alt="H4P" height="45" width="45">
+          <span class="rellenar-tb"></span>
+          <button class="btn btn-outline-light" (click)="verIng()">Ingreso / registro</button>
+        </mat-toolbar-row>
+      </mat-toolbar>
     </div>
+  </div>
+  <div class="row mt-3">
+
+    <div class="col-sm-6">
+      <div class="text-center">
+        <h3>El nuevo asistente en adopciones.</h3>
+        <p>Hero for pets, (héroe para mascotas o H4P) es una plataforma para mejorar el proceso de adopción
+          de mascotas.</p>
+        <p> Si querés encontrar tu nuevo mejor amigo, sólo ingresá, buscalo y solicitá la adopción, así de facil.</p>
+        <p>¿Sos un refugio? H4P es también una plataforma para el control de tus animales, tenés toda la información
+          ordenada y práctica en un sólo lugar.</p>
+      </div>
+      <div class="ml-5 mt-5">
+        <p class="ml-5"><i class="fas fa-hand-holding-heart"></i> <span class="text-muted description">100% Gratis</span></p>
+        <p class="ml-5"><i class="fas fa-camera"></i> <span class="text-muted description">Fotos reales </span></p>
+        <p class="ml-5"><i class="fas fa-paw"></i><span class="text-muted description"> Para todos los animales</span></p>
+      </div>
+
+      <div class="text-center mt-5">
+          <button class="btn btn-outline-dark" (click)="goto('nosotros')">Quienes somos</button>
+      </div>
+
+
+    </div>
+
+
+    <div class="col-sm-6">
+
+      <mat-tab-group *ngIf="verIngresar" mat-stretch-tabs class="example-stretched-tabs ">
+        <mat-tab label="Ingresar">
+          <app-login> </app-login>
+        </mat-tab>
+        <mat-tab label="Registro">
+          <app-registro> </app-registro>
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </div>
+    <!-- </div> -->
+  </div>
+
+  <div class="row">
+    <div class="col nopadding">
+      <mat-toolbar color="primary" class="footer">
+        <span>Creado por <em>Alejandro Rossi</em> y <em>Emmanuel Pericon</em></span>
+        <span class="rellenar"></span>
+      </mat-toolbar>
+
+    </div>
+    <!-- </div> -->
   </div>
 </div>

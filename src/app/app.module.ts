@@ -14,6 +14,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import { LoginComponent } from './login/login.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { LandingComponent } from './landing/landing.component';
@@ -21,6 +22,8 @@ import { H4pComponent } from './h4p/h4p.component';
 import { RegistroComponent } from './registro/registro.component';
 import { CardMascotaComponent } from './card-mascota/card-mascota.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { NosotrosComponent } from './nosotros/nosotros.component';
 
 
 
@@ -32,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     LandingComponent,
     H4pComponent,
     RegistroComponent,
-    CardMascotaComponent
+    CardMascotaComponent,
+    NosotrosComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +44,10 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    
+    RouterModule.forRoot([]),
+    RouterModule.forChild([]),
     MatButtonModule,
+    MatCardModule,
     MatDialogModule,
     MatIconModule,
     MatInputModule,

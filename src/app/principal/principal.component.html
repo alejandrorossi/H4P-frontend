@@ -1,28 +1,10 @@
-<div class="container-fluid ">
+<h3>Mascotas en adopci&oacute;n</h3>
+<hr>
 
+<div class="row card-group">
+  <div class="col-md-4" *ngFor="let p of publications">
 
-
-  <div class="row">
-    <div class="col nopadding">
-      <mat-toolbar color="primary">
-        <span>Hero for Pets</span>
-        <span class="rellenar-tb"></span>
-        <i class="fas fa-sign-out-alt tipo-btn" title="Salir" (click)="salir()"></i>
-      </mat-toolbar>
-    </div>
+    <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [isOwner]="isOwner(p)"></app-card-mascota>
+    <!-- <app-card-mascota [pet]="p" [isOwner]="isOwner(p)"></app-card-mascota> --> <!-- para probar, ale -->
   </div>
-
-  <h3>Mascotas en adopci&oacute;n</h3>
-  <hr>
-
-
-  <div class="row card-group">
-    <div class="col-md-4" *ngFor="let p of publications">
-
-      <app-card-mascota [pet]="p.pet" [isOwner]="isOwner(p)"></app-card-mascota>
-
-    </div>
-  </div>
-
-
 </div>

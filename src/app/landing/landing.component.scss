@@ -1,10 +1,22 @@
 
-  .lan-page{
-     height:100vh!important
+.lan-page{
+     height:100vh!important;
+     background-color:#edf0f5;
   }
 
-  .footer{
+.footer{
    position: fixed;
    bottom: 0;
+   font-size:16px;
   }
 
+i{
+     font-size:40px;
+     color: #8d8c8c
+  }
+
+.description{
+   // color: #8d8c8c
+   vertical-align: super;
+   margin-left:10px;
+}
