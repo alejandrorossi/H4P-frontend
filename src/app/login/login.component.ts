@@ -49,9 +49,7 @@ export class LoginComponent implements OnInit {
           // TODO: Error manager
           if (res.code == 400) {
             this.error_password = true;
-          }
-          
-          if(res.code == 404){
+          }else if(res.code == 404){
             console.log('Error!');
           }else{
             this.storageService.setCurrentSession(res as Response);
