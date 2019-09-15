@@ -8,12 +8,13 @@
         <i class="far fa-bell mr-3" style="cursor:pointer"></i>
         <div [matMenuTriggerFor]="menu">
           <i class="fas fa-ellipsis-v tipo-btn ml-3 mr-3" matRipple [matRippleRadius]="'25'" [matRippleUnbounded]="true"
-            [matRippleCentered]="true" title="Menú"></i>
+            [matRippleCentered]="true" title="Menú">
+          </i>
         </div>
 
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Opcion numero 1</button>
-          <button mat-menu-item><i class="far fa-bell"></i></button>
+          <button mat-menu-item><i class="fas fa-folder-plus"></i></button>
+          <button mat-menu-item><i class="fas fa-book"></i></button>
         </mat-menu>
 
       </mat-toolbar>
