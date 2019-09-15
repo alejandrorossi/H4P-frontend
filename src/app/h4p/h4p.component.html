@@ -1,19 +1,46 @@
-<div class="container-fluid fondo" style="min-height:100vh">
+<div class="container-fluid fondo " style="min-height:100vh !important">
   <div class="row">
-
     <div class="col nopadding">
-      <mat-toolbar color="primary" class="mat-elevation-z4">
-        <i class="far fa-user-circle ml-3 tipo-btn " title="Perfil"></i>
+      <mat-toolbar color="primary" #toolB>
+        <i class="fas fa-bars ml-3 tipo-btn" (click)="snav.toggle()"></i>
+        <span class="ml-5"> Hero for Pets </span>
         <span class="rellenar-tb"></span>
-        <i class="fas fa-sign-out-alt tipo-btn ml-3" title="Salir" (click)="salir()"></i>
+        <i class="far fa-bell mr-3" style="cursor:pointer"></i>
+        <div [matMenuTriggerFor]="menu">
+          <i class="fas fa-ellipsis-v tipo-btn ml-3 mr-3" matRipple [matRippleRadius]="'25'" [matRippleUnbounded]="true"
+            [matRippleCentered]="true" title="Menú"></i>
+        </div>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Opcion numero 1</button>
+          <button mat-menu-item><i class="far fa-bell"></i></button>
+        </mat-menu>
+
       </mat-toolbar>
     </div>
 
   </div>
-
   <div class="row">
-    <div class="col ">
-      <router-outlet></router-outlet>
+    <div class="col nopadding">
+
+      <mat-sidenav-container class="fondo">
+        <mat-sidenav #snav mode="over" class="sd-container" [fixedInViewport]="true">
+          <button class="btn btn-danger" (click)="snav.toggle()">X</button>
+          <app-menu-usuario></app-menu-usuario>
+        </mat-sidenav>
+
+        <mat-sidenav-content style="min-height:calc(100vh - 64px) !important">
+          <div class="container-fluid mt-2">
+            <div class="row">
+              <div class="col">
+                <router-outlet></router-outlet>
+              </div>
+            </div>
+          </div>
+
+        </mat-sidenav-content>
+
+      </mat-sidenav-container>
     </div>
   </div>
 

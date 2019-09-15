@@ -1,7 +1,7 @@
 
 .lan-page{
      height:100vh!important;
-     background-color:#edf0f5;
+     background-color:#f6f9ff;
   }
 
 .footer{
@@ -16,7 +16,11 @@ i{
   }
 
 .description{
-   // color: #8d8c8c
+    color: #000000;
    vertical-align: super;
    margin-left:10px;
+}
+
+mat-card{
+   max-width: 60%;
 }
