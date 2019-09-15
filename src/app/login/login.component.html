@@ -1,10 +1,8 @@
-<!-- <mat-card> -->
-
     <h4 class="titulo-login mt-2 text-center">Ingresar a H4P </h4>
-    <!-- <hr> -->
+
     <form [formGroup]="myForm" (ngSubmit)="signIn()" class="login-form">
       <mat-form-field>
-        <input matInput placeholder="Username" formControlName="username">
+        <input matInput placeholder="Usuario/e-mail" formControlName="username">
 
         <mat-error *ngIf="getUsername.hasError('username') && !getUsername.hasError('required')">
           Debés ingresar un email válido.
@@ -27,4 +25,3 @@
     </form>
 
   <br>
-<!-- </mat-card>  -->
