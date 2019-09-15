@@ -4,7 +4,7 @@
       <mat-toolbar color="primary" class="mat-elevation-z4">
         <mat-toolbar-row>
           <span>Hero for Pets</span>
-          <img src="/assets/img/logoH4Pblanco.png" class="ml-3" alt="H4P" height="45" width="45">
+          <img src="/assets/img/logoH4PGrueso.png" class="ml-3" alt="H4P" height="45" width="45">
           <span class="rellenar-tb"></span>
           <button class="btn btn-outline-light" (click)="verIng()">Ingreso / registro</button>
         </mat-toolbar-row>
@@ -23,13 +23,15 @@
           ordenada y práctica en un sólo lugar.</p>
       </div>
       <div class="ml-5 mt-5">
-        <p class="ml-5"><i class="fas fa-hand-holding-heart"></i> <span class="text-muted description">100% Gratis</span></p>
+        <p class="ml-5"><i class="fas fa-hand-holding-heart"></i> <span class="text-muted description">100%
+            Gratis</span></p>
         <p class="ml-5"><i class="fas fa-camera"></i> <span class="text-muted description">Fotos reales </span></p>
-        <p class="ml-5"><i class="fas fa-paw"></i><span class="text-muted description"> Para todos los animales</span></p>
+        <p class="ml-5"><i class="fas fa-paw"></i><span class="text-muted description"> Para todos los animales</span>
+        </p>
       </div>
 
       <div class="text-center mt-5">
-          <button class="btn btn-outline-dark" (click)="goto('nosotros')">Quienes somos</button>
+        <button class="btn btn-outline-dark" (click)="goto('nosotros')">Quienes somos</button>
       </div>
 
 
@@ -37,19 +39,20 @@
 
 
     <div class="col-sm-6">
+      <mat-card *ngIf="verIngresar" class="mat-elevation-z4 mx-auto my-auto">
+        <mat-tab-group  mat-stretch-tabs class="example-stretched-tabs ">
 
-      <mat-tab-group *ngIf="verIngresar" mat-stretch-tabs class="example-stretched-tabs ">
-        <mat-tab label="Ingresar">
-          <app-login> </app-login>
-        </mat-tab>
-        <mat-tab label="Registro">
-          <app-registro> </app-registro>
-        </mat-tab>
+          <mat-tab label="Ingresar">
+            <app-login> </app-login>
+          </mat-tab>
+          <mat-tab label="Registro">
+            <app-registro> </app-registro>
+          </mat-tab>
 
-      </mat-tab-group>
-
+        </mat-tab-group>
+      </mat-card>
     </div>
-    <!-- </div> -->
+
   </div>
 
   <div class="row">

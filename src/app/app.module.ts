@@ -4,17 +4,22 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule  } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatRippleModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+
 import { LoginComponent } from './login/login.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { LandingComponent } from './landing/landing.component';
@@ -24,6 +29,10 @@ import { CardMascotaComponent } from './card-mascota/card-mascota.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NosotrosComponent } from './nosotros/nosotros.component';
+import { VerPublicacionComponent } from './ver-publicacion/ver-publicacion.component';
+import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
+
+
 
 
 
@@ -36,7 +45,9 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
     H4pComponent,
     RegistroComponent,
     CardMascotaComponent,
-    NosotrosComponent
+    NosotrosComponent,
+    VerPublicacionComponent,
+    MenuUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -52,10 +63,14 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
     MatIconModule,
     MatInputModule,
     MatGridListModule,
+    MatListModule,
+    MatMenuModule,
+    MatRippleModule,
+    MatSidenavModule,
     MatTabsModule,
     MatToolbarModule,
     HttpClientModule
-    
+
   ],
   exports: [
     BrowserAnimationsModule,
