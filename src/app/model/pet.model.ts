@@ -1,3 +1,4 @@
+import { User } from './user.model';
 import { Imagen } from './imagen.model';
 
 
@@ -8,6 +9,7 @@ export class Pet {
   public birth: Date;
   public type: String;
   public characteristics: String;
-  public imagen: Imagen;
+  public imagen: Imagen[];
+  public user: User;
   public createdDate: Date;
 }

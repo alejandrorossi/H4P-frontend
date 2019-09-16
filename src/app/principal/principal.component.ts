@@ -30,8 +30,15 @@ export class PrincipalComponent implements OnInit {
 
   isOwner(publication: Publication): Boolean{
     var currentUserName: String = this.storageService.getCurrentUser().username;
-    var owner : Boolean = currentUserName == publication.user.username;
-    var postulant : Boolean = publication.postulants.find(p => p.username == currentUserName);
+    var owner : Boolean = currentUserName == publication.pet.user.username;
+    var postulant : Boolean = publication.postulants.find(p => p.username == currentUserName) != undefined;
+
+    console.log("current user ? : ", this.storageService.getCurrentUser());
+    console.log("owner ? : ", owner);
+    console.log("postulante ? : ", postulant);
+    console.log("publicacion ? ", publication);
+    
+    
 
     return owner || postulant;
   }
