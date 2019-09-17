@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit,  OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { UtilsService } from '../service/utils.service';
+
 
 @Component({
   selector: 'app-h4p',
@@ -12,10 +13,8 @@ export class H4pComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
-  constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+  constructor(private router: Router, private utils: UtilsService) {
+
   }
 
   ngOnInit() {
@@ -27,5 +26,9 @@ export class H4pComponent implements OnInit, OnDestroy {
 
   salir() {
     this.router.navigate(["/"]);
+  }
+
+  cargarNuevaMascota(){
+    // this.utils.notificacion("prueba", "Cerrar");
   }
 }

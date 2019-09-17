@@ -4,6 +4,8 @@ import { LandingComponent } from './landing/landing.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { H4pComponent } from './h4p/h4p.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
+import { AdministracionRefugioComponent } from './administracion-refugio/administracion-refugio.component';
+import { CargarComponent } from './cargar/cargar.component';
 
 
 
@@ -34,6 +36,18 @@ const routes: Routes = [
       {
         path: 'principal',
         component: PrincipalComponent
+      },
+      // {
+      //   path: 'principal',
+      //   component: PrincipalComponent
+      // },
+      {
+        path: 'administracion',
+        component: AdministracionRefugioComponent
+      },      
+      {
+        path: 'cargar-mascota',
+        component: CargarComponent
       },
     ]
   }

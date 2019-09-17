@@ -19,6 +19,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatRippleModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 import { LoginComponent } from './login/login.component';
 import { PrincipalComponent } from './principal/principal.component';
@@ -31,6 +36,9 @@ import { RouterModule } from '@angular/router';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { VerPublicacionComponent } from './ver-publicacion/ver-publicacion.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
+import { CargarComponent } from './cargar/cargar.component';
+import { AdministracionRefugioComponent } from './administracion-refugio/administracion-refugio.component';
+import { MatSelectModule } from '@angular/material';
 
 
 
@@ -47,7 +55,9 @@ import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
     CardMascotaComponent,
     NosotrosComponent,
     VerPublicacionComponent,
-    MenuUsuarioComponent
+    MenuUsuarioComponent,
+    CargarComponent,
+    AdministracionRefugioComponent
   ],
   imports: [
     BrowserModule,
@@ -60,15 +70,20 @@ import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
-    MatGridListModule,
     MatListModule,
     MatMenuModule,
+    MatRadioModule,
     MatRippleModule,
+    MatSelectModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatTabsModule,
     MatToolbarModule,
+    MatTooltipModule,
     HttpClientModule
 
   ],

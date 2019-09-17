@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class MascotasService {
 
   mascotas: any
+  especies: any
   // URL of th Rest API server
   readonly URL_API = 'http://localhost:8080/app/pet';
 
@@ -26,6 +27,30 @@ export class MascotasService {
         imagen: "/assets/img/gato.PNG"
       }
     ]
+
+    this.especies = [
+      {
+        value: "pe",
+        name: "Perro",
+        icon: "fas fa-dog"
+      },
+      {
+        value: "ga",
+        name: "Gato",
+        icon: "fas fa-cat"
+      },
+      {
+        value: "pa",
+        name: "Pájaro",
+        icon: "fas fa-crow "
+      },
+      {
+        value: "ot",
+        name: "Otros",
+        icon: "fas fa-paw"
+      },
+
+    ]
   }
 
 
@@ -33,6 +58,9 @@ export class MascotasService {
     return this.mascotas;
   }
 
+  getAllEspecies() {
+    return this.especies;
+  }
 
 
 }
