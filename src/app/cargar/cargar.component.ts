@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MascotasService } from '../service/mascotas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ReactiveFormsModule  } from '@angular/forms'
+
 
 @Component({
   selector: 'app-cargar',
@@ -16,11 +16,13 @@ export class CargarComponent implements OnInit {
   masInf: boolean;
   formCarga: FormGroup;
   submitted: Boolean = false;
+  avisoVisibilidad: String;
 
   constructor(private mService: MascotasService, private formBuilder: FormBuilder) {
     this.aviso = "No deseamos que los usuarios hagan preferencia por razas ni facilitar la adquisición de mascotas para la venta.";
     this.especies = this.mService.getAllEspecies();
     this.masInf = false;
+    this.avisoVisibilidad = "Activando esta opción la mascota no aparecerá visible a los adoptantes hasta que sea dada de alta manualmente desde al área de administración.";
   }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class CargarComponent implements OnInit {
       nombreMascotaCtrl:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       especieMascotaCtrl: ['', [Validators.required]],
       descripcionMascotaCtrl: ['', [Validators.required, Validators.maxLength(499)]],
-      edadAproxCtrl:['', [Validators.maxLength(2)]] //arreglar
+      edadAproxCtrl:['', [Validators.maxLength(2)]] 
     });
   }
 
@@ -54,13 +56,14 @@ export class CargarComponent implements OnInit {
   // //imagenes
   onSelectFile(event) { // called each time file input changes
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      const reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        // this.url = event.target.result;
-        console.log(event)
+
+          this.url = reader.result;
+
       }
     }
   }

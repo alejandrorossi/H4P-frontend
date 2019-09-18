@@ -6,3 +6,20 @@
   // .carga-form > * {
   //   width: 100%;
   // }
+
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .espaciado {
+    padding-right: 8px;
+  }
+
+  mat-form-field{
+    width:90%;
+  }
+
+  .example-header-image {
+    background-image: url('https://www.ecured.cu/Perro#/media/File:Perros1.jpg');
+    background-size: cover;
+  }
