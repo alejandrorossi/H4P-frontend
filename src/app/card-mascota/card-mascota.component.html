@@ -13,4 +13,7 @@
   <mat-card-actions>
     <button class="btn btn-outline-primary" (click)="addPostulant()" *ngIf="!isOwner">¡Quiero adoptarlo!</button>
   </mat-card-actions>
+  <mat-card-footer>
+    <mat-card-subtitle class="text-footer">Publicado por: {{pet.user.name}} {{pet.user.surname}}</mat-card-subtitle>
+  </mat-card-footer>
 </mat-card>

@@ -1,3 +1,4 @@
+import { UtilsService } from './../service/utils.service';
 import { StorageService } from './../service/storage.service';
 import { PublicationService } from './../service/publication.service';
 import { Pet } from './../model/pet.model';
@@ -20,6 +21,7 @@ export class CardMascotaComponent implements OnInit {
   idPublication: String;
   
   constructor(
+    private utilsService: UtilsService,
     private publicationService: PublicationService,
     private storageService: StorageService) { }
 
@@ -35,6 +37,7 @@ export class CardMascotaComponent implements OnInit {
             console.log('Error!');
           }else{
             this.isOwner = true;
+            this.utilsService.notificacion("Se guardó correctamente!", "Postulación")
           }
         },
         error => {
