@@ -75,8 +75,8 @@ export class StorageService {
    * Remove the current Response and redirect for route login.
    */
   singOut(): void {
-    this.removeCurrentSession();
-    this.router.navigateByUrl('/auth/login');
+    this.removeCurrentSession();    
+    this.router.navigate(["/landing"]);
   }
 
 }

@@ -21,7 +21,7 @@ export class H4pComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    // this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   salir() {
