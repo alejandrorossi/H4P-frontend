@@ -3,6 +3,8 @@ import { StorageService } from './../service/storage.service';
 import { PublicationService } from './../service/publication.service';
 import { Pet } from './../model/pet.model';
 import { Component, OnInit, Input } from '@angular/core';
+import { ImageService } from '../service/image.service';
+import { ImgResponse } from '../model/image.model';
 
 @Component({
   selector: 'app-card-mascota',
@@ -19,16 +21,34 @@ export class CardMascotaComponent implements OnInit {
 
   @Input()
   idPublication: String;
+
+  //Imagen de previsualizacion
+  preimage: any;
   
   constructor(
+    private imageService: ImageService,
     private utilsService: UtilsService,
     private publicationService: PublicationService,
     private storageService: StorageService) { }
 
   ngOnInit() {
+    this.loadPreImage();
   }
 
-  addPostulant(){
+  private loadPreImage(){
+    this.imageService.getImage(this.pet.images[0]._id)
+      .subscribe(
+        res => {
+          let img = res.data as ImgResponse;
+          this.preimage = `<img mat-card-image src="${img.dataURL}" alt="{{pet.name}}">`;
+        },
+        error => {
+          console.log('Error!');
+        }
+      );
+  }
+
+  public addPostulant(){
     this.publicationService.addPostulant(this.storageService.getCurrentUser()._id, this.idPublication)
       .subscribe(
         res => {

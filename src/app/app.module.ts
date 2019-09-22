@@ -40,6 +40,7 @@ import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
 import { CargarComponent } from './cargar/cargar.component';
 import { AdministracionRefugioComponent } from './administracion-refugio/administracion-refugio.component';
 import { MatSelectModule } from '@angular/material';
+import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
 
 
 
@@ -58,7 +59,9 @@ import { MatSelectModule } from '@angular/material';
     VerPublicacionComponent,
     MenuUsuarioComponent,
     CargarComponent,
-    AdministracionRefugioComponent
+    AdministracionRefugioComponent,
+
+    SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,
