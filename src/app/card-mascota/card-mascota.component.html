@@ -1,16 +1,29 @@
 <mat-card class="publicacion">
+  <div class="suscrito pull-right" *ngIf="isOwner"> 
+    <i class="far fa-heart pull-right" matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i> 
+  </div>
   <mat-card-header>
+
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{pet.name}}</mat-card-title>
     <mat-card-subtitle>{{pet.type}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://github.com/alejandrorossi/H4P-central/blob/master/poc/image/perro.jpg?raw=true" alt="{{pet.name}}">
+
+  <img mat-card-image src="https://github.com/alejandrorossi/H4P-central/blob/master/poc/image/perro.jpg?raw=true"
+    alt="{{pet.name}}">
+
   <mat-card-content>
     <p>
       {{pet.characteristics}}
     </p>
   </mat-card-content>
+
   <mat-card-actions>
-    <button class="btn btn-outline-primary" (click)="addPostulant()" *ngIf="!isOwner">¡Quiero adoptarlo!</button>
+    <button class="btn btn-outline-primary pull-right" (click)="addPostulant()" *ngIf="!isOwner">¡Adoptar!</button>
   </mat-card-actions>
+
+  <mat-card-footer>
+      <br>
+  </mat-card-footer>
+
 </mat-card>

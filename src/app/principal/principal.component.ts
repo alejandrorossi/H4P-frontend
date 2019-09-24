@@ -33,12 +33,10 @@ export class PrincipalComponent implements OnInit {
     var owner : Boolean = currentUserName == publication.pet.user.username;
     var postulant : Boolean = publication.postulants.find(p => p.username == currentUserName) != undefined;
 
-    console.log("current user ? : ", this.storageService.getCurrentUser());
-    console.log("owner ? : ", owner);
-    console.log("postulante ? : ", postulant);
-    console.log("publicacion ? ", publication);
-    
-    
+    // console.log("current user ? : ", this.storageService.getCurrentUser());
+    // console.log("owner ? : ", owner);
+    // console.log("postulante ? : ", postulant);
+    // console.log("publicacion ? ", publication);
 
     return owner || postulant;
   }
@@ -50,10 +48,10 @@ export class PrincipalComponent implements OnInit {
       });
   }
 
-  //para probar de mientras
-  getall(){
-    this.publications = this.masc.getAllMascotasSinAdoptar()
-  }
+  // //para probar de mientras
+  // getall(){
+  //   this.publications = this.masc.getAllMascotasSinAdoptar()
+  // }
 
 
 

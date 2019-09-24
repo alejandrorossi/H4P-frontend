@@ -11,7 +11,7 @@ import { UtilsService } from '../service/utils.service';
 export class H4pComponent implements OnInit, OnDestroy {
 
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+  // private _mobileQueryListener: () => void;
 
   constructor(private router: Router, private utils: UtilsService) {
 
@@ -21,14 +21,12 @@ export class H4pComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    // this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  salir() {
-    this.router.navigate(["/"]);
+
+  irA(ruta){
+    this.router.navigate([ruta]);
   }
 
-  cargarNuevaMascota(){
-    // this.utils.notificacion("prueba", "Cerrar");
-  }
 }

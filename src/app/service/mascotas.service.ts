@@ -13,20 +13,7 @@ export class MascotasService {
   readonly URL_API = 'http://localhost:8080/app/pet';
 
   constructor(private http: HttpClient) {
-    this.mascotas = [
-      {
-        name: "firulais",
-        type: "Perro",
-        characteristics: "un perro como cualquier otro",
-        imagen: "/assets/img/perro.jpg"
-      },
-      {
-        name: "Grumpy",
-        type: "Gato",
-        characteristics: "Excelente humor, perfecto para los niños",
-        imagen: "/assets/img/gato.PNG"
-      }
-    ]
+
 
     this.especies = [
       {
