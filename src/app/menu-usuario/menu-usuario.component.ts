@@ -1,3 +1,4 @@
+import { StorageService } from './../service/storage.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuUsuarioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
+  }
+
+  public signOut(){
+    this.storageService.singOut();
   }
 
 }

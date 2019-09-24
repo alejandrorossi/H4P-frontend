@@ -3,9 +3,12 @@ import { StorageService } from './../service/storage.service';
 import { PublicationService } from './../service/publication.service';
 import { Pet } from './../model/pet.model';
 import { Component, OnInit, Input } from '@angular/core';
-
+<<<<<<< HEAD
+import { UtilsService } from '../service/utils.service';
+=======
 import { ImageService } from '../service/image.service';
 import { ImgResponse } from '../model/image.model';
+>>>>>>> 9fa5ac7c25d96415fb5b51cecf36d4f67a221e8a
 
 @Component({
   selector: 'app-card-mascota',
@@ -22,14 +25,19 @@ export class CardMascotaComponent implements OnInit {
 
   @Input()
   idPublication: String;
-  
+
+<<<<<<< HEAD
+=======
   //Imagen de previsualizacion
   preimage: any;
+  
+>>>>>>> 9fa5ac7c25d96415fb5b51cecf36d4f67a221e8a
   constructor(
     private imageService: ImageService,
     private utilsService: UtilsService,
     private publicationService: PublicationService,
-    private storageService: StorageService) { }
+    private storageService: StorageService,
+    private utilsService: UtilsService) { }
 
   ngOnInit() {
     this.loadPreImage();
@@ -48,16 +56,25 @@ export class CardMascotaComponent implements OnInit {
       );
   }
 
+<<<<<<< HEAD
+  addPostulant() {
+=======
   public addPostulant(){
+>>>>>>> 9fa5ac7c25d96415fb5b51cecf36d4f67a221e8a
     this.publicationService.addPostulant(this.storageService.getCurrentUser()._id, this.idPublication)
       .subscribe(
         res => {
-          console.log(res.status);
-          if(res.code != 200){
-            console.log('Error!');
-          }else{
+
+          if (res.code == 200) {
             this.isOwner = true;
+<<<<<<< HEAD
             this.utilsService.notificacion("Suscripción de adopcion enviada, el refugio se contactará contigo.","")
+          } else {
+            console.log('Error!');
+
+=======
+            this.utilsService.notificacion("Se guardó correctamente!", "Postulación")
+>>>>>>> 9fa5ac7c25d96415fb5b51cecf36d4f67a221e8a
           }
         },
         error => {

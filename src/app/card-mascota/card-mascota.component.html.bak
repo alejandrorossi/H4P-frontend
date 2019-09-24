@@ -8,8 +8,15 @@
     <mat-card-title>{{pet.name}}</mat-card-title>
     <mat-card-subtitle>{{pet.type}}</mat-card-subtitle>
   </mat-card-header>
+<<<<<<< HEAD
+
+  <img mat-card-image src="https://github.com/alejandrorossi/H4P-central/blob/master/poc/image/perro.jpg?raw=true"
+    alt="{{pet.name}}">
+
+=======
   <div [innerHTML]="preimage | sanitizeHtml"></div>
   <br>
+>>>>>>> 9fa5ac7c25d96415fb5b51cecf36d4f67a221e8a
   <mat-card-content>
     <p>
       {{pet.characteristics}}
@@ -19,10 +26,15 @@
   <mat-card-actions>
     <button class="btn btn-outline-primary pull-right" (click)="addPostulant()" *ngIf="!isOwner">¡Adoptar!</button>
   </mat-card-actions>
+<<<<<<< HEAD
 
   <mat-card-footer>
-      
-    <mat-card-subtitle class="text-footer">Publicado por: {{pet.user.name}} {{pet.user.surname}}</mat-card-subtitle>
+      <br>
   </mat-card-footer>
 
+=======
+  <mat-card-footer>
+    <mat-card-subtitle class="text-footer">Publicado por: {{pet.user.name}} {{pet.user.surname}}</mat-card-subtitle>
+  </mat-card-footer>
+>>>>>>> 9fa5ac7c25d96415fb5b51cecf36d4f67a221e8a
 </mat-card>
