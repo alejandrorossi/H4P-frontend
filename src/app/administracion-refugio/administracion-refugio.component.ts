@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MascotasService } from '../service/mascotas.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-administracion-refugio',
@@ -7,12 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministracionRefugioComponent implements OnInit {
 
-  filtroActual: string
-  constructor() { 
-    this.filtroActual="Últimos cargados"
+  especies: any;
+  filtroActual: string;
+  formBusqueda: FormGroup;
+
+  constructor(private mService: MascotasService, private formBuilder: FormBuilder) { 
+    this.filtroActual="Últimos cargados";
+    this.especies = this.mService.getAllEspecies();
   }
 
   ngOnInit() {
+    this.formBusqueda = this.formBuilder.group({
+      nombreMascotaCtrl:['', [Validators.maxLength(100)]],
+      especieMascotaCtrl: ['', []],
+    });
+  }
+
+  buscar(){
+    alert("implementar buscar")
   }
 
 }

@@ -7,7 +7,7 @@
         <span class="rellenar-tb"></span>
         <i class="far fa-bell mr-3" style="cursor:pointer"></i>
         <div [matMenuTriggerFor]="menu" matRipple [matRippleRadius]="'25'" [matRippleUnbounded]="true"
-          [matRippleCentered]="true" title="Menú" class="tipo-btn">
+              [matRippleCentered]="true" title="Menú" class="tipo-btn">
           <i class="fas fa-ellipsis-v  ml-3 mr-3"> </i>
         </div>
 
@@ -15,6 +15,24 @@
           <button mat-menu-item (click)="irA('/h4p/cargar-mascota')"> Cargar <i class="fas fa-plus-circle"></i></button>
           <button mat-menu-item (click)="irA('/h4p/administracion')">Administración </button>
         </mat-menu>
+<!-- 
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voice mail</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button>
+          </mat-menu> -->
 
       </mat-toolbar>
     </div>
