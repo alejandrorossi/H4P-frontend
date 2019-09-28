@@ -1,1 +1,50 @@
-<p>administracion-refugio works!</p>
+<div class="container-fluid fondo">
+  <div class="row">
+    <div class="col ">
+      <p><span class="h4">Solicitudes </span> </p>
+
+      <mat-button-toggle-group name="requests" class="shadow-sm">
+        <mat-button-toggle value="newReq"> Nuevas</mat-button-toggle>
+        <mat-button-toggle value="acceptedReq">Aceptadas</mat-button-toggle>
+        <mat-button-toggle value="deniedReq">Rechazadas</mat-button-toggle>
+      </mat-button-toggle-group>
+      <hr>
+
+      *placeholder publicaciones*
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col ">
+      <p><span class="h4">Publicados </span> <span class="text-muted ml-3"> - {{filtroActual}} </span> </p>
+
+      <mat-button-toggle-group name="publications" class="shadow-sm">
+        <mat-button-toggle value="newPubl">Últimos cargados</mat-button-toggle>
+        <mat-button-toggle value="publicPubl">Publicados</mat-button-toggle>
+        <mat-button-toggle value="adoptedPubl">Adoptados</mat-button-toggle>
+        <mat-button-toggle value="privatePubl">Privados</mat-button-toggle>
+      </mat-button-toggle-group>
+
+
+      <!-- <button mat-mini-fab class="white-icon" matTooltip="Últimos cargados">
+        <i class="far fa-calendar-alt text-primary"></i>
+      </button>
+      <button mat-mini-fab class="white-icon ml-2 text-primary" matTooltip="Publicados en adopción">
+        <i class="fas fa-globe"></i>
+      </button>
+      <button mat-mini-fab class="white-icon ml-2 text-success " matTooltip="Adoptados">
+        <i class="fas fa-check"></i>
+      </button>
+      <button mat-mini-fab class="white-icon ml-2 text-danger " matTooltip="No publicados">
+        <i class="fas fa-lock"></i>
+      </button> -->
+
+      <!-- buscador por texto
+      filtro por especie
+      filtro por edad- NO -->
+
+    </div>
+  </div>
+</div>

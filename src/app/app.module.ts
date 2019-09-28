@@ -22,8 +22,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 import { LoginComponent } from './login/login.component';
@@ -41,6 +42,7 @@ import { CargarComponent } from './cargar/cargar.component';
 import { AdministracionRefugioComponent } from './administracion-refugio/administracion-refugio.component';
 import { MatSelectModule } from '@angular/material';
 import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
+import { SolicitudComponent } from './solicitud/solicitud.component';
 
 
 
@@ -61,7 +63,9 @@ import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
     CargarComponent,
     AdministracionRefugioComponent,
 
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+
+    SolicitudComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +76,7 @@ import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
     RouterModule.forRoot([]),
     RouterModule.forChild([]),
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatDialogModule,
     MatFormFieldModule,

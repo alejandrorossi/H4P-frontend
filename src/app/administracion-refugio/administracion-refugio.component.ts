@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministracionRefugioComponent implements OnInit {
 
-  constructor() { }
+  filtroActual: string
+  constructor() { 
+    this.filtroActual="Últimos cargados"
+  }
 
   ngOnInit() {
   }

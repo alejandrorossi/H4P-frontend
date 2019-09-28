@@ -1,6 +1,6 @@
 <mat-card class="publicacion">
-  <div class="suscrito pull-right" *ngIf="isOwner"> 
-    <i class="far fa-heart pull-right" matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i> 
+  <div class="suscrito pull-right" *ngIf="isOwner">
+    <i class="fas fa-bookmark" matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i>
   </div>
   <mat-card-header>
 
@@ -11,6 +11,14 @@
   <div [innerHTML]="preimage | sanitizeHtml"></div>
   <br>
   <mat-card-content>
+    <div *ngIf="isOwner">
+      <button mat-mini-fab class="white-icon" (click)="editar()">
+        <i class="fas fa-pencil-alt text-primary"></i>
+      </button>
+      <button mat-mini-fab class="white-icon ml-2" (click)="eliminar()">
+        <i class="far fa-trash-alt text-danger"></i>
+      </button>
+    </div>
     <p>
       {{pet.characteristics}}
     </p>
@@ -21,8 +29,7 @@
   </mat-card-actions>
 
   <mat-card-footer>
-      
-    <mat-card-subtitle class="text-footer">Publicado por: {{pet.user.name}} {{pet.user.surname}}</mat-card-subtitle>
+    <mat-card-subtitle class="text-footer">Publicado por: {{pet.user.name}}</mat-card-subtitle>
   </mat-card-footer>
 
 </mat-card>

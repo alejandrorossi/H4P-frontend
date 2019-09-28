@@ -22,7 +22,7 @@ export class CardMascotaComponent implements OnInit {
 
   @Input()
   idPublication: String;
-  
+
   //Imagen de previsualizacion
   preimage: any;
   constructor(
@@ -35,7 +35,7 @@ export class CardMascotaComponent implements OnInit {
     this.loadPreImage();
   }
 
-  private loadPreImage(){
+  private loadPreImage() {
     this.imageService.getImage(this.pet.images[0]._id)
       .subscribe(
         res => {
@@ -48,22 +48,30 @@ export class CardMascotaComponent implements OnInit {
       );
   }
 
-  public addPostulant(){
+  public addPostulant() {
     this.publicationService.addPostulant(this.storageService.getCurrentUser()._id, this.idPublication)
       .subscribe(
         res => {
           console.log(res.status);
-          if(res.code != 200){
+          if (res.code != 200) {
             console.log('Error!');
-          }else{
+          } else {
             this.isOwner = true;
-            this.utilsService.notificacion("Suscripción de adopcion enviada, el refugio se contactará contigo.","")
+            this.utilsService.notificacion("Suscripción de adopcion enviada, el refugio se contactará contigo.", "")
           }
         },
         error => {
           console.log('Error!');
         }
       );
+  }
+
+  editar() {
+    alert('editar')
+  }
+
+  eliminar() {
+    alert('eliminar')
   }
 
 }
