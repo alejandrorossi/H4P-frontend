@@ -12,7 +12,7 @@ import { MascotasService } from '../service/mascotas.service';
 })
 export class PrincipalComponent implements OnInit {
 
-  publications: Array<Publication> = [];
+  publications: Publication[] = [];
 
   constructor(
     private router: Router, 
