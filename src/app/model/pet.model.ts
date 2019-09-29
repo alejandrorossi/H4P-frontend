@@ -7,9 +7,10 @@ export class Pet {
   public name: String;
   public surname: String;
   public age: Number;
+  public typeAge: String;
   public birth: Date;
   public type: String;
-  public characteristics: String;
+  public description: String;
   public images: Image[];
   public user: User;
   public createdDate: Date;
