@@ -10,22 +10,22 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AdministracionRefugioComponent implements OnInit {
 
   especies: any;
-  filtroActual: string;
+  filtra: boolean;
   formBusqueda: FormGroup;
 
-  constructor(private mService: MascotasService, private formBuilder: FormBuilder) { 
-    this.filtroActual="Últimos cargados";
+  constructor(private mService: MascotasService, private formBuilder: FormBuilder) {
+    this.filtra = false;
     this.especies = this.mService.getAllEspecies();
   }
 
   ngOnInit() {
     this.formBusqueda = this.formBuilder.group({
-      nombreMascotaCtrl:['', [Validators.maxLength(100)]],
+      nombreMascotaCtrl: ['', [Validators.maxLength(100)]],
       especieMascotaCtrl: ['', []],
     });
   }
 
-  buscar(){
+  buscar() {
     alert("implementar buscar")
   }
 
