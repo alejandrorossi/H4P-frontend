@@ -23,6 +23,9 @@ export class CardMascotaComponent implements OnInit {
   @Input()
   idPublication: String;
 
+  @Input()
+  completa: Boolean;
+
   //Imagen de previsualizacion
   preimage: any;
   constructor(

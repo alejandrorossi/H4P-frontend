@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms'
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FormsModule } from '@angular/forms';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -25,7 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { LoginComponent } from './login/login.component';
 import { PrincipalComponent } from './principal/principal.component';
@@ -43,10 +44,7 @@ import { AdministracionRefugioComponent } from './administracion-refugio/adminis
 import { MatSelectModule } from '@angular/material';
 import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
 import { SolicitudComponent } from './solicitud/solicitud.component';
-
-
-
-
+import { ListadoPostulantesComponent } from './listado-postulantes/listado-postulantes.component';
 
 @NgModule({
   declarations: [
@@ -62,19 +60,20 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     MenuUsuarioComponent,
     CargarComponent,
     AdministracionRefugioComponent,
-
     SanitizeHtmlPipe,
-
-    SolicitudComponent
+    SolicitudComponent,
+    ListadoPostulantesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([]),
     RouterModule.forChild([]),
+    MatBadgeModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -100,6 +99,9 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
   exports: [
     BrowserAnimationsModule,
     MatInputModule
+  ],
+  entryComponents: [
+    ListadoPostulantesComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

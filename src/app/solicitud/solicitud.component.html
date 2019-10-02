@@ -1,6 +1,25 @@
+<mat-card style="max-width:300px; width:fit-content" >
 
- <mat-card style="max-width:300px">
-    <p>solicitud works!</p>
+  <mat-card-header>
 
- </mat-card>
+    <mat-card-title> nombre <span class="text-muted small">especie</span> </mat-card-title>
 
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- <div [innerHTML]="preimage | sanitizeHtml"></div> -->
+    esto es una solicitud 
+    imagen
+  </mat-card-content>
+
+  <mat-card-actions>
+
+      <div class=" text-center">
+    <button mat-mini-fab color="primary" *ngIf="postulantes.length > 0" matBadge="{{postulantes.length}}"
+      matBadgePosition="after" matBadgeColor="accent" (click)="verPostulantes()" >
+      <i class="fas fa-users-cog" style="font-size:1.3em"></i>
+    </button>
+      </div>
+  </mat-card-actions>
+
+</mat-card>

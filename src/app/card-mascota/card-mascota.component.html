@@ -1,21 +1,22 @@
-<mat-card class="publicacion">
-  <div class="suscrito pull-right" *ngIf="isOwner">
+<mat-card class="publicacion" style="width:fit-content">
+  <div class="suscrito pull-right" *ngIf="isOwner && completa">
     <i class="fas fa-bookmark" matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i>
   </div>
   <mat-card-header>
 
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{pet.name}}</mat-card-title>
-    <mat-card-subtitle>{{pet.type}}</mat-card-subtitle>
+    <div mat-card-avatar class="example-header-image" *ngIf="completa"></div>
+    <mat-card-title>{{pet.name}} - <span class="text-muted small">{{pet.type}}</span> </mat-card-title>
+
   </mat-card-header>
-  <div [innerHTML]="preimage | sanitizeHtml"></div>
-  <br>
+
   <mat-card-content>
-    <div *ngIf="isOwner">
-      <button mat-mini-fab class="white-icon" (click)="editar()">
+    <div [innerHTML]="preimage | sanitizeHtml"></div>
+
+    <div *ngIf="isOwner" class="mt-2">
+      <button mat-mini-fab class="white-icon pull-right" (click)="editar()">
         <i class="fas fa-pencil-alt text-primary"></i>
       </button>
-      <button mat-mini-fab class="white-icon ml-2" (click)="eliminar()">
+      <button mat-mini-fab class="white-icon " (click)="eliminar()">
         <i class="far fa-trash-alt text-danger"></i>
       </button>
     </div>
@@ -24,11 +25,11 @@
     </p>
   </mat-card-content>
 
-  <mat-card-actions>
+  <mat-card-actions *ngIf="completa">
     <button class="btn btn-outline-primary pull-right" (click)="addPostulant()" *ngIf="!isOwner">¡Adoptar!</button>
   </mat-card-actions>
 
-  <mat-card-footer>
+  <mat-card-footer *ngIf="completa">
     <mat-card-subtitle class="text-footer">Publicado por: {{pet.user.name}}</mat-card-subtitle>
   </mat-card-footer>
 

@@ -35,3 +35,7 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 .white-icon {
   background-color: white!important;
 }
+
+:focus {
+  outline: 0;
+  }

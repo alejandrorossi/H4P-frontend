@@ -22,7 +22,7 @@ export class UtilsService {
     return this.dialog.open(component, {
       width: width,
       data: data,
-      disableClose: true
+      disableClose: false
     });
   }
 }
