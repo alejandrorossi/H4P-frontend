@@ -35,39 +35,45 @@
       <p>
         <span class="h3">Mis publicaciones </span>
         <button mat-mini-fab color="primary" class="ml-4 text-white " matTooltip="Filtrar publicaciones"
-          (click)="filtra=true">
-          <i class="fas fa-filter"></i> <span class="small"><i class="fas fa-plus ml-1"></i></span>
+          (click)="filtra=!filtra">
+          <i class="fas fa-filter"></i> 
+          <span class="small">
+            <i class="fas fa-plus ml-1"  *ngIf="!filtra"></i>
+            <i class="fas fa-angle-up ml-1" *ngIf="filtra"></i>
+          </span>
         </button>
       </p>
 
 
       <!-- BARRA DE BUSQUEDA -->
-      <mat-card class="mt-3" *ngIf="filtra">
-        <p>
+      <mat-card class="mt-3 mat-elevation-z6" style="padding: 10px; padding-top: 0px" *ngIf="filtra">
+        <!-- <p>
           <button (click)="filtra=false" class="close" style="margin-top: -15px;
             margin-right: -10px;">
             <span aria-hidden="true">&times;</span>
           </button>
-        </p>
+        </p> -->
         <div [formGroup]="formBusqueda">
           <div class="row">
 
             <div class="col ">
-              <mat-button-toggle-group class="shadow-sm mt-2 mb-3 mx-auto">
-                <mat-button-toggle value="publica">
-                  <span class="text-primary "> Públicas</span>
-                </mat-button-toggle>
-                <mat-button-toggle value="privada">
-                  <span class="text-primary "> Privadas</span>
-                </mat-button-toggle>
-                <mat-button-toggle value="todas">
-                  <span class="text-primary ">Todas</span>
-                </mat-button-toggle>
-              </mat-button-toggle-group>
+              <div class="text-center">
+                <mat-button-toggle-group class="shadow-sm mt-3  mx-auto">
+                  <mat-button-toggle value="publica">
+                    <span class="text-primary "> Públicas</span>
+                  </mat-button-toggle>
+                  <mat-button-toggle value="privada">
+                    <span class="text-primary "> Privadas</span>
+                  </mat-button-toggle>
+                  <mat-button-toggle value="todas">
+                    <span class="text-primary ">Todas</span>
+                  </mat-button-toggle>
+                </mat-button-toggle-group>
+              </div>
             </div>
 
             <div class="col ">
-              <mat-form-field appearance="outline" style="width:100%!important">
+              <mat-form-field appearance="standard" style="width:100%!important">
                 <mat-label>Que contenga el texto...</mat-label>
                 <input matInput formControlName="nombreMascotaCtrl">
                 <mat-hint>Máximo 100</mat-hint>
@@ -76,7 +82,7 @@
 
             <div class="col ">
 
-              <mat-form-field appearance="outline" style="width:100%!important">
+              <mat-form-field appearance="standard" style="width:100%!important">
                 <mat-label>De especie...</mat-label>
                 <mat-select placeholder="Especie" formControlName="especieMascotaCtrl">
                   <mat-option *ngFor="let op of especies" [value]="op">
@@ -90,10 +96,10 @@
           <div class="row">
             <div class="col ">
               <button mat-mini-fab color="primary" class="ml-4 text-white pull-right" (click)="buscar()"
-                matTooltip="Adoptados">
+                matTooltip="Filtrar">
                 <i class="fas fa-search"></i>
               </button>
-              <button mat-mini-fab class="ml-4 white-icon text-primary pull-left" matTooltip="Limpiar filtros"
+              <button mat-mini-fab class="white-icon text-primary pull-left" matTooltip="Limpiar filtros"
                 (click)="formBusqueda.reset()">
                 <i class="fas fa-redo"></i>
               </button>
@@ -106,7 +112,8 @@
         <div class="col-md-4" *ngFor="let p of publications">
 
           <!-- se piden las publicaciones del usuario -->
-          <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false"></app-card-mascota>
+          <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false">
+          </app-card-mascota>
 
         </div>
       </div>
