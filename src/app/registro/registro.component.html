@@ -3,42 +3,56 @@
 <form [formGroup]="myForm" (ngSubmit)="signUp()" class="register-form">
 
   <mat-form-field class="margin-right width-50">
-    <input matInput maxlength="15" placeholder="Nombre" formControlName="name">
+    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
+      maxlength="15" placeholder="Nombre" formControlName="name">
     <mat-hint align="end">{{getName.value?.length || 0}}/15</mat-hint>
     <mat-error *ngIf="getName.hasError('required')">
       El nombre es <strong>requerido</strong>
     </mat-error>
+    <mat-error *ngIf="getName.errors && (getName.value != '')">
+      Se permite <strong>solo texto</strong>
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="width-50">
-    <input matInput maxlength="15" placeholder="Apellido" formControlName="surname">
+    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
+      maxlength="15" placeholder="Apellido" formControlName="surname">
     <mat-hint align="end">{{getSurname.value?.length || 0}}/15</mat-hint>
     <mat-error *ngIf="getSurname.hasError('required')">
       El apellido es <strong>requerido</strong>
+    </mat-error>
+    <mat-error *ngIf="getSurname.errors && (getSurname.value != '') ">
+        Se permite <strong>solo texto</strong>
     </mat-error>
   </mat-form-field>
   <br>
 
   <mat-form-field class="margin-right width-50">
-    <input matInput maxlength="10" placeholder="Usuario" formControlName="username">
+    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
+      maxlength="10" placeholder="Usuario" formControlName="username">
     <mat-hint align="end">{{getUsername.value?.length || 0}}/10</mat-hint>
     <mat-error *ngIf="getUsername.hasError('required')">
       El usuario es <strong>requerido</strong>
     </mat-error>
   </mat-form-field>
   <mat-form-field class="width-50">
-    <input matInput type="number" min="18" placeholder="Edad" formControlName="age">
+    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
+      type="number" min="18" placeholder="Edad" formControlName="age">
     <mat-hint align="end">(min. 18)</mat-hint>
     <mat-error *ngIf="getAge.hasError('required')">
       La edad es <strong>requerida</strong>
     </mat-error>
     <mat-error *ngIf="getAge.hasError('min')">
-      La edad minima es <strong>18</strong>
+      La edad mínima es <strong>18</strong>
     </mat-error>
+    <mat-error *ngIf="getAge.hasError('max')">
+        La edad máxima es <strong>100</strong>
+      </mat-error>
   </mat-form-field>
   <br>
 
   <mat-form-field class="width-100">
-    <input matInput placeholder="E-mail" formControlName="email">
+    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
+      placeholder="E-mail" formControlName="email">
     <mat-error *ngIf="getEmail.hasError('required')">
       El e-mail es <strong>requerido</strong>
     </mat-error>
@@ -49,9 +63,11 @@
   <br>
 
   <mat-form-field class="width-100">
-    <input matInput placeholder="Contraseña" minlength="8" formControlName="password" [type]="hide ? 'password' : 'text'">
+    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
+      placeholder="Contraseña" minlength="8" 
+      formControlName="password" [type]="hide ? 'password' : 'text'">
     <mat-icon style="cursor:pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}} </mat-icon>
-    <mat-hint align="end">{{getPassword.value?.length || 0}}/8</mat-hint>
+    <mat-hint align="end">{{getPassword.value?.length || 0}}/min. 8</mat-hint>
     <mat-error *ngIf="getPassword.hasError('required')">
       La contraseña es <strong>requerida</strong>
     </mat-error>
@@ -61,5 +77,10 @@
   </mat-form-field>
 
   <br><br>
+  <div class="text-center">
+    <mat-error *ngIf="submitted && error">{{error_message}}</mat-error>
+  </div>
+
+  <br>
   <button type="submit" class="btn btn-outline-dark btn-block">Registrarse!</button>
 </form>
