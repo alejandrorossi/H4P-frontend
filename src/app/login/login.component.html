@@ -16,9 +16,11 @@
       <mat-form-field>
         <input matInput placeholder="Contraseña" formControlName="password" [type]="hide ? 'password' : 'text'">
         <mat-icon style="cursor:pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}} </mat-icon>
-        <mat-error *ngIf="submitted && error_password">Usuario o ontraseña incorrecta.</mat-error>
       </mat-form-field>
-
+      
+      <div class="text-center">
+        <mat-error *ngIf="submitted && error">{{error_message}}</mat-error>
+      </div>
 
       <br><br>
       <button type="submit" class="btn btn-outline-dark btn-block">Ingresar!</button>

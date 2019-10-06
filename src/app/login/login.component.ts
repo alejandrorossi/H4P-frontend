@@ -15,9 +15,10 @@ export class LoginComponent implements OnInit {
 
   myForm: FormGroup;
   submitted: Boolean = false;
-  error_password: Boolean = false;
-  // error_not_found: Boolean = false;
   hide = true;
+  
+  error: Boolean = false;
+  error_message: String = '';
 
   constructor(
     private router: Router, 
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
   get getPassword() { return this.myForm.get('password'); }
 
   signIn() {
+    this.limpiarError();
     this.submitted = true;
 
     if (this.myForm.invalid) { return; }
@@ -43,21 +45,28 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(this.myForm.value)
       .subscribe(
         res => {
-          console.log(res.status);
-
           // TODO: Error manager
-          if (res.code == 400) {
-            this.error_password = true;
-          }else if(res.code == 404){
-            console.log('Error!');
+          if(res.error){
+            this.cargarError(res.status);
           }else{
             this.storageService.setCurrentSession(res as Response);
             this.router.navigate(['h4p']);
           }
         },
         error => {
-          console.log('Error!');
+          console.log('Error en el servidor:'+ error);
+          this.cargarError('Error en el servidor');
         }
       );
+  }
+
+  private cargarError(status){
+    this.error = true;
+    this.error_message = status;
+  }
+
+  private limpiarError(){
+    this.error = false;
+    this.error_message = '';
   }
 }
