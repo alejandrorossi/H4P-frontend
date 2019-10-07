@@ -1,3 +1,5 @@
+import { UtilsService } from './../service/utils.service';
+import { StorageService } from './../service/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { MascotasService } from '../service/mascotas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,14 +13,20 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CargarComponent implements OnInit {
 
   aviso: String
+  avisoVisibilidad: String;
+  masInf: boolean;
+
+  submitted: Boolean = false;
+  
+  formCarga: FormGroup;
   especies: any
   url: any;
-  masInf: boolean;
-  formCarga: FormGroup;
-  submitted: Boolean = false;
-  avisoVisibilidad: String;
 
-  constructor(private mService: MascotasService, private formBuilder: FormBuilder) {
+  constructor(
+    private utilsService: UtilsService,
+    private storageService: StorageService,
+    private mService: MascotasService, 
+    private formBuilder: FormBuilder) {
     this.aviso = "No deseamos que los usuarios hagan preferencia por razas ni facilitar la adquisición de mascotas para la venta.";
     this.especies = this.mService.getAllEspecies();
     this.masInf = false;
@@ -27,13 +35,21 @@ export class CargarComponent implements OnInit {
 
   ngOnInit() {
     this.formCarga = this.formBuilder.group({
-      nombreMascotaCtrl:['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      nombreMascotaCtrl:['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      apellidoMascotaCtrl:['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
       especieMascotaCtrl: ['', [Validators.required]],
       descripcionMascotaCtrl: ['', [Validators.required, Validators.maxLength(499)]],
-      edadAproxCtrl:['', [Validators.maxLength(2)]] 
+      edadAproxCtrl:['', [Validators.max(100), Validators.min(1)]],
+      tipoEdadCtrl:['', [Validators.required]]
     });
   }
-
+  
+  get getNombreMascota() { return this.formCarga.get('nombreMascotaCtrl'); }
+  get getApellidoMascota() { return this.formCarga.get('apellidoMascotaCtrl'); }
+  get getEspecieMascota() { return this.formCarga.get('especieMascotaCtrl'); }
+  get getDescripcionMascota() { return this.formCarga.get('descripcionMascotaCtrl'); }
+  get getEdadAprox() { return this.formCarga.get('edadAproxCtrl'); }
+  get getTipoEdad() { return this.formCarga.get('tipoEdadCtrl'); }
 
   masInfo(){
     this.masInf = true;
@@ -42,19 +58,49 @@ export class CargarComponent implements OnInit {
   cargarMascota(){
     this.submitted = true;
 
-    if (this.formCarga.invalid) { return; }
+    console.log('entro');
+    
 
-    //envio de datos al servicio creado
+    if (!this.mascotaValida()) { 
+      console.log('es invalido');
+      
+      return; 
+    }
+
+    const userId = this.storageService.getCurrentUser()._id;
+
+    const mascota = {
+      name: this.getNombreMascota.value,
+      surname: this.getApellidoMascota.value,
+      age: this.getEdadAprox.value,
+      typeAge: this.getTipoEdad.value,
+      type: this.getEspecieMascota.value.name,
+      description: this.getDescripcionMascota.value,
+      user: userId
+    }
+
+    this.mService.crearMascota(mascota)
+      .subscribe(
+        res => {
+          console.log(res);
+          
+          this.utilsService.notificacion('La mascota se guardo exitosamente','');
+        },
+        error => {
+          console.log(error);
+          
+        }
+      )
+
+    const publicacion = {}
+
+
 
   }
 
-
-  get getNombreMascota() { return this.formCarga.get('nombreMascotaCtrl'); }
-  get getEspecieMascota() { return this.formCarga.get('especieMascotaCtrl'); }
-  get getDescripcionMascota() { return this.formCarga.get('descripcionMascotaCtrl'); }
-
-
-
+  mascotaValida() {
+    return this.formCarga.valid;
+  }
 
   // //imagenes
   onSelectFile(event) { // called each time file input changes
