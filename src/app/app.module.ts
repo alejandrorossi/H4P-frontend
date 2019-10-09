@@ -47,6 +47,7 @@ import { MatSelectModule } from '@angular/material';
 import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { ListadoPostulantesComponent } from './listado-postulantes/listado-postulantes.component';
+import { FormularioBaseComponent } from './formulario-base/formulario-base.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ListadoPostulantesComponent } from './listado-postulantes/listado-postu
     AdministracionRefugioComponent,
     SanitizeHtmlPipe,
     SolicitudComponent,
-    ListadoPostulantesComponent
+    ListadoPostulantesComponent,
+    FormularioBaseComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
 import { UtilsService } from './../service/utils.service';
 import { StorageService } from './../service/storage.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,8 +11,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './cargar.component.html',
   styleUrls: ['./cargar.component.scss']
 })
-export class CargarComponent implements OnInit {
+export class CargarComponent extends FormularioBaseComponent implements OnInit {
 
+  infoCreacionPublicacion: String = 
+    `Cuando se crea una mascota también se esta creando una publicación, la cual
+    contendra a la mascota, más abajo en el formulario se puede marcar la publicación
+    que será creada como privada o pública.`
   aviso: String
   avisoVisibilidad: String;
   masInf: boolean;
@@ -27,6 +32,7 @@ export class CargarComponent implements OnInit {
     private storageService: StorageService,
     private mService: MascotasService, 
     private formBuilder: FormBuilder) {
+    super();
     this.aviso = "No deseamos que los usuarios hagan preferencia por razas ni facilitar la adquisición de mascotas para la venta.";
     this.especies = this.mService.getAllEspecies();
     this.masInf = false;
@@ -35,11 +41,19 @@ export class CargarComponent implements OnInit {
 
   ngOnInit() {
     this.formCarga = this.formBuilder.group({
-      nombreMascotaCtrl:['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
-      apellidoMascotaCtrl:['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      nombreMascotaCtrl:['', [
+        Validators.required, Validators.minLength(2), 
+        Validators.maxLength(15), this.utilsService.onlyText()
+      ]],
+      apellidoMascotaCtrl:['', [
+        Validators.required, Validators.minLength(2), 
+        Validators.maxLength(15), this.utilsService.onlyText()
+      ]],
       especieMascotaCtrl: ['', [Validators.required]],
       descripcionMascotaCtrl: ['', [Validators.required, Validators.maxLength(499)]],
-      edadAproxCtrl:['', [Validators.max(100), Validators.min(1)]],
+      //TODO: validaciones para diferenciar entre meses y años.
+      // para que pongan por ejemplo: 130 meses.
+      edadAproxCtrl:['', [Validators.required, Validators.max(100), Validators.min(1)]],
       tipoEdadCtrl:['', [Validators.required]]
     });
   }
@@ -55,15 +69,19 @@ export class CargarComponent implements OnInit {
     this.masInf = true;
   }
 
+  ifAllValid() {
+    this.mascotaValida() ? this.limpiarError() : this.cargarError('Campos invalidos');
+  }
+
   cargarMascota(){
     this.submitted = true;
 
     console.log('entro');
     
 
-    if (!this.mascotaValida()) { 
-      console.log('es invalido');
-      
+    if (!this.mascotaValida()) {
+      this.cargarError('Campos invalidos');
+      this.formCarga.markAllAsTouched();
       return; 
     }
 
