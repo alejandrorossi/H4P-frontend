@@ -3,6 +3,7 @@ import { MascotasService } from '../service/mascotas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PublicationService } from '../service/publication.service';
 import { Publication } from '../model/publication.model';
+import { SolicitudService } from '../service/solicitud.service';
 
 @Component({
   selector: 'app-administracion-refugio',
@@ -15,17 +16,24 @@ export class AdministracionRefugioComponent implements OnInit {
   filtra: boolean;
   formBusqueda: FormGroup;
   publications: Publication[];
+  solicitudes: Publication[]; // cambia unicamente a nivel fronts
 
-  constructor(private mService: MascotasService, private formBuilder: FormBuilder,
-    private publicationService: PublicationService) {
+  constructor(private mService: MascotasService, 
+              private formBuilder: FormBuilder,
+              private publicationService: PublicationService,
+              private solicitudService: SolicitudService) {
+
     this.filtra = false;
     this.especies = this.mService.getAllEspecies();
     this.getPublications();
+    this.getSolicitudes();
   }
 
   ngOnInit() {
     
     this.publications = [];
+    this.solicitudes = [];
+    
     this.formBusqueda = this.formBuilder.group({
       nombreMascotaCtrl: ['', [Validators.maxLength(100)]],
       especieMascotaCtrl: ['', []],
@@ -37,7 +45,7 @@ export class AdministracionRefugioComponent implements OnInit {
   }
 
 
-  // hacer la lite version para mostrar
+  // cambiar a Mis publicaciones
   getPublications() {
     this.publicationService.getPublicaciones()
     .subscribe(res => {
@@ -45,6 +53,21 @@ export class AdministracionRefugioComponent implements OnInit {
         const publication = new Publication(pub);
         this.publications.push(publication)
       });
+    });
+  }
+
+
+  //trae publicaciones que contengan solicitudes
+  getSolicitudes() {
+    this.solicitudService.getSolicitudes()
+    .subscribe(res => {
+      if (res.data)
+        res.data.forEach(sol => {
+          const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
+          this.solicitudes.push(solicitud);
+        });
+
+        
     });
   }
 

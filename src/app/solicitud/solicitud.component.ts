@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UtilsService } from '../service/utils.service';
 import { ListadoPostulantesComponent } from '../listado-postulantes/listado-postulantes.component';
+import { Publication } from '../model/publication.model';
 
 @Component({
   selector: 'app-solicitud',
@@ -9,20 +10,26 @@ import { ListadoPostulantesComponent } from '../listado-postulantes/listado-post
 })
 export class SolicitudComponent implements OnInit {
 
-  postulantes: any[];
+  postulantes: number;
+  nombreMascota: String;
+  especie: String; 
 
-  constructor(private uSrv:UtilsService) {
-    this.postulantes = [1,2,3,5];
+  @Input()
+  publicacion: Publication;
+
+  constructor(private utilSrv:UtilsService) {
+
   }
 
   ngOnInit() {
-
+    this.postulantes = this.publicacion.applications.length;
+    this.nombreMascota = this.publicacion.pet.name;
+    this.especie = this.publicacion.pet.type;
   }
 
   verPostulantes(){
-    // alert("implementar ver postulantes")
-
-    this.uSrv.getDialog(ListadoPostulantesComponent,"sarasa", "50%")
+    // this.utilSrv.getDialog(ListadoPostulantesComponent,"sarasa", "50%")
+    console.log(this.publicacion)
   }
 
 }
