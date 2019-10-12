@@ -1,9 +1,8 @@
 import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
 import { UtilsService } from './../service/utils.service';
 import { AuthService } from './../service/auth.service';
-import { FormGroup, FormBuilder, Validators, FormControl, NgForm, FormGroupDirective, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ErrorStateMatcher } from '@angular/material';
 
 @Component({
   selector: 'app-registro',

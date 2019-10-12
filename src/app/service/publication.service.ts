@@ -15,11 +15,11 @@ export class PublicationService {
 
   // Methods
   getPublicaciones():  Observable<Response>{
-    return this.httpClient.get<Response>(this.URL_API); //return data in array
+    return this.httpClient.get<Response>(this.URL_API);
   };
 
-  postPublicacion(){
-
+  postPublicacion(publicacion): Observable<Response>{
+    return this.httpClient.post<Response>(this.URL_API, publicacion);
   };
 
   putPublicacion(){

@@ -1,3 +1,4 @@
+import { PublicationService } from './../service/publication.service';
 import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
 import { UtilsService } from './../service/utils.service';
 import { StorageService } from './../service/storage.service';
@@ -25,9 +26,12 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   
   formCarga: FormGroup;
   especies: any
+  checkedPrivada: Boolean = false;
   url: any;
+  imagenes: any[] = Array<any>();
 
   constructor(
+    private publicacionService: PublicationService,
     private utilsService: UtilsService,
     private storageService: StorageService,
     private mService: MascotasService, 
@@ -54,7 +58,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
       //TODO: validaciones para diferenciar entre meses y años.
       // para que pongan por ejemplo: 130 meses.
       edadAproxCtrl:['', [Validators.required, Validators.max(100), Validators.min(1)]],
-      tipoEdadCtrl:['', [Validators.required]]
+      tipoEdadCtrl:['A', [Validators.required]]
     });
   }
   
@@ -64,6 +68,9 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   get getDescripcionMascota() { return this.formCarga.get('descripcionMascotaCtrl'); }
   get getEdadAprox() { return this.formCarga.get('edadAproxCtrl'); }
   get getTipoEdad() { return this.formCarga.get('tipoEdadCtrl'); }
+  get getCheckedPrivada() {return this.checkedPrivada? "privado": "publico" }
+
+  setTipoEdad(tipo) {this.formCarga.get('tipoEdadCtrl').setValue(tipo); }
 
   masInfo(){
     this.masInf = true;
@@ -76,17 +83,15 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   cargarMascota(){
     this.submitted = true;
 
-    console.log('entro');
-    
-
     if (!this.mascotaValida()) {
       this.cargarError('Campos invalidos');
       this.formCarga.markAllAsTouched();
       return; 
     }
 
-    const userId = this.storageService.getCurrentUser()._id;
+    this.limpiarError()
 
+    const userId = this.storageService.getCurrentUser()._id;
     const mascota = {
       name: this.getNombreMascota.value,
       surname: this.getApellidoMascota.value,
@@ -94,43 +99,68 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
       typeAge: this.getTipoEdad.value,
       type: this.getEspecieMascota.value.name,
       description: this.getDescripcionMascota.value,
-      user: userId
+      user: this.storageService.getCurrentUser(),
+      images: this.imagenes
     }
 
-    this.mService.crearMascota(mascota)
-      .subscribe(
-        res => {
-          console.log(res);
-          
-          this.utilsService.notificacion('La mascota se guardo exitosamente','');
-        },
-        error => {
-          console.log(error);
-          
+    this.mService.crearMascota(mascota).subscribe(
+      res => {
+        const publicacion = {
+          pet: res.data._id,
+          status: this.getCheckedPrivada
         }
-      )
+        this.publicacionService.postPublicacion(publicacion).subscribe(
+          res => {
+            this.utilsService.notificacion('La publicación se creó exitosamente','');
+            this.resetearFormulario();
+          },
+          error => {
+            console.log(error);
+          });
+      },
+      error => {
+        console.log(error);
+      });
+  }
 
-    const publicacion = {}
-
-
-
+  resetearFormulario(){
+    //Se resetea el formulario.
+    this.formCarga.reset();
+    //Se resetean las propiedades que se usan para
+    //las imagenes, que no estan contempladas en el formGroup.
+    this.url = '';
+    this.imagenes = Array<any>();
+    //Se resetea la propiedad de formulario enviado.
+    this.submitted = false;
+    //Se setean los valores por default del formulario.
+    this.setTipoEdad('A');
   }
 
   mascotaValida() {
-    return this.formCarga.valid;
+    return this.formCarga.valid && this.imagenes.length >= 1;
   }
 
-  // //imagenes
-  onSelectFile(event) { // called each time file input changes
-    if (event.target.files && event.target.files[0]) {
+  //Cargado de imagenes.
+  onSelectFile(event) { 
+    if (event.target.files) {
       const reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-
+      //Por cada elemento cargado creamos un obj imagen
+      //y lo guardamos en el array de imagenes. Esto se penso
+      //para cargar mas de una imagen, a priori solo cargaremos una.
+      for(let element of event.target.files){        
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = (event) => {
+          let imagen = {
+            title: element.name.split(".")[0],
+            extension:  element.name.split(".")[1],
+            data: reader.result,
+            creator: this.storageService.getCurrentUser()
+          };
+          
           this.url = reader.result;
 
+          this.imagenes.push(imagen);
+        }
       }
     }
   }

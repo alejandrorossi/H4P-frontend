@@ -6,6 +6,7 @@ export class Image {
   public creator: User;
   public extension: String;
   public path: String;
+  public data: any;
   public createdDate: Date;
 }
 

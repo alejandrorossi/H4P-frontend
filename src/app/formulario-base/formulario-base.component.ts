@@ -1,9 +1,9 @@
 import { ErrorStateMatcher } from '@angular/material';
-import { FormGroupDirective, NgForm, FormControl } from '@angular/forms';
+import { FormGroupDirective, NgForm, AbstractControl } from '@angular/forms';
 import { Component } from '@angular/core';
 
 export class CustomErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl, form: NgForm | FormGroupDirective| null) {
+  isErrorState(control: AbstractControl, form: NgForm | FormGroupDirective| null) {
     return control && control.invalid && control.touched;
   }
 }
