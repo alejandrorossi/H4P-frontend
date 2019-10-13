@@ -91,7 +91,6 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
 
     this.limpiarError()
 
-    const userId = this.storageService.getCurrentUser()._id;
     const mascota = {
       name: this.getNombreMascota.value,
       surname: this.getApellidoMascota.value,
@@ -105,18 +104,23 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
 
     this.mService.crearMascota(mascota).subscribe(
       res => {
-        const publicacion = {
-          pet: res.data._id,
-          status: this.getCheckedPrivada
+        if(!res.error){
+          const publicacion = {
+            pet: res.data._id,
+            status: this.getCheckedPrivada
+          }
+          this.publicacionService.postPublicacion(publicacion).subscribe(
+            res => {
+              this.utilsService.notificacion('La mascota y publicación se crearon exitosamente','');
+              this.resetearFormulario();
+            },
+            error => {
+              console.log(error);
+            });
         }
-        this.publicacionService.postPublicacion(publicacion).subscribe(
-          res => {
-            this.utilsService.notificacion('La publicación se creó exitosamente','');
-            this.resetearFormulario();
-          },
-          error => {
-            console.log(error);
-          });
+        else{
+          this.utilsService.notificacion(res.status,'');
+        }
       },
       error => {
         console.log(error);
@@ -159,7 +163,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
           
           this.url = reader.result;
 
-          this.imagenes.push(imagen);
+          this.imagenes.push(imagen);          
         }
       }
     }
