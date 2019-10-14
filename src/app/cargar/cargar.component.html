@@ -1,101 +1,108 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3"></div>
-    <div class="col">
-      <mat-card class="mat-elevation-z6">
+<div class="row">
+  <div class="col-sm-1 col-lg-3"></div>
+  <div class="col">
+    <mat-card class="mat-elevation-z6">
 
-        <mat-card-title>Nueva mascota</mat-card-title>
+      <form [formGroup]="formCarga" (ngSubmit)="cargarMascota()">
+        <div class="row">
+          <div class="col">
+            <span class="h5" mat-subheader>Nueva mascota</span>
+          </div>
+          <div class="col">
+            <div class="pull-right">
+              <mat-slide-toggle class="mt-3">Privada</mat-slide-toggle>
+              <span (click)="tooltip.show()" class="badge badge-pill badge-primary ml-2"
+                matTooltip="{{avisoVisibilidad}}" style="font-size:0.6em; cursor:pointer; vertical-align: text-top;">
+                <i class="fas fa-info"></i>
+              </span>
+            </div>
+          </div>
 
-        <form [formGroup]="formCarga" (ngSubmit)="cargarMascota()">
+        </div>
+        <div class="row">
 
-          <table class="example-full-width">
-            <tr>
-              <td style="width:50%">
-                <mat-form-field>
+          <div class="col">
+            <mat-form-field>
 
-                  <mat-label>Nombre de la mascota*</mat-label>
-                  <input matInput #nombreMascotaId formControlName="nombreMascotaCtrl">
-                  <mat-hint align="end">{{nombreMascotaId.value?.length || 0}}/50</mat-hint>
-                  <mat-error *ngIf="nombreMascotaId.value?.length < 2 && !getNombreMascota.hasError('required')">
-                    El nombre es demasiado corto.
-                  </mat-error>
-                  <mat-error *ngIf="getNombreMascota.hasError('required')">
-                    El nombre es requerido.
-                  </mat-error>
-                </mat-form-field>
-              </td>
-              <td style="width:50%">
-                <mat-form-field class=" pull-right">
-                  <mat-label>Seleccione especie*</mat-label>
-                  <mat-select placeholder="Especie" formControlName="especieMascotaCtrl">
-                    <mat-option *ngFor="let op of especies" [value]="op">
-                      <i class='{{op.icon}} mr-1'></i> {{op.name}}
-                    </mat-option>
-                  </mat-select>
+              <mat-label>Nombre de la mascota*</mat-label>
+              <input matInput #nombreMascotaId formControlName="nombreMascotaCtrl">
+              <mat-hint align="end">{{nombreMascotaId.value?.length || 0}}/50</mat-hint>
+              <mat-error *ngIf="nombreMascotaId.value?.length < 2 && !getNombreMascota.hasError('required')">
+                El nombre es demasiado corto.
+              </mat-error>
+              <mat-error *ngIf="getNombreMascota.hasError('required')">
+                El nombre es requerido.
+              </mat-error>
+            </mat-form-field>
+          </div>
 
-                  <mat-error *ngIf="getNombreMascota.hasError('required')">
-                    Debe seleccionar una especie.
-                  </mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td style="width:50%">
-                <mat-form-field appearance="outline" class="mt-4 ">
-                  <mat-label>Descripción*</mat-label>
-                  <textarea matInput #descripcionMascotaId formControlName="descripcionMascotaCtrl"> </textarea>
-                  <mat-hint align="end">{{descripcionMascotaId.value?.length || 0}}/500</mat-hint>
+          <div class="col">
+            <mat-form-field>
+              <mat-label>Seleccione especie*</mat-label>
+              <mat-select placeholder="Especie" formControlName="especieMascotaCtrl">
+                <mat-option *ngFor="let op of especies" [value]="op">
+                  <i class='{{op.icon}} mr-1'></i> {{op.name}}
+                </mat-option>
+              </mat-select>
 
-                  <mat-hint>No mencionar la raza
-                    <span (click)="tooltip.show()" class="badge badge-pill badge-primary ml-2" matTooltip="{{aviso}}"
-                      style="font-size:0.8em; cursor:pointer">
-                      <i class="fas fa-info"></i></span>
-                  </mat-hint>
-                  <mat-error *ngIf="getDescripcionMascota.hasError('required')">
-                    Debe inresar una descripcón.
-                  </mat-error>
+              <mat-error *ngIf="getNombreMascota.hasError('required')">
+                Debe seleccionar una especie.
+              </mat-error>
+            </mat-form-field>
 
-                </mat-form-field>
-              </td>
-              <td style="width:50%">
-                <mat-form-field class="mt-4 pull-right">
-                  <mat-label>Ingrese edad Aprox.</mat-label>
-                  <input type="number" matInput #edadAproxId formControlName="edadAproxCtrl">
-                </mat-form-field>
-                <mat-radio-group class="ml-5">
-                  <mat-radio-button value="anios">En años</mat-radio-button>
-                  <mat-radio-button class="ml-3" value="meses">En meses</mat-radio-button>
-                </mat-radio-group>
-              </td>
-            </tr>
-          </table>
-          <mat-slide-toggle class="mt-4">Publicación privada</mat-slide-toggle>
-          <span (click)="tooltip.show()" class="badge badge-pill badge-primary ml-2" matTooltip="{{avisoVisibilidad}}"
-            style="font-size:0.6em; cursor:pointer; vertical-align: text-top;">
-            <i class="fas fa-info"></i>
-          </span>
-        </form>
+          </div>
+        </div>
+        <div class="row">
 
-        <hr>
+          <div class="col">
+            <mat-form-field appearance="outline" class="mt-1 ">
+              <mat-label>Descripción*</mat-label>
+              <textarea matInput #descripcionMascotaId formControlName="descripcionMascotaCtrl"> </textarea>
+              <mat-hint align="end">{{descripcionMascotaId.value?.length || 0}}/500</mat-hint>
 
-        <input class="mt-3" type='file' accept=".jpg,.jpeg, .png, .PNG, .JPG" (change)="onSelectFile($event)">
+              <mat-hint>No mencionar la raza
+                <span (click)="tooltip.show()" class="badge badge-pill badge-primary ml-2" matTooltip="{{aviso}}"
+                  style="font-size:0.8em; cursor:pointer">
+                  <i class="fas fa-info"></i></span>
+              </mat-hint>
+              <mat-error *ngIf="getDescripcionMascota.hasError('required')">
+                Debe inresar una descripcón.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="mt-4">
+              <mat-label>Ingrese edad Aprox.</mat-label>
+              <input type="number" matInput #edadAproxId formControlName="edadAproxCtrl">
+            </mat-form-field>
+            <mat-radio-group>
+              <mat-radio-button value="anios">En años</mat-radio-button>
+              <mat-radio-button class="ml-3" value="meses">En meses</mat-radio-button>
+            </mat-radio-group>
+          </div>
 
-        <p> <img class="mt-2" [src]="url" *ngIf="url" required> <br /> </p>
+        </div>
+      </form>
 
-        <mat-card-actions>
-          <span class="mt-3 small">*Campos requeridos</span>
-          <button class="btn btn-outline-primary pull-right " (click)="cargarMascota()"> Crear <i
-              class="far fa-paper-plane"></i>
-          </button>
 
-        </mat-card-actions>
-        <mat-card-footer>
 
-        </mat-card-footer>
+      <input class="mt-3" type='file' accept=".jpg,.jpeg, .png, .PNG, .JPG" (change)="onSelectFile($event)">
 
-      </mat-card>
+      <p> <img class="mt-2" [src]="url" *ngIf="url" required> <br /> </p>
 
-    </div>
-    <div class="col-sm-3"></div>
+      <mat-card-actions>
+        <span class="mt-3 small">*Campos requeridos</span>
+        <button class="btn btn-outline-primary pull-right redondo" (click)="cargarMascota()">
+          <i class="far fa-paper-plane"> </i>
+        </button>
+
+      </mat-card-actions>
+      <mat-card-footer>
+
+      </mat-card-footer>
+
+    </mat-card>
+
   </div>
+  <div class="col-sm-1 col-lg-3"></div>
 </div>

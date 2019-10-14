@@ -16,12 +16,12 @@ export class AdministracionRefugioComponent implements OnInit {
   filtra: boolean;
   formBusqueda: FormGroup;
   publications: Publication[];
-  solicitudes: Publication[]; // cambia unicamente a nivel fronts
+  solicitudes: Publication[]; // cambia unicamente a nivel front
 
-  constructor(private mService: MascotasService, 
-              private formBuilder: FormBuilder,
-              private publicationService: PublicationService,
-              private solicitudService: SolicitudService) {
+  constructor(private mService: MascotasService,
+    private formBuilder: FormBuilder,
+    private publicationService: PublicationService,
+    private solicitudService: SolicitudService) {
 
     this.filtra = false;
     this.especies = this.mService.getAllEspecies();
@@ -30,10 +30,10 @@ export class AdministracionRefugioComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.publications = [];
     this.solicitudes = [];
-    
+
     this.formBusqueda = this.formBuilder.group({
       nombreMascotaCtrl: ['', [Validators.maxLength(100)]],
       especieMascotaCtrl: ['', []],
@@ -48,27 +48,28 @@ export class AdministracionRefugioComponent implements OnInit {
   // cambiar a Mis publicaciones
   getPublications() {
     this.publicationService.getPublicaciones()
-    .subscribe(res => {
-      res.data.forEach(pub => {
-        const publication = new Publication(pub);
-        this.publications.push(publication)
+      .subscribe(res => {
+        res.data.forEach(pub => {
+          const publication = new Publication(pub);
+          this.publications.push(publication)
+        });
       });
-    });
   }
 
 
   //trae publicaciones que contengan solicitudes
   getSolicitudes() {
     this.solicitudService.getSolicitudes()
-    .subscribe(res => {
-      if (res.data)
-        res.data.forEach(sol => {
-          const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
-          this.solicitudes.push(solicitud);
-        });
+      .subscribe(res => {
+        if (res.data)
+          res.data.forEach(sol => {
+            const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
 
-        
-    });
+            this.solicitudes.push(solicitud);
+          });
+
+
+      });
   }
 
 }

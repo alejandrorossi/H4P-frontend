@@ -26,10 +26,10 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   cursor:pointer;
 }
 
-.mat-menu-content{
-  // background-color: red!important;
-  // background-color: rgba(0, 0, 0, 0)!important;
-  // cambiar a transparente?
+.redondo{
+  border-radius: 100%;
+  width:2.5em;
+  height:2.5em
 }
 
 .white-icon {
