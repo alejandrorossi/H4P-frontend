@@ -6,6 +6,7 @@ import { H4pComponent } from './h4p/h4p.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { AdministracionRefugioComponent } from './administracion-refugio/administracion-refugio.component';
 import { CargarComponent } from './cargar/cargar.component';
+import { InfoComponent } from './info/info.component';
 
 
 
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'nosotros', 
     component: NosotrosComponent
+  },
+  {
+    path: 'info', 
+    component: InfoComponent //información de applicacion, desarrollo y legales
   },
   {
     path: 'h4p', //logueado en la aplicacion

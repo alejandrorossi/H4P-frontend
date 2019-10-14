@@ -1,0 +1,21 @@
+import { Injectable, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Response } from '../model/response.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SolicitudService {
+
+
+
+  constructor(private httpClient: HttpClient) { }
+
+
+  getSolicitudes():  Observable<Response>{
+    return this.httpClient.get<Response>(`${environment.URL_API}/solicitud` ); //return data in array
+  };
+
+}

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UtilsService } from '../service/utils.service';
 import { ListadoPostulantesComponent } from '../listado-postulantes/listado-postulantes.component';
+import { Publication } from '../model/publication.model';
+import { MatDialog } from '@angular/material';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-solicitud',
@@ -9,20 +12,40 @@ import { ListadoPostulantesComponent } from '../listado-postulantes/listado-post
 })
 export class SolicitudComponent implements OnInit {
 
-  postulantes: any[];
+  cantPostulantes: number;
+  nombreMascota: String;
+  especie: String;
 
-  constructor(private uSrv:UtilsService) {
-    this.postulantes = [1,2,3,5];
+  aceptado: User;
+
+  @Input()
+  publicacion: Publication;
+
+  constructor(public dialog: MatDialog) {
+
+
   }
 
   ngOnInit() {
+    this.cantPostulantes = this.publicacion.applications.length;
+    this.nombreMascota = this.publicacion.pet.name;
+    this.especie = this.publicacion.pet.type;
 
   }
 
-  verPostulantes(){
-    // alert("implementar ver postulantes")
 
-    this.uSrv.getDialog(ListadoPostulantesComponent,"sarasa", "50%")
+  verPostulantes(): void {
+
+    const dialogRef = this.dialog.open(ListadoPostulantesComponent, {
+      width: '90%',
+      data: { postulantes: this.publicacion.applications }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('aceptado');
+      this.aceptado = result;
+    });
   }
+
 
 }

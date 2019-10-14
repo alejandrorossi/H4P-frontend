@@ -1,22 +1,26 @@
-<span style="color:red">menu-usuario works!</span>
+<div class="row">
 
-<p>
-este menu de usuario deberia recibir </p>
-<p>los datos del usuario</p>
-<p> aca va para sali de aplicacion</p>
-<p> link a modificar datos</p>
-<p> abajo poner un "contactanos" va a nosotros </p>
-<p> donaciones </p>
-<p>salir</p>
+  <div class="col">
 
-<mat-list>
-  <mat-list-item>link 01</mat-list-item>
-  <mat-list-item>link 02</mat-list-item>
-  <mat-list-item>
-    <i class="fas fa-sign-out-alt"></i>
-    <a mat-list-item (click)="signOut()"> Salir </a>
-  </mat-list-item>
-</mat-list>
+    <!-- <mat-divider></mat-divider> -->
 
+    <div mat-card-avatar class="example-header-image"></div>
+    <span > placeholder datos de usuario </span>
 
+    <!-- <mat-divider class="mt-3"></mat-divider> -->
 
+    <mat-list>
+        <mat-divider></mat-divider>
+      <mat-list-item><a href="nosotros">Contactanos</a> </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><a href="info">Más sobre H4P</a></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="signOut()" style="cursor:pointer">
+        <i class="fas fa-sign-out-alt"></i>
+        <a mat-list-item> Salir de H4P</a>
+      </mat-list-item>
+
+    </mat-list>
+
+  </div>
+</div>

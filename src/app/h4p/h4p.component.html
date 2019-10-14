@@ -7,7 +7,7 @@
         <span class="rellenar-tb"></span>
         <i class="far fa-bell mr-3" style="cursor:pointer"></i>
         <div [matMenuTriggerFor]="menu" matRipple [matRippleRadius]="'25'" [matRippleUnbounded]="true"
-              [matRippleCentered]="true" title="Menú" class="tipo-btn">
+          [matRippleCentered]="true" title="Menú" class="tipo-btn">
           <i class="fas fa-ellipsis-v  ml-3 mr-3"> </i>
         </div>
 
@@ -24,10 +24,20 @@
     <div class="col nopadding">
 
       <mat-sidenav-container class="fondo">
-        <mat-sidenav #snav mode="over" class="sd-container" [fixedInViewport]="true">
-          <button class="btn btn-danger" (click)="snav.toggle()"> close </button>
+        <mat-sidenav #snav mode="over" class="sd-container" [fixedInViewport]="true"
+          style="min-width: 30%; max-width: 70%;">
+          <p>
+              <button class="btn btn-outline-danger pull-right redondo mt-2 mr-2" 
+              (click)="snav.toggle()" style="border:none">
+                  <i class="fas fa-times"></i>
+              </button>
+          </p>
+
+          <br> <br>
+
           <app-menu-usuario></app-menu-usuario>
           <!--sidenav-->
+
         </mat-sidenav>
 
         <mat-sidenav-content style="min-height:calc(100vh - 64px) !important">
