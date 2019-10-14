@@ -1,5 +1,6 @@
 import { StorageService } from './../service/storage.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-menu-usuario',
@@ -8,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuUsuarioComponent implements OnInit {
 
-  constructor(private storageService: StorageService) { }
+  uActual: User;
+
+  constructor(private storageService: StorageService) {
+    this.uActual = this.storageService.getCurrentUser()
+
+    console.log(this.uActual)
+   }
 
   ngOnInit() {
   }

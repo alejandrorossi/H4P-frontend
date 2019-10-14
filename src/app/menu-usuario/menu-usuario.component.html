@@ -1,16 +1,20 @@
 <div class="row">
 
-  <div class="col">
+  <div class="col ml-4">
 
     <!-- <mat-divider></mat-divider> -->
 
-    <div mat-card-avatar class="example-header-image"></div>
-    <span > placeholder datos de usuario </span>
+    <div class="">
+      <div mat-card-avatar class="example-header-image" style="display: inline-block;" ></div>
+      <span class="font-weight-bold" style="vertical-align:top"> {{uActual.username}} </span>
+    </div>
+
+    <p class="text-muted">{{uActual.surname}}, {{uActual.name}}</p>
 
     <!-- <mat-divider class="mt-3"></mat-divider> -->
 
     <mat-list>
-        <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
       <mat-list-item><a href="nosotros">Contactanos</a> </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item><a href="info">Más sobre H4P</a></mat-list-item>
