@@ -46,6 +46,7 @@ import { MatSelectModule } from '@angular/material';
 import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { ListadoPostulantesComponent } from './listado-postulantes/listado-postulantes.component';
+import { FormularioBaseComponent } from './formulario-base/formulario-base.component';
 import { InfoComponent } from './info/info.component';
 
 @NgModule({
@@ -64,6 +65,7 @@ import { InfoComponent } from './info/info.component';
     SanitizeHtmlPipe,
     SolicitudComponent,
     ListadoPostulantesComponent,
+    FormularioBaseComponent,
     InfoComponent
   ],
   imports: [

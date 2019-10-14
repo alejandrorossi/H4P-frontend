@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material';
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,17 @@ export class UtilsService {
       data: data,
       disableClose: false
     });
+  }
+
+  //Metodos utiles
+  /*
+   * Metodo que funciona como Validator en formularios. 
+   */
+  onlyText(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const regExp : RegExp = /^[a-zA-Z\s]*$/i;
+      const valid = regExp.test(control.value);
+      return valid ? null : {'invalidText': {valid: false , value: control.value}};
+    };
   }
 }

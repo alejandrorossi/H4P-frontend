@@ -1,3 +1,4 @@
+import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
 import { AuthService } from './../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,20 +12,19 @@ import { Response } from './../model/response.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends FormularioBaseComponent implements OnInit {
 
   myForm: FormGroup;
   submitted: Boolean = false;
   hide = true;
-  
-  error: Boolean = false;
-  error_message: String = '';
 
   constructor(
     private router: Router, 
     private formBuilder: FormBuilder,
     public storageService: StorageService,
-    private authService: AuthService) {  }
+    private authService: AuthService){
+      super();
+    }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
@@ -58,15 +58,5 @@ export class LoginComponent implements OnInit {
           this.cargarError('Error en el servidor');
         }
       );
-  }
-
-  private cargarError(status){
-    this.error = true;
-    this.error_message = status;
-  }
-
-  private limpiarError(){
-    this.error = false;
-    this.error_message = '';
   }
 }

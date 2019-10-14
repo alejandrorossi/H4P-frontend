@@ -1,60 +1,44 @@
+import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
 import { UtilsService } from './../service/utils.service';
 import { AuthService } from './../service/auth.service';
-import { FormGroup, FormBuilder, Validators, FormControl, NgForm, FormGroupDirective, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ErrorStateMatcher } from '@angular/material';
-
-export class CustomErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl, form: NgForm | FormGroupDirective | null) {
-    return control && control.invalid && control.touched;
-  }
-}
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss']
 })
-export class RegistroComponent implements OnInit {
+export class RegistroComponent extends FormularioBaseComponent implements OnInit {
 
   myForm: FormGroup;
   submitted: Boolean = false;
   hide = true;
-  
-  errorMatcher = new CustomErrorStateMatcher();
-  error: Boolean = false;
-  error_message: String = '';
 
   constructor(
     private utilsService: UtilsService,
     private formBuilder: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService) {
+    super();
+  }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
       name: ['', [
         Validators.required, 
         Validators.maxLength(15), 
-        this.onlyText()
+        this.utilsService.onlyText()
       ]],
       surname: ['', [
         Validators.required, 
         Validators.maxLength(15),
-        this.onlyText()
+        this.utilsService.onlyText()
       ]],
       username: ['', [Validators.required, Validators.maxLength(10)]],
       age: ['', [Validators.required, Validators.min(18), Validators.max(100)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
-  }
-
-  onlyText(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} | null => {
-      const regExp : RegExp = /^[a-zA-Z\s]*$/i;
-      const valid = regExp.test(control.value);
-      return valid ? null : {'invalidName': {valid: false , value: control.value}};
-    };
   }
 
   ifAllValid() {
@@ -94,15 +78,4 @@ export class RegistroComponent implements OnInit {
       }
     );
   }
-
-  private cargarError(status){
-    this.error = true;
-    this.error_message = status;
-  }
-
-  private limpiarError(){
-    this.error = false;
-    this.error_message = '';
-  }
-
 }

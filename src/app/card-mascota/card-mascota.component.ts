@@ -38,7 +38,7 @@ export class CardMascotaComponent implements OnInit {
     this.loadPreImage();
   }
 
-  private loadPreImage() {
+  private loadPreImage() {    
     this.imageService.getImage(this.pet.images[0]._id)
       .subscribe(
         res => {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Response } from '../model/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class MascotasService {
   // URL of th Rest API server
   readonly URL_API = 'http://localhost:8080/app/pet';
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
 
 
     this.especies = [
@@ -40,7 +41,6 @@ export class MascotasService {
     ]
   }
 
-
   getAllMascotasSinAdoptar() {
     return this.mascotas;
   }
@@ -49,5 +49,8 @@ export class MascotasService {
     return this.especies;
   }
 
+  public crearMascota(mascota): Observable<Response> {
+    return this.httpClient.post<Response>(`${this.URL_API}`, mascota);
+  }
 
 }
