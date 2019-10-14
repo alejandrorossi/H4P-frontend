@@ -24,7 +24,9 @@
         </button>
       </mat-menu>
 
-      <app-solicitud></app-solicitud>
+      <div class="mx-2" *ngFor="let sols of solicitudes">
+        <app-solicitud [publicacion]="sols"></app-solicitud>
+      </div>
 
       <hr>
     </div>
@@ -36,9 +38,9 @@
         <span class="h3">Mis publicaciones </span>
         <button mat-mini-fab color="primary" class="ml-4 text-white " matTooltip="Filtrar publicaciones"
           (click)="filtra=!filtra">
-          <i class="fas fa-filter"></i> 
+          <i class="fas fa-filter"></i>
           <span class="small">
-            <i class="fas fa-plus ml-1"  *ngIf="!filtra"></i>
+            <i class="fas fa-plus ml-1" *ngIf="!filtra"></i>
             <i class="fas fa-angle-up ml-1" *ngIf="filtra"></i>
           </span>
         </button>

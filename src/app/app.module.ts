@@ -39,7 +39,6 @@ import { CardMascotaComponent } from './card-mascota/card-mascota.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NosotrosComponent } from './nosotros/nosotros.component';
-import { VerPublicacionComponent } from './ver-publicacion/ver-publicacion.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
 import { CargarComponent } from './cargar/cargar.component';
 import { AdministracionRefugioComponent } from './administracion-refugio/administracion-refugio.component';
@@ -47,6 +46,7 @@ import { MatSelectModule } from '@angular/material';
 import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { ListadoPostulantesComponent } from './listado-postulantes/listado-postulantes.component';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -58,13 +58,13 @@ import { ListadoPostulantesComponent } from './listado-postulantes/listado-postu
     RegistroComponent,
     CardMascotaComponent,
     NosotrosComponent,
-    VerPublicacionComponent,
     MenuUsuarioComponent,
     CargarComponent,
     AdministracionRefugioComponent,
     SanitizeHtmlPipe,
     SolicitudComponent,
-    ListadoPostulantesComponent
+    ListadoPostulantesComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
