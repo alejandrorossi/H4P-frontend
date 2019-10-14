@@ -49,10 +49,6 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
         Validators.required, Validators.minLength(2), 
         Validators.maxLength(15), this.utilsService.onlyText()
       ]],
-      apellidoMascotaCtrl:['', [
-        Validators.required, Validators.minLength(2), 
-        Validators.maxLength(15), this.utilsService.onlyText()
-      ]],
       especieMascotaCtrl: ['', [Validators.required]],
       descripcionMascotaCtrl: ['', [Validators.required, Validators.maxLength(499)]],
       //TODO: validaciones para diferenciar entre meses y años.
@@ -63,7 +59,6 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   }
   
   get getNombreMascota() { return this.formCarga.get('nombreMascotaCtrl'); }
-  get getApellidoMascota() { return this.formCarga.get('apellidoMascotaCtrl'); }
   get getEspecieMascota() { return this.formCarga.get('especieMascotaCtrl'); }
   get getDescripcionMascota() { return this.formCarga.get('descripcionMascotaCtrl'); }
   get getEdadAprox() { return this.formCarga.get('edadAproxCtrl'); }
@@ -93,7 +88,6 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
 
     const mascota = {
       name: this.getNombreMascota.value,
-      surname: this.getApellidoMascota.value,
       age: this.getEdadAprox.value,
       typeAge: this.getTipoEdad.value,
       type: this.getEspecieMascota.value.name,
@@ -141,7 +135,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   }
 
   mascotaValida() {
-    return this.formCarga.valid && this.imagenes.length >= 1;
+    return this.formCarga.valid && (this.imagenes.length >= 1 || this.url);
   }
 
   //Cargado de imagenes.
