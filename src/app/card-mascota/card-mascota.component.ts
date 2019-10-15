@@ -1,3 +1,5 @@
+import { DialogData } from './../dialog-eliminar/dialog-eliminar.component';
+import { MatDialog } from '@angular/material';
 import { UtilsService } from './../service/utils.service';
 import { StorageService } from './../service/storage.service';
 import { PublicationService } from './../service/publication.service';
@@ -6,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { ImageService } from '../service/image.service';
 import { ImgResponse } from '../model/image.model';
+import { DialogEliminarComponent } from '../dialog-eliminar/dialog-eliminar.component';
 
 @Component({
   selector: 'app-card-mascota',
@@ -29,6 +32,7 @@ export class CardMascotaComponent implements OnInit {
   //Imagen de previsualizacion
   preimage: any;
   constructor(
+    public dialog: MatDialog,
     private imageService: ImageService,
     private utilsService: UtilsService,
     private publicationService: PublicationService,
@@ -74,7 +78,27 @@ export class CardMascotaComponent implements OnInit {
   }
 
   eliminar() {
-    alert('eliminar')
+    const dialogRef = this.dialog.open(DialogEliminarComponent, {
+      width: '250px',
+      data: new DialogData(
+        this.idPublication.toString(), 
+      "¿Desea eliminar realmente la publicación?"
+      ),
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result && result.aceptado){
+        this.publicationService.deletePublicacion(result.id).subscribe(
+          res => {
+            //actualizar las publicaciones que se muestran
+            this.utilsService.notificacion("Se elimino la publicación correctamente", "");
+          },
+          error => {
+            this.utilsService.notificacion("No se pudo eliminar la publicación", "");
+          }
+        )
+      }
+    });
   }
 
 }
