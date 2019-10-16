@@ -9,13 +9,15 @@ import { Response } from '../model/response.model';
 })
 export class SolicitudService {
 
-
-
   constructor(private httpClient: HttpClient) { }
 
-
   getSolicitudes():  Observable<Response>{
-    return this.httpClient.get<Response>(`${environment.URL_API}/solicitud` ); //return data in array
+    return this.httpClient.get<Response>(`${environment.URL_API}solicitud`); 
   };
+
+  putAceptarSolicitante(idPostulante, idPublicacion): Observable<Response>{
+    return this.httpClient.put<Response>(`${environment.URL_API}aceptarSolicitud/${idPostulante}`, {idPublicacion});
+  };
+
 
 }
