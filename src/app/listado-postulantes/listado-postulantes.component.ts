@@ -36,8 +36,8 @@ export class ListadoPostulantesComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  aceptar(user: Application) {
-    this.data.aceptado = user;
+  aceptar(application: Application) {
+    this.data.aceptado = application;
   }
 
   onNoClick(): void {

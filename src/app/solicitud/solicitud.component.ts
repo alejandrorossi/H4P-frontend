@@ -49,9 +49,12 @@ export class SolicitudComponent implements OnInit {
 
       this.aceptado = result;
 
-      this.solicitudSrv.putAceptarSolicitante(this.aceptado.user._id, this.publicacion._id).subscribe(
+      console.log(result)
+      console.log(this.publicacion)
+
+      this.solicitudSrv.putAceptarSolicitante(this.aceptado._id, this.publicacion._id).subscribe(
         res => {
-          this.utilsService.notificacion('Aceptación enviada!', '');
+          this.utilsService.notificacion('Usuario aceptado!', '');
           
         },
         error => {
