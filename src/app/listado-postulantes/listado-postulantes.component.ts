@@ -3,10 +3,12 @@ import { MatTableDataSource, MatPaginator, MatDialogRef, MAT_DIALOG_DATA } from 
 import { User } from '../model/user.model';
 import { Application } from '../model/application.model';
 import { SolicitudService } from '../service/solicitud.service';
+import { UtilsService } from '../service/utils.service';
 
 export interface DialogData {
   postulantes: User[];
   aceptado: Application;
+  publicationId: string;
 }
 
 @Component({
@@ -23,11 +25,10 @@ export class ListadoPostulantesComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(public solicitudSrv: SolicitudService,
+  constructor(public solicitudSrv: SolicitudService, private utilsService: UtilsService,
     public dialogRef: MatDialogRef<ListadoPostulantesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
-
     this.ELEMENT_DATA = data.postulantes;
     this.dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
   }
@@ -44,7 +45,15 @@ export class ListadoPostulantesComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  rechazar(user) {
+  rechazar(user:User) {
+    this.solicitudSrv.putRechazarSolicitante(user._id, this.data.publicationId).subscribe(
+      res => {
+        this.utilsService.notificacion('Usuario Rechazado!', '');
+        // this.refrescarSolicitud();
+      },
+      error => {
+        console.log(error);
+      });
 
   }
 

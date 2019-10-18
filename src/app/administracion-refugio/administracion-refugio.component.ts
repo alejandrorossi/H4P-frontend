@@ -56,7 +56,6 @@ export class AdministracionRefugioComponent implements OnInit {
       });
   }
 
-
   //trae publicaciones que contengan solicitudes
   getSolicitudes() {
     this.solicitudService.getSolicitudes()

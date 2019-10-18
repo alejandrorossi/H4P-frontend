@@ -15,8 +15,12 @@ export class SolicitudService {
     return this.httpClient.get<Response>(`${environment.URL_API}solicitud`); 
   };
 
-  putAceptarSolicitante(idPostulante, idPublicacion): Observable<Response>{
-    return this.httpClient.put<Response>(`${environment.URL_API}aceptarSolicitud/${idPostulante}`, {idPublicacion});
+  putAceptarSolicitante(idPostulacion, idPublicacion): Observable<Response>{
+    return this.httpClient.put<Response>(`${environment.URL_API}aceptarSolicitud/${idPostulacion}`, {idPublicacion});
+  };
+
+  putRechazarSolicitante(idPostulacion, idPublicacion): Observable<Response>{
+    return this.httpClient.put<Response>(`${environment.URL_API}rechazarSolicitud/${idPostulacion}`, {idPublicacion});
   };
 
 
