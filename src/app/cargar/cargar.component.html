@@ -11,7 +11,7 @@
             </mat-card-title>
             <mat-card-subtitle>
               (Se creará también una publicación)
-              <span class="badge badge-pill badge-primary ml-2" matTooltip="{{infoCreacionPublicacion}}" 
+              <span class="badge badge-pill badge-primary ml-2" matTooltip="{{infoCreacionPublicacion}}"
                 style="font-size:0.8em; cursor:pointer"><i class="fas fa-info"></i>
               </span>
             </mat-card-subtitle>
@@ -51,8 +51,7 @@
           <div class="col">
             <mat-form-field>
               <mat-label>Seleccione especie*</mat-label>
-              <mat-select placeholder="Especie" formControlName="especieMascotaCtrl" 
-                [errorStateMatcher]="errorMatcher">
+              <mat-select placeholder="Especie" formControlName="especieMascotaCtrl" [errorStateMatcher]="errorMatcher">
                 <mat-option *ngFor="let op of especies" [value]="op" (change)="ifAllValid()">
                   <i class='{{op.icon}} mr-1'></i> {{op.name}}
                 </mat-option>
@@ -69,8 +68,8 @@
           <div class="col">
             <mat-form-field appearance="outline">
               <mat-label>Descripción*</mat-label>
-              <textarea matInput #descripcionMascotaId [errorStateMatcher]="errorMatcher"
-                (change)="ifAllValid()" formControlName="descripcionMascotaCtrl"> </textarea>
+              <textarea matInput #descripcionMascotaId [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
+                formControlName="descripcionMascotaCtrl"> </textarea>
               <mat-hint align="end">{{descripcionMascotaId.value?.length || 0}}/500</mat-hint>
               <mat-hint>No mencionar la raza
                 <span class="badge badge-pill badge-primary ml-2" matTooltip="{{aviso}}"
@@ -109,8 +108,8 @@
         </div>
         <div class="row mt-3">
           <div class="col">
-            <input hidden #fileInput class="mt-3" type='file'
-              accept=".jpg,.jpeg,.png,.PNG,.JPG" (change)="onSelectFile($event)">
+            <input hidden #fileInput class="mt-3" type='file' accept=".jpg,.jpeg,.png,.PNG,.JPG"
+              (change)="onSelectFile($event)">
             <button type="button" mat-raised-button (click)="fileInput.click()">
               Elegir imagen*
             </button>
@@ -118,15 +117,15 @@
             <mat-error *ngIf="submitted && (imagenes.length < 1)">
               Debe ingresar una imagen.
             </mat-error>
-      
+
             <div class="text-center">
               <mat-error *ngIf="submitted && error">{{error_message}}</mat-error>
             </div>
-      
+
             <mat-card-actions class="ml-1 mr-1">
               <span class="mt-3 small">*Campos requeridos</span>
               <button type="submit" class="btn btn-outline-primary pull-right redondo">
-                <i class="far fa-paper-plane"> </i>
+                <i class="far fa-paper-plane" style="vertical-align: super;"> </i>
               </button>
             </mat-card-actions>
           </div>

@@ -10,7 +10,6 @@ import { User } from '../model/user.model';
 export class MenuUsuarioComponent implements OnInit {
 
   uActual: User;
-
   constructor(private storageService: StorageService) {
     this.uActual = this.storageService.getCurrentUser();
    }
@@ -18,7 +17,7 @@ export class MenuUsuarioComponent implements OnInit {
   ngOnInit() {
   }
 
-  public signOut(){
+  public signOut() {
     this.storageService.singOut();
   }
 

@@ -1,30 +1,72 @@
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+<h4 mat-dialog-title>Aceptar o rechazar adopciones</h4>
 
-    <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-    </ng-container>
+<div class="row" >
+  <div class="col nopadding">
 
-    <ng-container matColumnDef="apellido">
-      <th mat-header-cell *matHeaderCellDef> Apellidulli </th>
-      <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource" >
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>
+          Estado actual
+          <i class="fas fa-info-circle text-info" style="font-size: 1.2em"></i>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.status}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="aceptar">
-      <th mat-header-cell *matHeaderCellDef> Aceptar </th>
-      <td mat-cell *matCellDef="let element"> <button mat-mini-fab color="primary"><i class="far fa-check-circle"></i></button> </td>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.surname}}, {{element.user.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Usuario </th>
+        <td mat-cell *matCellDef="let element"> {{element.user.username}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="aceptar">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="alineado"> Aceptar </div>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="text-center">
+            <button class="btn btn-outline-primary redondo mat-elevation-z6" (click)="aceptar(element)">
+              <i class="fas fa-check"></i>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rechazar">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="text-center">Rechazar</div>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="text-center">
+            <button class="btn btn-outline-danger redondo mat-elevation-z6" (click)="rechazar(element)">
+              <i class="fas fa-times"></i>
+            </button></div>
+        </td>
+      </ng-container>
 
 
-    <ng-container matColumnDef="rechazar">
-      <th mat-header-cell *matHeaderCellDef> Rechazar </th>
-      <td mat-cell *matCellDef="let element"> <button mat-mini-fab color="primary"><i class="far fa-times-circle"></i></button> </td>
-    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <div *ngIf="data.aceptado">
+      <span>¿Desea aceptar a <em><strong>{{data.aceptado.user.username}}</strong></em>?</span>
+      <button class="btn btn-outline-primary redondo ml-3" [mat-dialog-close]="data.aceptado">
+        <i class="fas fa-check"></i>
+      </button>
+    </div>
+    <!-- <div *ngIf="data.aceptado">  para rechazar?
+      ¿Desea rechazar a estos {{rechazados.length}} postulantes?
+      <button mat-button mat-dialog-close>confirmar</button>
+    </div> -->
+
+   
+    
+  </div>
 </div>
