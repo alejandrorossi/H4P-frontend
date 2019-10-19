@@ -12,9 +12,7 @@ export class MenuUsuarioComponent implements OnInit {
   uActual: User;
 
   constructor(private storageService: StorageService) {
-    this.uActual = this.storageService.getCurrentUser()
-
-    console.log(this.uActual)
+    this.uActual = this.storageService.getCurrentUser();
    }
 
   ngOnInit() {

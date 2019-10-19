@@ -1,0 +1,15 @@
+
+<div class="text-center">
+    <h1 mat-dialog-title>Eliminar</h1>
+    <div mat-dialog-content>
+      {{data.texto}}
+    </div>
+    <div class="mt-3">
+      <button class="btn btn-outline-danger redondo mr-4" (click)="cancelar()">
+        <i class="fas fa-times"></i>
+      </button>
+      <button class="btn btn-outline-success redondo ml-4" [mat-dialog-close]="aceptar()">
+        <i class="fas fa-check"></i>
+      </button>
+    </div>
+</div>

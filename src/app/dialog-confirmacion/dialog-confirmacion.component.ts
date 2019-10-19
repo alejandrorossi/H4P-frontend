@@ -2,20 +2,20 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
-  selector: 'app-dialog-eliminar',
-  templateUrl: './dialog-eliminar.component.html',
-  styleUrls: ['./dialog-eliminar.component.scss']
+  selector: 'app-dialog-confirmacion',
+  templateUrl: './dialog-confirmacion.component.html',
+  styleUrls: ['./dialog-confirmacion.component.scss']
 })
-export class DialogEliminarComponent implements OnInit {
+export class DialogConfirmacionComponent implements OnInit {
 
   original: DialogData;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogEliminarComponent>,
+    public dialogRef: MatDialogRef<DialogConfirmacionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
-    this.original = new DialogData(this.data.id, this.data.texto);
+    this.original = new DialogData(this.data.texto);
   }
 
   aceptar(){
@@ -32,13 +32,11 @@ export class DialogEliminarComponent implements OnInit {
 
 export class DialogData {
 
-  constructor(id: string, texto: string){
-    this.id = id;
+  constructor(texto: string){
     this.texto = texto;
     this.aceptado = false;
   }
 
-  id: string;
   texto: string;
   aceptado: boolean;
 }

@@ -19,27 +19,30 @@ export class PrincipalComponent implements OnInit {
     private publicationService: PublicationService,
     public storageService: StorageService,
     public masc: MascotasService) {
-    this.getPublications();
+    this.getPublicaciones();
   }
-
+    
   ngOnInit() {
-
   }
 
+  getPublicaciones(){
+    this.publicationService.getPublicaciones().subscribe(
+      res => {
+        this.publications = [];
+        res.data.forEach(pub => {
+          const publication = new Publication(pub);
+          this.publications.push(publication)
+        });
+      }
+    )
+  }
 
   isOwnerOrPostulant(publication: Publication): Boolean{
     var currentUserName: String = this.storageService.getCurrentUser().username;
     return publication.isOwner(currentUserName) || publication.hasPostulant(currentUserName);
   }
 
-  getPublications() {
-    this.publicationService.getPublicaciones()
-    .subscribe(res => {
-      res.data.forEach(pub => {
-        const publication = new Publication(pub);
-        this.publications.push(publication)
-      });
-    });
+  onNotifyActualizarPrincipal(notifyActualizarEstadoCuenta: boolean){
+    if(notifyActualizarEstadoCuenta){ this.getPublicaciones(); }
   }
-
 }

@@ -4,7 +4,10 @@
 <div class="row card-group">
   <div class="col-md-4" *ngFor="let p of publications">
 
-    <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [isOwner]="isOwnerOrPostulant(p)" [completa]="true" ></app-card-mascota>
+    <app-card-mascota
+      (notifyActualizarPrincipal)='onNotifyActualizarPrincipal($event)'
+      [pet]="p.pet" [idPublication]="p._id" 
+      [isOwner]="isOwnerOrPostulant(p)" [completa]="true" ></app-card-mascota>
 
   </div>
 </div>

@@ -25,12 +25,11 @@ export class AdministracionRefugioComponent implements OnInit {
 
     this.filtra = false;
     this.especies = this.mService.getAllEspecies();
-    this.getPublications();
+    this.getUsuarioPublicaciones();
     this.getSolicitudes();
   }
 
   ngOnInit() {
-
     this.publications = [];
     this.solicitudes = [];
 
@@ -44,18 +43,16 @@ export class AdministracionRefugioComponent implements OnInit {
     alert("implementar buscar")
   }
 
-
-  // cambiar a Mis publicaciones
-  getPublications() {
-    this.publicationService.getPublicaciones()
-      .subscribe(res => {
+  getUsuarioPublicaciones(){
+    this.publicationService.getUsuarioPublicaciones().subscribe(
+      res => {
         res.data.forEach(pub => {
           const publication = new Publication(pub);
           this.publications.push(publication)
         });
-      });
+      }
+    )
   }
-
 
   //trae publicaciones que contengan solicitudes
   getSolicitudes() {

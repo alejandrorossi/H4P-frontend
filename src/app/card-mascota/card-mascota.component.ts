@@ -1,14 +1,13 @@
-import { DialogData } from './../dialog-eliminar/dialog-eliminar.component';
+import { DialogConfirmacionComponent } from './../dialog-confirmacion/dialog-confirmacion.component';
+import { DialogData } from '../dialog-confirmacion/dialog-confirmacion.component';
 import { MatDialog } from '@angular/material';
 import { UtilsService } from './../service/utils.service';
 import { StorageService } from './../service/storage.service';
 import { PublicationService } from './../service/publication.service';
 import { Pet } from './../model/pet.model';
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ImageService } from '../service/image.service';
 import { ImgResponse } from '../model/image.model';
-import { DialogEliminarComponent } from '../dialog-eliminar/dialog-eliminar.component';
 
 @Component({
   selector: 'app-card-mascota',
@@ -28,6 +27,8 @@ export class CardMascotaComponent implements OnInit {
 
   @Input()
   completa: Boolean;
+
+  @Output() notifyActualizarPrincipal: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   //Imagen de previsualizacion
   preimage: any;
@@ -78,20 +79,17 @@ export class CardMascotaComponent implements OnInit {
   }
 
   eliminar() {
-    const dialogRef = this.dialog.open(DialogEliminarComponent, {
+    const dialogRef = this.dialog.open(DialogConfirmacionComponent, {
       width: '250px',
-      data: new DialogData(
-        this.idPublication.toString(), 
-      "¿Desea eliminar realmente la publicación?"
-      ),
+      data: new DialogData("¿Desea eliminar realmente la publicación?"),
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result && result.aceptado){
-        this.publicationService.deletePublicacion(result.id).subscribe(
+        this.publicationService.deletePublicacion(this.idPublication.toString()).subscribe(
           res => {
-            //actualizar las publicaciones que se muestran
             this.utilsService.notificacion("Se elimino la publicación correctamente", "");
+            this.notifyActualizarPrincipal.emit(true);
           },
           error => {
             this.utilsService.notificacion("No se pudo eliminar la publicación", "");
@@ -100,5 +98,4 @@ export class CardMascotaComponent implements OnInit {
       }
     });
   }
-
 }

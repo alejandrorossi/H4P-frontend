@@ -48,7 +48,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { ListadoPostulantesComponent } from './listado-postulantes/listado-postulantes.component';
 import { FormularioBaseComponent } from './formulario-base/formulario-base.component';
 import { InfoComponent } from './info/info.component';
-import { DialogEliminarComponent } from './dialog-eliminar/dialog-eliminar.component';
+import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +68,7 @@ import { DialogEliminarComponent } from './dialog-eliminar/dialog-eliminar.compo
     ListadoPostulantesComponent,
     FormularioBaseComponent,
     InfoComponent,
-    DialogEliminarComponent
+    DialogConfirmacionComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +110,7 @@ import { DialogEliminarComponent } from './dialog-eliminar/dialog-eliminar.compo
   ],
   entryComponents: [
     ListadoPostulantesComponent,
-    DialogEliminarComponent
+    DialogConfirmacionComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
