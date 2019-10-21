@@ -1,11 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ListadoPostulantesComponent } from '../listado-postulantes/listado-postulantes.component';
 import { Publication } from '../model/publication.model';
 import { MatDialog } from '@angular/material';
 import { Application } from '../model/application.model';
 import { SolicitudService } from '../service/solicitud.service';
 import { UtilsService } from '../service/utils.service';
-import { PublicationService } from '../service/publication.service';
 
 @Component({
   selector: 'app-solicitud',
@@ -19,14 +18,20 @@ export class SolicitudComponent implements OnInit {
   especie: String;
   aceptado: Application;
 
+  @Output()
+  eventoRefrescar = new EventEmitter<any>();
+
   @Input()
   publicacion: Publication;
 
   constructor(public dialog: MatDialog,
     public solicitudSrv: SolicitudService,
-    private utilsService: UtilsService,
-    private publicationService: PublicationService) {
+    private utilsService: UtilsService) {
 
+  }
+
+  llamarRefrescarSolicitudes() {
+    this.eventoRefrescar.next();
   }
 
   ngOnInit() {
@@ -43,7 +48,6 @@ export class SolicitudComponent implements OnInit {
     });
     return ret
   }
-
 
 
   verPostulantes(): void {
@@ -66,28 +70,16 @@ export class SolicitudComponent implements OnInit {
         this.solicitudSrv.putAceptarSolicitante(this.aceptado._id, this.publicacion._id).subscribe(
           res => {
             this.utilsService.notificacion('Usuario aceptado!', '');
-            // this.refrescarSolicitud();
+            this.llamarRefrescarSolicitudes();
           },
           error => {
             console.log(error);
           });
-
+      }else{
+        this.llamarRefrescarSolicitudes();
       }
+
     });
   }
-
-
-  // refrescarSolicitud(): void {
-
-  //   this.publicationService.getPublicacion(String(this.publicacion._id)).subscribe(
-  //     res => {
-  //       console.log(res.data)
-  //       this.publicacion = res.data
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     });
-
-  // }
 
 }

@@ -43,7 +43,13 @@ export class AdministracionRefugioComponent implements OnInit {
     alert("implementar buscar")
   }
 
-  getUsuarioPublicaciones(){
+
+  actualizarSolicitudes() {
+
+    this.getSolicitudes();
+  }
+
+  getUsuarioPublicaciones() {
     this.publicationService.getUsuarioPublicaciones().subscribe(
       res => {
         res.data.forEach(pub => {
@@ -54,19 +60,26 @@ export class AdministracionRefugioComponent implements OnInit {
     )
   }
 
-  //trae publicaciones que contengan solicitudes
+ 
   getSolicitudes() {
+
     this.solicitudService.getSolicitudes()
       .subscribe(res => {
-        if (res.data)
+        const resList: Publication[] = [];
+        if (res.data) {
+          console.log("hay datos")
+          
           res.data.forEach(sol => {
             const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
-
-            this.solicitudes.push(solicitud);
+            console.log(solicitud)
+            resList.push(solicitud);
           });
 
+          this.solicitudes = resList;
+        }
 
       });
   }
+
 
 }

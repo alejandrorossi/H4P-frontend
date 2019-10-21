@@ -3,8 +3,8 @@
     <div class="col ">
       <p>
         <span class="h3">Solicitudes </span>
-        <button mat-mini-fab [matMenuTriggerFor]="menuFiltrosSol" color="primary" class="ml-4 text-white "
-          matTooltip="Filtrar solicitudes">
+        <button class="btn btn-outline-primary redondo mat-elevation-z4 ml-4" [matMenuTriggerFor]="menuFiltrosSol"
+          matTooltip="Filtrar solicitudes" style="font-size:0.9em">
           <i class="fas fa-filter"></i> <span class="small"><i class="fas fa-angle-down ml-1"></i></span>
         </button>
       </p>
@@ -25,7 +25,7 @@
       </mat-menu>
 
       <div class="mx-2" *ngFor="let sols of solicitudes">
-        <app-solicitud [publicacion]="sols"></app-solicitud>
+        <app-solicitud [publicacion]="sols" (eventoRefrescar)="actualizarSolicitudes($event)"></app-solicitud>
       </div>
 
       <hr>
@@ -36,10 +36,10 @@
     <div class="col ">
       <p>
         <span class="h3">Mis publicaciones </span>
-        <button mat-mini-fab color="primary" class="ml-4 text-white " matTooltip="Filtrar publicaciones"
+        <button class="btn btn-outline-primary redondo mat-elevation-z4 ml-4" matTooltip="Filtrar publicaciones"
           (click)="filtra=!filtra">
-          <i class="fas fa-filter"></i>
-          <span class="small">
+          <i class="fas fa-filter " style="font-size:0.9em"></i>
+          <span style="font-size:0.5em">
             <i class="fas fa-plus ml-1" *ngIf="!filtra"></i>
             <i class="fas fa-angle-up ml-1" *ngIf="filtra"></i>
           </span>
