@@ -41,6 +41,15 @@ export class MascotasService {
     ]
   }
 
+  getEspecie(nombre){
+    let ret;
+    this.especies.forEach(especie => {
+      if(especie.name == nombre)
+        ret = especie;
+    });
+    return ret;
+  }
+
   getAllMascotasSinAdoptar() {
     return this.mascotas;
   }
@@ -51,6 +60,10 @@ export class MascotasService {
 
   public crearMascota(mascota): Observable<Response> {
     return this.httpClient.post<Response>(`${this.URL_API}`, mascota);
+  }
+
+  public editarMascota(mascota): Observable<Response> {
+    return this.httpClient.put<Response>(`${this.URL_API}/${mascota._id}`, mascota);
   }
 
 }

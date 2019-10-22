@@ -8,6 +8,7 @@ import { Pet } from './../model/pet.model';
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ImageService } from '../service/image.service';
 import { ImgResponse } from '../model/image.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-mascota',
@@ -33,6 +34,7 @@ export class CardMascotaComponent implements OnInit {
   //Imagen de previsualizacion
   preimage: any;
   constructor(
+    private _router: Router,
     public dialog: MatDialog,
     private imageService: ImageService,
     private utilsService: UtilsService,
@@ -75,7 +77,7 @@ export class CardMascotaComponent implements OnInit {
   }
 
   editar() {
-    alert('editar')
+    this._router.navigate([`/h4p/cargar-mascota/${this.idPublication}`]);
   }
 
   eliminar() {

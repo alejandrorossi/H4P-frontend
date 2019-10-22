@@ -1,3 +1,5 @@
+import { Publication } from './../model/publication.model';
+import { ActivatedRoute } from '@angular/router';
 import { PublicationService } from './../service/publication.service';
 import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
 import { UtilsService } from './../service/utils.service';
@@ -14,33 +16,40 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class CargarComponent extends FormularioBaseComponent implements OnInit {
 
-  infoCreacionPublicacion: String = 
+  tituloCargar: string = "Nueva Mascota";
+  infoCreacionPublicacion: string = 
     `Cuando se crea una mascota también se esta creando una publicación, la cual
     contendra a la mascota, más abajo en el formulario se puede marcar la publicación
-    que será creada como privada o pública.`
-  aviso: String
-  avisoVisibilidad: String;
-  masInf: boolean;
+    que será creada como privada o pública.`;
+  aviso: string = 
+    `No deseamos que los usuarios hagan preferencia por razas ni 
+    facilitar la adquisición de mascotas para la venta.`;
+  avisoVisibilidad: string = 
+    `Activando esta opción la mascota no aparecerá visible a los adoptantes 
+    hasta que sea dada de alta manualmente desde al área de administración.`;
+  masInf: boolean = false;
 
-  submitted: Boolean = false;
-  
+  submitted: boolean = false;
   formCarga: FormGroup;
   especies: any
   checkedPrivada: Boolean = false;
   url: any;
   imagenes: any[] = Array<any>();
 
+  idPublicacionEditar: String; //Se carga cuando es edicion.
+  esEdicion: boolean = false;
+  idMascotaEditar: String; //Se carga cuando es edicion.
+
   constructor(
+    private _route: ActivatedRoute,
     private publicacionService: PublicationService,
     private utilsService: UtilsService,
     private storageService: StorageService,
     private mService: MascotasService, 
     private formBuilder: FormBuilder) {
     super();
-    this.aviso = "No deseamos que los usuarios hagan preferencia por razas ni facilitar la adquisición de mascotas para la venta.";
     this.especies = this.mService.getAllEspecies();
-    this.masInf = false;
-    this.avisoVisibilidad = "Activando esta opción la mascota no aparecerá visible a los adoptantes hasta que sea dada de alta manualmente desde al área de administración.";
+    this.idPublicacionEditar = this._route.snapshot.paramMap.get('idPublicacion');
   }
 
   ngOnInit() {
@@ -56,6 +65,12 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
       edadAproxCtrl:['', [Validators.required, Validators.max(100), Validators.min(1)]],
       tipoEdadCtrl:['A', [Validators.required]]
     });
+
+    if(this.idPublicacionEditar){
+      this.esEdicion = true;
+      this.tituloCargar = "Editar Publicación";
+      this.cargarDatosPublicacion();
+    }
   }
   
   get getNombreMascota() { return this.formCarga.get('nombreMascotaCtrl'); }
@@ -65,7 +80,12 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   get getTipoEdad() { return this.formCarga.get('tipoEdadCtrl'); }
   get getCheckedPrivada() {return this.checkedPrivada? "privado": "publico" }
 
+  setNombreMascota(nombre) {this.formCarga.get('nombreMascotaCtrl').setValue(nombre); }
+  setEspecieMascota(especie) {this.formCarga.get('especieMascotaCtrl').setValue(especie); }
+  setDescripcionMascota(descripcion) {this.formCarga.get('descripcionMascotaCtrl').setValue(descripcion); }
+  setEdadAprox(edad) {this.formCarga.get('edadAproxCtrl').setValue(edad); }
   setTipoEdad(tipo) {this.formCarga.get('tipoEdadCtrl').setValue(tipo); }
+  setCheckedPrivada(check) { this.checkedPrivada =  (check == "privado") }
 
   masInfo(){
     this.masInf = true;
@@ -87,6 +107,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
     this.limpiarError()
 
     const mascota = {
+      _id: this.idMascotaEditar,
       name: this.getNombreMascota.value,
       age: this.getEdadAprox.value,
       typeAge: this.getTipoEdad.value,
@@ -96,29 +117,56 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
       images: this.imagenes
     }
 
-    this.mService.crearMascota(mascota).subscribe(
-      res => {
-        if(!res.error){
-          const publicacion = {
-            pet: res.data._id,
-            status: this.getCheckedPrivada
+    if(this.esEdicion){
+      this.mService.editarMascota(mascota).subscribe(
+        res => {
+          if(!res.error){
+            const publicacion = {
+              _id: this.idPublicacionEditar,
+              pet: res.data._id,
+              status: this.getCheckedPrivada
+            }
+            this.publicacionService.putPublicacion(publicacion).subscribe(
+              res => {
+                this.utilsService.notificacion('La edición fue exitosa','');
+                this.resetearFormulario();
+              },
+              error => {
+                console.log(error);
+              });
           }
-          this.publicacionService.postPublicacion(publicacion).subscribe(
-            res => {
-              this.utilsService.notificacion('La mascota y publicación se crearon exitosamente','');
-              this.resetearFormulario();
-            },
-            error => {
-              console.log(error);
-            });
-        }
-        else{
-          this.utilsService.notificacion(res.status,'');
-        }
-      },
-      error => {
-        console.log(error);
-      });
+          else{
+            this.utilsService.notificacion(res.status,'');
+          }
+        },
+        error => {
+          console.log(error);
+        });
+    }else{
+      this.mService.crearMascota(mascota).subscribe(
+        res => {
+          if(!res.error){
+            const publicacion = {
+              pet: res.data._id,
+              status: this.getCheckedPrivada
+            }
+            this.publicacionService.postPublicacion(publicacion).subscribe(
+              res => {
+                this.utilsService.notificacion('La mascota y publicación se crearon exitosamente','');
+                this.resetearFormulario();
+              },
+              error => {
+                console.log(error);
+              });
+          }
+          else{
+            this.utilsService.notificacion(res.status,'');
+          }
+        },
+        error => {
+          console.log(error);
+        });
+    }
   }
 
   resetearFormulario(){
@@ -132,6 +180,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
     this.submitted = false;
     //Se setean los valores por default del formulario.
     this.setTipoEdad('A');
+    this.setCheckedPrivada("publico");
   }
 
   mascotaValida() {
@@ -163,4 +212,25 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
     }
   }
 
+  cargarDatosPublicacion(){
+    let publicacion: Publication;
+
+    this.publicacionService.getPublicacion(this.idPublicacionEditar).subscribe(
+      res => {
+        publicacion = res.data;
+
+        this.setNombreMascota(publicacion.pet.name);
+        this.setEspecieMascota(this.mService.getEspecie(publicacion.pet.type));
+        this.setDescripcionMascota(publicacion.pet.description);
+        this.setEdadAprox(publicacion.pet.age);
+        this.setTipoEdad(publicacion.pet.typeAge);
+        this.setCheckedPrivada(publicacion.status);
+
+        this.idMascotaEditar = publicacion.pet._id;
+      },
+      error => {
+        this.utilsService.notificacion('Ocurrio un error para la edición','');
+      }
+    )
+  }
 }

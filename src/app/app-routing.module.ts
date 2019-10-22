@@ -42,18 +42,19 @@ const routes: Routes = [
         path: 'principal',
         component: PrincipalComponent
       },
-      // {
-      //   path: 'principal',
-      //   component: PrincipalComponent
-      // },
       {
         path: 'administracion',
         component: AdministracionRefugioComponent
-      },      
+      },
       {
         path: 'cargar-mascota',
         component: CargarComponent
-      },
+      },   
+      {
+         //path para poder editar las publicaciones.
+        path: 'cargar-mascota/:idPublicacion',
+        component: CargarComponent
+      }
     ]
   }
   

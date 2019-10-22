@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class PublicationService {
   
   // URL of th Rest API server
-  readonly URL_API = 'http://localhost:8080/app/publication';
+  readonly URL_API = `${environment.URL_API}/publication`;
   
   constructor(
     private httpClient: HttpClient,
@@ -34,11 +34,11 @@ export class PublicationService {
     return this.httpClient.post<Response>(environment.URL_API+'publication', publicacion);
   };
 
-  putPublicacion(){
-    
+  putPublicacion(publicacion): Observable<Response>{
+    return this.httpClient.put<Response>(`${this.URL_API}/${publicacion._id}`, publicacion);
   };
 
-  deletePublicacion(idPublicacion: string): Observable<Response>{
+  deletePublicacion(idPublicacion: String): Observable<Response>{
     return this.httpClient.delete<Response>(`${environment.URL_API}publication/${idPublicacion}`);
   };
 
@@ -46,7 +46,7 @@ export class PublicationService {
     return this.httpClient.post<Response>(`${environment.URL_API}publication/${idUser}`, {publication: idPublication});
   }
 
-  getPublicacion(idPublicacion: string): Observable<Response>{
+  getPublicacion(idPublicacion: String): Observable<Response>{
     return this.httpClient.get<Response>(`${environment.URL_API}publication/${idPublicacion}`);
   }
 
