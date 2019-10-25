@@ -1,3 +1,4 @@
+import { Image, ImgResponse } from './../model/image.model';
 import { Publication } from './../model/publication.model';
 import { ActivatedRoute } from '@angular/router';
 import { PublicationService } from './../service/publication.service';
@@ -7,6 +8,7 @@ import { StorageService } from './../service/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { MascotasService } from '../service/mascotas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ImageService } from '../service/image.service';
 
 
 @Component({
@@ -42,13 +44,14 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
+    private imageService: ImageService,
     private publicacionService: PublicationService,
     private utilsService: UtilsService,
     private storageService: StorageService,
-    private mService: MascotasService, 
+    private mascotaService: MascotasService, 
     private formBuilder: FormBuilder) {
     super();
-    this.especies = this.mService.getAllEspecies();
+    this.especies = this.mascotaService.getAllEspecies();
     this.idPublicacionEditar = this._route.snapshot.paramMap.get('idPublicacion');
   }
 
@@ -61,11 +64,12 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
       especieMascotaCtrl: ['', [Validators.required]],
       descripcionMascotaCtrl: ['', [Validators.required, Validators.maxLength(499)]],
       //TODO: validaciones para diferenciar entre meses y años.
-      // para que pongan por ejemplo: 130 meses.
+      // para que no pongan por ejemplo: 130 meses.
       edadAproxCtrl:['', [Validators.required, Validators.max(100), Validators.min(1)]],
       tipoEdadCtrl:['A', [Validators.required]]
     });
 
+    //Si es edicion se cargan los datos necesarios.
     if(this.idPublicacionEditar){
       this.esEdicion = true;
       this.tituloCargar = "Editar Publicación";
@@ -87,15 +91,15 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   setTipoEdad(tipo) {this.formCarga.get('tipoEdadCtrl').setValue(tipo); }
   setCheckedPrivada(check) { this.checkedPrivada =  (check == "privado") }
 
-  masInfo(){
+  public masInfo(){
     this.masInf = true;
   }
 
-  ifAllValid() {
+  public ifAllValid() {
     this.mascotaValida() ? this.limpiarError() : this.cargarError('Campos invalidos');
   }
 
-  cargarMascota(){
+  public cargarMascota(){
     this.submitted = true;
 
     if (!this.mascotaValida()) {
@@ -117,59 +121,66 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
       images: this.imagenes
     }
 
-    if(this.esEdicion){
-      this.mService.editarMascota(mascota).subscribe(
-        res => {
-          if(!res.error){
-            const publicacion = {
-              _id: this.idPublicacionEditar,
-              pet: res.data._id,
-              status: this.getCheckedPrivada
-            }
-            this.publicacionService.putPublicacion(publicacion).subscribe(
-              res => {
-                this.utilsService.notificacion('La edición fue exitosa','');
-                this.resetearFormulario();
-              },
-              error => {
-                console.log(error);
-              });
-          }
-          else{
-            this.utilsService.notificacion(res.status,'');
-          }
-        },
-        error => {
-          console.log(error);
-        });
-    }else{
-      this.mService.crearMascota(mascota).subscribe(
-        res => {
-          if(!res.error){
-            const publicacion = {
-              pet: res.data._id,
-              status: this.getCheckedPrivada
-            }
-            this.publicacionService.postPublicacion(publicacion).subscribe(
-              res => {
-                this.utilsService.notificacion('La mascota y publicación se crearon exitosamente','');
-                this.resetearFormulario();
-              },
-              error => {
-                console.log(error);
-              });
-          }
-          else{
-            this.utilsService.notificacion(res.status,'');
-          }
-        },
-        error => {
-          console.log(error);
-        });
-    }
+    if(this.esEdicion)
+      this.modificarPublicacionMascota(mascota);
+    else
+      this.crearPublicacionMascota(mascota);
   }
 
-  resetearFormulario(){
+  private modificarPublicacionMascota(mascota) {
+    this.mascotaService.editarMascota(mascota).subscribe(
+      res => {
+        if(!res.error){
+          const publicacion = {
+            _id: this.idPublicacionEditar,
+            pet: res.data._id,
+            status: this.getCheckedPrivada
+          }
+          this.publicacionService.putPublicacion(publicacion).subscribe(
+            res => {
+              this.utilsService.notificacion('La edición fue exitosa','');
+              this.resetearFormulario();
+            },
+            error => {
+              console.log(error);
+            });
+        }
+        else{
+          this.utilsService.notificacion(res.status,'');
+        }
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  private crearPublicacionMascota(mascota) {
+    this.mascotaService.crearMascota(mascota).subscribe(
+      res => {
+        if(!res.error){
+          const publicacion = {
+            pet: res.data._id,
+            status: this.getCheckedPrivada
+          }
+          this.publicacionService.postPublicacion(publicacion).subscribe(
+            res => {
+              this.utilsService.notificacion('La mascota y publicación se crearon exitosamente','');
+              this.resetearFormulario();
+            },
+            error => {
+              console.log(error);
+            });
+        }
+        else{
+          this.utilsService.notificacion(res.status,'');
+        }
+      },
+      error => {
+        console.log(error);
+      });    
+  }
+
+  private resetearFormulario(){
     //Se resetea el formulario.
     this.formCarga.reset();
     //Se resetean las propiedades que se usan para
@@ -183,12 +194,12 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
     this.setCheckedPrivada("publico");
   }
 
-  mascotaValida() {
+  private mascotaValida() {
     return this.formCarga.valid && (this.imagenes.length >= 1 || this.url);
   }
 
   //Cargado de imagenes.
-  onSelectFile(event) { 
+  public onSelectFile(event) { 
     if (event.target.files) {
       const reader = new FileReader();
       //Por cada elemento cargado creamos un obj imagen
@@ -212,7 +223,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
     }
   }
 
-  cargarDatosPublicacion(){
+  private cargarDatosPublicacion(){
     let publicacion: Publication;
 
     this.publicacionService.getPublicacion(this.idPublicacionEditar).subscribe(
@@ -220,7 +231,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
         publicacion = res.data;
 
         this.setNombreMascota(publicacion.pet.name);
-        this.setEspecieMascota(this.mService.getEspecie(publicacion.pet.type));
+        this.setEspecieMascota(this.mascotaService.getEspecie(publicacion.pet.type));
         this.setDescripcionMascota(publicacion.pet.description);
         this.setEdadAprox(publicacion.pet.age);
         this.setTipoEdad(publicacion.pet.typeAge);

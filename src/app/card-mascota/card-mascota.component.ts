@@ -5,7 +5,7 @@ import { UtilsService } from './../service/utils.service';
 import { StorageService } from './../service/storage.service';
 import { PublicationService } from './../service/publication.service';
 import { Pet } from './../model/pet.model';
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ImageService } from '../service/image.service';
 import { ImgResponse } from '../model/image.model';
 import { Router } from '@angular/router';
@@ -17,22 +17,16 @@ import { Router } from '@angular/router';
 })
 export class CardMascotaComponent implements OnInit {
 
-  @Input()
-  pet: Pet;
-
-  @Input()
-  isOwner: Boolean;
-
-  @Input()
-  idPublication: String;
-
-  @Input()
-  completa: Boolean;
+  @Input() pet: Pet;
+  @Input() isOwner: Boolean;
+  @Input() idPublication: String;
+  @Input() completa: Boolean;
 
   @Output() notifyActualizarPrincipal: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   //Imagen de previsualizacion
   preimage: any;
+  
   constructor(
     private _router: Router,
     public dialog: MatDialog,
