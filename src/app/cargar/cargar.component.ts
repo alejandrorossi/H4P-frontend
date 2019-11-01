@@ -1,4 +1,5 @@
-import { Image, ImgResponse } from './../model/image.model';
+import { DialogData } from './../dialog-confirmacion/dialog-confirmacion.component';
+import { ImgResponse } from './../model/image.model';
 import { Publication } from './../model/publication.model';
 import { ActivatedRoute } from '@angular/router';
 import { PublicationService } from './../service/publication.service';
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { MascotasService } from '../service/mascotas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ImageService } from '../service/image.service';
+import { DialogConfirmacionComponent } from '../dialog-confirmacion/dialog-confirmacion.component';
 
 
 @Component({
@@ -37,6 +39,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   checkedPrivada: Boolean = false;
   url: any;
   imagenes: any[] = Array<any>();
+  preimage: any;
 
   idPublicacionEditar: String; //Se carga cuando es edicion.
   esEdicion: boolean = false;
@@ -128,30 +131,40 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
   }
 
   private modificarPublicacionMascota(mascota) {
-    this.mascotaService.editarMascota(mascota).subscribe(
-      res => {
-        if(!res.error){
-          const publicacion = {
-            _id: this.idPublicacionEditar,
-            pet: res.data._id,
-            status: this.getCheckedPrivada
-          }
-          this.publicacionService.putPublicacion(publicacion).subscribe(
-            res => {
-              this.utilsService.notificacion('La edición fue exitosa','');
-              this.resetearFormulario();
-            },
-            error => {
-              console.log(error);
-            });
-        }
-        else{
-          this.utilsService.notificacion(res.status,'');
-        }
-      },
-      error => {
-        console.log(error);
-      });
+    const dialogRef = this.utilsService.getDialog(
+      DialogConfirmacionComponent, 
+      new DialogData("Edición", "¿Desea guardar las modificaciones?"),
+      '250px'
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result && result.aceptado){
+        this.mascotaService.editarMascota(mascota).subscribe(
+          res => {
+            if(!res.error){
+              const publicacion = {
+                _id: this.idPublicacionEditar,
+                pet: res.data._id,
+                status: this.getCheckedPrivada
+              }
+              this.publicacionService.putPublicacion(publicacion).subscribe(
+                res => {
+                  this.utilsService.notificacion('La edición fue exitosa','');
+                  this.resetearFormulario();
+                },
+                error => {
+                  console.log(error);
+                });
+            }
+            else{
+              this.utilsService.notificacion(res.status,'');
+            }
+          },
+          error => {
+            console.log(error);
+          });
+      }
+    });
   }
 
   private crearPublicacionMascota(mascota) {
@@ -187,6 +200,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
     //las imagenes, que no estan contempladas en el formGroup.
     this.url = '';
     this.imagenes = Array<any>();
+    this.preimage = '';
     //Se resetea la propiedad de formulario enviado.
     this.submitted = false;
     //Se setean los valores por default del formulario.
@@ -208,19 +222,26 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
       for(let element of event.target.files){        
         reader.readAsDataURL(event.target.files[0]);
         reader.onload = (event) => {
-          let imagen = {
-            title: element.name.split(".")[0],
-            extension:  element.name.split(".")[1],
-            data: reader.result,
-            creator: this.storageService.getCurrentUser()
-          };
-          
-          this.url = reader.result;
-
-          this.imagenes.push(imagen);          
+          let imagen = this.cargarImagen(element, reader.result);
         }
       }
     }
+  }
+
+  private cargarImagen(img, data){
+    let imagen = {
+      title: (img.image)? img.title : img.name.split(".")[0],
+      extension: (img.image)? img.extension : img.name.split(".")[1],
+      data: data,
+      creator: this.storageService.getCurrentUser()
+    };
+    
+    this.url = data;
+    this.preimage = `<img mat-card-image src="${this.url}">`;
+
+    this.imagenes = Array<any>(); //Limpiamos antes de cargar la nueva imagen.
+    this.imagenes.push(imagen);
+    return imagen;
   }
 
   private cargarDatosPublicacion(){
@@ -236,8 +257,19 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
         this.setEdadAprox(publicacion.pet.age);
         this.setTipoEdad(publicacion.pet.typeAge);
         this.setCheckedPrivada(publicacion.status);
-
+        
         this.idMascotaEditar = publicacion.pet._id;
+
+        this.imageService.getImage(publicacion.pet.images[0]._id)
+        .subscribe(
+          res => {
+            let img = res.data as ImgResponse;
+            let imagen = this.cargarImagen(img, img.dataURL)
+          },
+          error => {
+            console.log('Error al recuperar imagen!');
+          }
+        );
       },
       error => {
         this.utilsService.notificacion('Ocurrio un error para la edición','');

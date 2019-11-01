@@ -113,7 +113,12 @@
             <button type="button" mat-raised-button (click)="fileInput.click()">
               Elegir imagen*
             </button>
-            <p> <img class="mt-2" [src]="url" *ngIf="url" required> </p>
+
+            <div class="mt-2" *ngIf="preimage" [innerHTML]="preimage | sanitizeHtml"></div>
+
+            <!-- <p> <img class="mt-2" [src]="url" *ngIf="url" required> </p> -->
+
+
             <mat-error *ngIf="submitted && (imagenes.length < 1)">
               Debe ingresar una imagen.
             </mat-error>

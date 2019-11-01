@@ -15,7 +15,7 @@ export class DialogConfirmacionComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
-    this.original = new DialogData(this.data.texto);
+    this.original = new DialogData(this.data.titulo, this.data.texto);
   }
 
   aceptar(){
@@ -32,11 +32,13 @@ export class DialogConfirmacionComponent implements OnInit {
 
 export class DialogData {
 
-  constructor(texto: string){
+  constructor(titulo:string, texto: string){
+    this.titulo = titulo;
     this.texto = texto;
     this.aceptado = false;
   }
 
+  titulo: string;
   texto: string;
   aceptado: boolean;
 }

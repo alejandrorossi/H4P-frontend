@@ -1,6 +1,5 @@
 import { DialogConfirmacionComponent } from './../dialog-confirmacion/dialog-confirmacion.component';
 import { DialogData } from '../dialog-confirmacion/dialog-confirmacion.component';
-import { MatDialog } from '@angular/material';
 import { UtilsService } from './../service/utils.service';
 import { StorageService } from './../service/storage.service';
 import { PublicationService } from './../service/publication.service';
@@ -29,7 +28,6 @@ export class CardMascotaComponent implements OnInit {
   
   constructor(
     private _router: Router,
-    public dialog: MatDialog,
     private imageService: ImageService,
     private utilsService: UtilsService,
     private publicationService: PublicationService,
@@ -75,11 +73,11 @@ export class CardMascotaComponent implements OnInit {
   }
 
   eliminar() {
-    const dialogRef = this.dialog.open(DialogConfirmacionComponent, {
-      width: '250px',
-      data: new DialogData("¿Desea eliminar realmente la publicación?"),
-      disableClose: true
-    });
+    const dialogRef = this.utilsService.getDialog(
+      DialogConfirmacionComponent,
+      new DialogData("Eliminar", "¿Desea eliminar realmente la publicación?"),
+      '250px'
+    );
     dialogRef.afterClosed().subscribe(result => {
       if(result && result.aceptado){
         this.publicationService.deletePublicacion(this.idPublication.toString()).subscribe(
