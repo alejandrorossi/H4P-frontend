@@ -52,6 +52,7 @@ export class AdministracionRefugioComponent implements OnInit {
   getUsuarioPublicaciones() {
     this.publicationService.getUsuarioPublicaciones().subscribe(
       res => {
+        this.publications = [];
         res.data.forEach(pub => {
           const publication = new Publication(pub);
           this.publications.push(publication)

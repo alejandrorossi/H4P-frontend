@@ -19,14 +19,15 @@ export class PrincipalComponent implements OnInit {
     private publicationService: PublicationService,
     public storageService: StorageService,
     public masc: MascotasService) {
-    this.getPublicaciones();
+    this.getOtrasPublicaciones();
   }
     
   ngOnInit() {
   }
 
-  getPublicaciones(){
-    this.publicationService.getPublicaciones().subscribe(
+  // Publicaciones que no son propias, a las cuales me puedo postular.
+  getOtrasPublicaciones(){
+    this.publicationService.getOtrasPublicaciones().subscribe(
       res => {
         this.publications = [];
         res.data.forEach(pub => {
@@ -43,6 +44,6 @@ export class PrincipalComponent implements OnInit {
   }
 
   onNotifyActualizarPrincipal(notifyActualizarEstadoCuenta: boolean){
-    if(notifyActualizarEstadoCuenta){ this.getPublicaciones(); }
+    if(notifyActualizarEstadoCuenta){ this.getOtrasPublicaciones(); }
   }
 }

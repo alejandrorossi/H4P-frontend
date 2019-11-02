@@ -29,6 +29,9 @@ export class PublicationService {
     return this.httpClient.get<Response>(`${this.URL_API}/user/${this.storageService.getCurrentUser()._id}`);
   };
 
+  getOtrasPublicaciones():  Observable<Response>{
+    return this.httpClient.get<Response>(`${this.URL_API}/other/${this.storageService.getCurrentUser()._id}`);
+  };
 
   postPublicacion(publicacion): Observable<Response>{
     return this.httpClient.post<Response>(environment.URL_API+'publication', publicacion);
