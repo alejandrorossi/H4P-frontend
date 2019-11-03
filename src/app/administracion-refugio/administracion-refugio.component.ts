@@ -19,7 +19,10 @@ export class AdministracionRefugioComponent implements OnInit {
   solicitudes: Publication[]; // cambia unicamente a nivel front
   solicitudFiltro: string;
   flagCantidadSolicitud: boolean;
-  statusSolicitud: string
+  statusSolicitud: string;
+  ordenSolicitud: string;
+  creacionTiempo: string;
+  flagFiltroTiempo: boolean;
 
   constructor(private mService: MascotasService,
     private formBuilder: FormBuilder,
@@ -32,7 +35,10 @@ export class AdministracionRefugioComponent implements OnInit {
     this.getSolicitudes();
     this.solicitudFiltro = 'up';
     this.flagCantidadSolicitud = true;
-    this.statusSolicitud = 'Nuevas'
+    this.ordenSolicitud = '';
+    this.statusSolicitud = 'Pendientes';
+    this.creacionTiempo = "más nuevas"
+    this.flagFiltroTiempo = false;
   }
 
   ngOnInit() {
@@ -74,7 +80,6 @@ export class AdministracionRefugioComponent implements OnInit {
         if (res.data) {
           res.data.forEach(sol => {
             const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
-            console.log(solicitud)
             resList.push(solicitud);
           });
           this.solicitudes = resList;
@@ -83,21 +88,40 @@ export class AdministracionRefugioComponent implements OnInit {
   }
 
 
-  filtrarSolicitudes() {
+  filtrarSolicitudesCantPostulantes() {
     this.flagCantidadSolicitud = !this.flagCantidadSolicitud;
 
-    if(this.flagCantidadSolicitud){
+    if (this.flagCantidadSolicitud) {
       this.solicitudFiltro = 'up'
-      this.solicitudes.sort(function(a, b){
+      this.ordenSolicitud = 'con menos solicitudes'
+      this.solicitudes.sort(function (a, b) {
         return (a.applications.length - b.applications.length);
       })
-    }else{
+    } else {
       this.solicitudFiltro = 'down';
-      this.solicitudes.sort(function(a, b){
-        return  b.applications.length - a.applications.length ;
+      this.ordenSolicitud = 'con más solicitudes'
+      this.solicitudes.sort(function (a, b) {
+        return b.applications.length - a.applications.length;
       })
     }
   }
+
+  filtrarSolicitudesCreatedDate() {
+    if (this.flagFiltroTiempo) {
+      this.flagFiltroTiempo = !this.flagFiltroTiempo;
+      this.creacionTiempo = 'más nuevas';
+      this.solicitudes.sort((a,b)=> new Date(a.createdDate).getTime()- new Date(b.createdDate).getTime())
+    }
+    else {
+      this.flagFiltroTiempo = !this.flagFiltroTiempo;
+      this.creacionTiempo = 'más antiguas';
+      this.solicitudes.sort((a,b)=> new Date(b.createdDate).getTime()- new Date(a.createdDate).getTime())
+    }
+
+
+  }
+
+
 
 
 }
