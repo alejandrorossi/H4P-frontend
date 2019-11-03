@@ -17,6 +17,9 @@ export class AdministracionRefugioComponent implements OnInit {
   formBusqueda: FormGroup;
   publications: Publication[];
   solicitudes: Publication[]; // cambia unicamente a nivel front
+  solicitudFiltro: string;
+  flagCantidadSolicitud: boolean;
+  statusSolicitud: string
 
   constructor(private mService: MascotasService,
     private formBuilder: FormBuilder,
@@ -27,6 +30,9 @@ export class AdministracionRefugioComponent implements OnInit {
     this.especies = this.mService.getAllEspecies();
     this.getUsuarioPublicaciones();
     this.getSolicitudes();
+    this.solicitudFiltro = 'up';
+    this.flagCantidadSolicitud = true;
+    this.statusSolicitud = 'Nuevas'
   }
 
   ngOnInit() {
@@ -61,25 +67,36 @@ export class AdministracionRefugioComponent implements OnInit {
     )
   }
 
- 
   getSolicitudes() {
-
     this.solicitudService.getSolicitudes()
       .subscribe(res => {
         const resList: Publication[] = [];
         if (res.data) {
-          console.log("hay datos")
-          
           res.data.forEach(sol => {
             const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
             console.log(solicitud)
             resList.push(solicitud);
           });
-
           this.solicitudes = resList;
         }
-
       });
+  }
+
+
+  filtrarSolicitudes() {
+    this.flagCantidadSolicitud = !this.flagCantidadSolicitud;
+
+    if(this.flagCantidadSolicitud){
+      this.solicitudFiltro = 'up'
+      this.solicitudes.sort(function(a, b){
+        return (a.applications.length - b.applications.length);
+      })
+    }else{
+      this.solicitudFiltro = 'down';
+      this.solicitudes.sort(function(a, b){
+        return  b.applications.length - a.applications.length ;
+      })
+    }
   }
 
 

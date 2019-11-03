@@ -29,6 +29,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { LoginComponent } from './login/login.component';
 import { PrincipalComponent } from './principal/principal.component';
@@ -83,6 +84,7 @@ import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confir
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatChipsModule,
     MatDialogModule,
     MatFormFieldModule,
     MatGridListModule,
