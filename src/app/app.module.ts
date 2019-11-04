@@ -50,6 +50,7 @@ import { ListadoPostulantesComponent } from './listado-postulantes/listado-postu
 import { FormularioBaseComponent } from './formulario-base/formulario-base.component';
 import { InfoComponent } from './info/info.component';
 import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confirmacion.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confir
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatCheckboxModule,
     MatChipsModule,
     MatDialogModule,
     MatFormFieldModule,

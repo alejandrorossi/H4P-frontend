@@ -15,6 +15,7 @@ export class AdministracionRefugioComponent implements OnInit {
   especies: any;
   filtra: boolean;
   formBusqueda: FormGroup;
+  formBusqueda2: FormGroup;
   publications: Publication[];
   solicitudes: Publication[];
   solicitudFiltro: string;
@@ -23,6 +24,8 @@ export class AdministracionRefugioComponent implements OnInit {
   ordenSolicitud: string;
   creacionTiempo: string;
   flagFiltroTiempo: boolean;
+  pubPrivadas: boolean;
+  pubPublicas: boolean;
 
   constructor(private mService: MascotasService,
     private formBuilder: FormBuilder,
@@ -39,6 +42,8 @@ export class AdministracionRefugioComponent implements OnInit {
     this.statusSolicitud = 'Pendientes';
     this.creacionTiempo = "más nuevas"
     this.flagFiltroTiempo = false;
+    this.pubPrivadas = true;
+    this.pubPublicas = true;
   }
 
   ngOnInit() {
@@ -47,6 +52,8 @@ export class AdministracionRefugioComponent implements OnInit {
 
     this.formBusqueda = this.formBuilder.group({
       nombreMascotaCtrl: ['', [Validators.maxLength(100)]],
+    });
+    this.formBusqueda2 = this.formBuilder.group({
       especieMascotaCtrl: ['', []],
     });
   }
