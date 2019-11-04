@@ -16,7 +16,7 @@ export class AdministracionRefugioComponent implements OnInit {
   filtra: boolean;
   formBusqueda: FormGroup;
   publications: Publication[];
-  solicitudes: Publication[]; // cambia unicamente a nivel front
+  solicitudes: Publication[];
   solicitudFiltro: string;
   flagCantidadSolicitud: boolean;
   statusSolicitud: string;
@@ -32,7 +32,7 @@ export class AdministracionRefugioComponent implements OnInit {
     this.filtra = false;
     this.especies = this.mService.getAllEspecies();
     this.getUsuarioPublicaciones();
-    this.getSolicitudes();
+    this.getSolicitudesPendientes();
     this.solicitudFiltro = 'up';
     this.flagCantidadSolicitud = true;
     this.ordenSolicitud = '';
@@ -58,7 +58,7 @@ export class AdministracionRefugioComponent implements OnInit {
 
   actualizarSolicitudes() {
 
-    this.getSolicitudes();
+    this.getSolicitudesPendientes();
   }
 
   getUsuarioPublicaciones() {
@@ -73,9 +73,12 @@ export class AdministracionRefugioComponent implements OnInit {
     )
   }
 
-  getSolicitudes() {
-    this.solicitudService.getSolicitudes()
+  getSolicitudesPendientes() {
+
+    this.statusSolicitud = "Pendientes";
+    this.solicitudService.getSolicitudesPendientes()
       .subscribe(res => {
+        this.vaciarSiNoHay(res)
         const resList: Publication[] = [];
         if (res.data) {
           res.data.forEach(sol => {
@@ -87,6 +90,43 @@ export class AdministracionRefugioComponent implements OnInit {
       });
   }
 
+  //sobreescribe el array de solicitudes por otro diferente
+  getSolicitudesAceptadas() {
+    this.statusSolicitud = "Previamente aceptadas";
+    this.solicitudService.getSolicitudesAceptadas()
+      .subscribe(res => {
+        this.vaciarSiNoHay(res)
+        const resList: Publication[] = [];
+        if (res.data) {
+          res.data.forEach(sol => {
+            const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
+            resList.push(solicitud);
+          });
+          this.solicitudes = resList;
+        }
+      });
+  }
+
+  private vaciarSiNoHay(res){
+    if(!res.data)
+      this.solicitudes = []
+  }
+
+  getSolicitudesTodas() {
+    this.statusSolicitud = "Todas";
+    this.solicitudService.getSolicitudes()
+      .subscribe(res => {
+        this.vaciarSiNoHay(res)
+        const resList: Publication[] = [];
+        if (res.data) {
+          res.data.forEach(sol => {
+            const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
+            resList.push(solicitud);
+          });
+          this.solicitudes = resList;
+        }
+      });
+  }
 
   filtrarSolicitudesCantPostulantes() {
     this.flagCantidadSolicitud = !this.flagCantidadSolicitud;
@@ -110,12 +150,12 @@ export class AdministracionRefugioComponent implements OnInit {
     if (this.flagFiltroTiempo) {
       this.flagFiltroTiempo = !this.flagFiltroTiempo;
       this.creacionTiempo = 'más nuevas';
-      this.solicitudes.sort((a,b)=> new Date(a.createdDate).getTime()- new Date(b.createdDate).getTime())
+      this.solicitudes.sort((a, b) => new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime())
     }
     else {
       this.flagFiltroTiempo = !this.flagFiltroTiempo;
       this.creacionTiempo = 'más antiguas';
-      this.solicitudes.sort((a,b)=> new Date(b.createdDate).getTime()- new Date(a.createdDate).getTime())
+      this.solicitudes.sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime())
     }
 
 
