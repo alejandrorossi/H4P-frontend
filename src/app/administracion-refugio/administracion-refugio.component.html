@@ -73,6 +73,20 @@
                   <mat-checkbox class="ml-3" [(ngModel)]="pubPublicas">Publicas</mat-checkbox>
                 </section>
               </div>
+
+          
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerH" placeholder="...Hasta">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #pickerH></mat-datepicker>
+              </mat-form-field>
+
             </div>
 
             <div class="col ">

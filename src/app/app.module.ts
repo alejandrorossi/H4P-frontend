@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { MatRippleModule } from '@angular/material/core';
+import { MatRippleModule, MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -50,7 +50,8 @@ import { ListadoPostulantesComponent } from './listado-postulantes/listado-postu
 import { FormularioBaseComponent } from './formulario-base/formulario-base.component';
 import { InfoComponent } from './info/info.component';
 import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confirmacion.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -94,6 +96,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatNativeDateModule,
     MatRadioModule,
     MatRippleModule,
     MatSelectModule,
@@ -106,6 +109,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTooltipModule,
     MatPaginatorModule,
     HttpClientModule
+    
+    
 
   ],
   exports: [
@@ -116,7 +121,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ListadoPostulantesComponent,
     DialogConfirmacionComponent
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
