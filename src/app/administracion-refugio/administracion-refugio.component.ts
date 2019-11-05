@@ -15,8 +15,17 @@ export class AdministracionRefugioComponent implements OnInit {
   especies: any;
   filtra: boolean;
   formBusqueda: FormGroup;
+  formBusqueda2: FormGroup;
   publications: Publication[];
-  solicitudes: Publication[]; // cambia unicamente a nivel front
+  solicitudes: Publication[];
+  solicitudFiltro: string;
+  flagCantidadSolicitud: boolean;
+  statusSolicitud: string;
+  ordenSolicitud: string;
+  creacionTiempo: string;
+  flagFiltroTiempo: boolean;
+  pubPrivadas: boolean;
+  pubPublicas: boolean;
 
   constructor(private mService: MascotasService,
     private formBuilder: FormBuilder,
@@ -26,7 +35,15 @@ export class AdministracionRefugioComponent implements OnInit {
     this.filtra = false;
     this.especies = this.mService.getAllEspecies();
     this.getUsuarioPublicaciones();
-    this.getSolicitudes();
+    this.getSolicitudesPendientes();
+    this.solicitudFiltro = 'up';
+    this.flagCantidadSolicitud = true;
+    this.ordenSolicitud = '';
+    this.statusSolicitud = 'Pendientes';
+    this.creacionTiempo = "más nuevas"
+    this.flagFiltroTiempo = false;
+    this.pubPrivadas = true;
+    this.pubPublicas = true;
   }
 
   ngOnInit() {
@@ -35,6 +52,8 @@ export class AdministracionRefugioComponent implements OnInit {
 
     this.formBusqueda = this.formBuilder.group({
       nombreMascotaCtrl: ['', [Validators.maxLength(100)]],
+    });
+    this.formBusqueda2 = this.formBuilder.group({
       especieMascotaCtrl: ['', []],
     });
   }
@@ -46,7 +65,7 @@ export class AdministracionRefugioComponent implements OnInit {
 
   actualizarSolicitudes() {
 
-    this.getSolicitudes();
+    this.getSolicitudesPendientes();
   }
 
   getUsuarioPublicaciones() {
@@ -61,26 +80,95 @@ export class AdministracionRefugioComponent implements OnInit {
     )
   }
 
- 
-  getSolicitudes() {
+  getSolicitudesPendientes() {
 
-    this.solicitudService.getSolicitudes()
+    this.statusSolicitud = "Pendientes";
+    this.solicitudService.getSolicitudesPendientes()
       .subscribe(res => {
+        this.vaciarSiNoHay(res)
         const resList: Publication[] = [];
         if (res.data) {
-          console.log("hay datos")
-          
           res.data.forEach(sol => {
             const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
-            console.log(solicitud)
             resList.push(solicitud);
           });
-
           this.solicitudes = resList;
         }
-
       });
   }
+
+  //sobreescribe el array de solicitudes por otro diferente
+  getSolicitudesAceptadas() {
+    this.statusSolicitud = "Previamente aceptadas";
+    this.solicitudService.getSolicitudesAceptadas()
+      .subscribe(res => {
+        this.vaciarSiNoHay(res)
+        const resList: Publication[] = [];
+        if (res.data) {
+          res.data.forEach(sol => {
+            const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
+            resList.push(solicitud);
+          });
+          this.solicitudes = resList;
+        }
+      });
+  }
+
+  private vaciarSiNoHay(res){
+    if(!res.data)
+      this.solicitudes = []
+  }
+
+  getSolicitudesTodas() {
+    this.statusSolicitud = "Todas";
+    this.solicitudService.getSolicitudes()
+      .subscribe(res => {
+        this.vaciarSiNoHay(res)
+        const resList: Publication[] = [];
+        if (res.data) {
+          res.data.forEach(sol => {
+            const solicitud = new Publication(sol); //se maneja a nivel front la diferencia
+            resList.push(solicitud);
+          });
+          this.solicitudes = resList;
+        }
+      });
+  }
+
+  filtrarSolicitudesCantPostulantes() {
+    this.flagCantidadSolicitud = !this.flagCantidadSolicitud;
+
+    if (this.flagCantidadSolicitud) {
+      this.solicitudFiltro = 'up'
+      this.ordenSolicitud = 'con menos solicitudes'
+      this.solicitudes.sort(function (a, b) {
+        return (a.applications.length - b.applications.length);
+      })
+    } else {
+      this.solicitudFiltro = 'down';
+      this.ordenSolicitud = 'con más solicitudes'
+      this.solicitudes.sort(function (a, b) {
+        return b.applications.length - a.applications.length;
+      })
+    }
+  }
+
+  filtrarSolicitudesCreatedDate() {
+    if (this.flagFiltroTiempo) {
+      this.flagFiltroTiempo = !this.flagFiltroTiempo;
+      this.creacionTiempo = 'más nuevas';
+      this.solicitudes.sort((a, b) => new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime())
+    }
+    else {
+      this.flagFiltroTiempo = !this.flagFiltroTiempo;
+      this.creacionTiempo = 'más antiguas';
+      this.solicitudes.sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime())
+    }
+
+
+  }
+
+
 
 
 }

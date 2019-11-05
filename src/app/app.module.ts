@@ -18,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { MatRippleModule } from '@angular/material/core';
+import { MatRippleModule, MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,6 +29,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { LoginComponent } from './login/login.component';
 import { PrincipalComponent } from './principal/principal.component';
@@ -49,6 +50,8 @@ import { ListadoPostulantesComponent } from './listado-postulantes/listado-postu
 import { FormularioBaseComponent } from './formulario-base/formulario-base.component';
 import { InfoComponent } from './info/info.component';
 import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confirmacion.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -83,6 +86,9 @@ import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confir
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -90,6 +96,7 @@ import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confir
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatNativeDateModule,
     MatRadioModule,
     MatRippleModule,
     MatSelectModule,
@@ -102,6 +109,8 @@ import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confir
     MatTooltipModule,
     MatPaginatorModule,
     HttpClientModule
+    
+    
 
   ],
   exports: [
@@ -112,7 +121,7 @@ import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confir
     ListadoPostulantesComponent,
     DialogConfirmacionComponent
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

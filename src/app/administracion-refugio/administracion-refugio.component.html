@@ -1,120 +1,146 @@
 <div class="container-fluid fondo">
-  <div class="row">
-    <div class="col ">
-      <p>
-        <span class="h3">Solicitudes </span>
-        <button class="btn btn-outline-primary redondo mat-elevation-z4 ml-4" [matMenuTriggerFor]="menuFiltrosSol"
-          matTooltip="Filtrar solicitudes" style="font-size:0.9em">
-          <i class="fas fa-filter"></i> <span class="small"><i class="fas fa-angle-down ml-1"></i></span>
-        </button>
-      </p>
+  <mat-card class="mat-elevation-z6">
+    <div class="row">
+      <div class="col ">
+        <span class="h5">Solicitudes </span> - {{statusSolicitud}} {{creacionTiempo}} {{ordenSolicitud}}
+        <hr>
+        <p>
+          <mat-chip-list>
+            <mat-chip class="mat-elevation-z4" style="cursor:pointer" (click)="getSolicitudesPendientes()">
+              Pendientes
+            </mat-chip>
 
-      <mat-menu #menuFiltrosSol="matMenu">
-        <button mat-menu-item>
-          <mat-icon>watch_later </mat-icon>
-          <span>Nuevas</span>
-        </button>
-        <button mat-menu-item class="text-success">
-          <mat-icon class="text-success">done</mat-icon>
-          <span>Aceptadas</span>
-        </button>
-        <button mat-menu-item class="text-danger">
-          <mat-icon class="text-danger">clear</mat-icon>
-          <span>Rechazadas</span>
-        </button>
-      </mat-menu>
+            <mat-chip class="mat-elevation-z4" style="cursor:pointer" (click)="getSolicitudesAceptadas()">
+              Aceptadas
+            </mat-chip>
 
-      <div class="mx-2" *ngFor="let sols of solicitudes">
-        <app-solicitud [publicacion]="sols" (eventoRefrescar)="actualizarSolicitudes($event)"></app-solicitud>
+            <mat-chip class="mat-elevation-z4" (click)="filtrarSolicitudesCantPostulantes()" style="cursor:pointer">
+              <i class="mr-1 fas fa-arrow-{{solicitudFiltro}}"></i> Solicitudes
+            </mat-chip>
+
+            <mat-chip class="mat-elevation-z4" style="cursor:pointer" (click)="getSolicitudesTodas()">
+              Todas
+            </mat-chip>
+
+            <mat-chip class="mat-elevation-z4" (click)="filtrarSolicitudesCreatedDate()" style="cursor:pointer">
+              {{creacionTiempo  | titlecase}}
+            </mat-chip>
+          </mat-chip-list>
+        </p>
+        <hr>
       </div>
-
-      <hr>
     </div>
-  </div>
+    <div class="row">
+
+      <div class=" col mx-2 mt-2" *ngFor="let sols of solicitudes">
+        <app-solicitud [publicacion]="sols" (eventoRefrescar)="actualizarSolicitudes($event)"></app-solicitud>
+
+
+        <p *ngIf="!solicitudes.length > 0"> No hay solicitufdsdes</p>
+
+      </div>
+    </div>
+  </mat-card>
+  <hr>
+
+
 
   <div class="row">
     <div class="col ">
-      <p>
-        <span class="h3">Mis publicaciones </span>
-        <button class="btn btn-outline-primary redondo mat-elevation-z4 ml-4" matTooltip="Filtrar publicaciones"
-          (click)="filtra=!filtra">
-          <i class="fas fa-filter " style="font-size:0.9em"></i>
-          <span style="font-size:0.5em">
-            <i class="fas fa-plus ml-1" *ngIf="!filtra"></i>
-            <i class="fas fa-angle-up ml-1" *ngIf="filtra"></i>
-          </span>
-        </button>
-      </p>
+      <mat-card class="mat-elevation-z6">
+        <p>
+          <span class="h5">Mis publicaciones </span>
 
+          <button class="btn btn-outline-primary redondo mat-elevation-z4 ml-4" matTooltip="Filtrar publicaciones"
+            (click)="filtra=!filtra">
+            <i class="fas fa-filter " style="font-size:0.9em"></i>
+            <span style="font-size:0.5em">
+              <i class="fas fa-plus ml-1" *ngIf="!filtra"></i>
+              <i class="fas fa-angle-up ml-1" *ngIf="filtra"></i>
+            </span>
+          </button>
+        </p>
+        <hr>
 
-      <!-- BARRA DE BUSQUEDA -->
-      <mat-card class="mt-3 mat-elevation-z6" style="padding: 10px; padding-top: 0px" *ngIf="filtra">
+        <!-- BARRA DE BUSQUEDA -->
+        <mat-card class="mt-3 mat-elevation-z6" style="padding: 10px; padding-top: 0px" *ngIf="filtra">
 
-        <div [formGroup]="formBusqueda">
           <div class="row">
-
             <div class="col ">
               <div class="text-center">
-                <mat-button-toggle-group class="shadow-sm mt-3  mx-auto">
-                  <mat-button-toggle value="publica">
-                    <span class="text-primary "> Públicas</span>
-                  </mat-button-toggle>
-                  <mat-button-toggle value="privada">
-                    <span class="text-primary "> Privadas</span>
-                  </mat-button-toggle>
-                  <mat-button-toggle value="todas">
-                    <span class="text-primary ">Todas</span>
-                  </mat-button-toggle>
-                </mat-button-toggle-group>
+                <section class="mt-2">
+                  <mat-checkbox class="" [(ngModel)]="pubPrivadas">Publicas</mat-checkbox>
+                  <mat-checkbox class="ml-3" [(ngModel)]="pubPublicas">Publicas</mat-checkbox>
+                </section>
+              </div>
+
+          
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerH" placeholder="...Hasta">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #pickerH></mat-datepicker>
+              </mat-form-field>
+
+            </div>
+
+            <div class="col ">
+              <div [formGroup]="formBusqueda">
+                <!-- <div class="col "> -->
+                <mat-form-field appearance="standard" style="width:100%!important">
+                  <mat-label>Que contenga el texto...</mat-label>
+                  <input matInput formControlName="nombreMascotaCtrl">
+                  <mat-hint>Máximo 100</mat-hint>
+                </mat-form-field>
               </div>
             </div>
-
-            <div class="col ">
-              <mat-form-field appearance="standard" style="width:100%!important">
-                <mat-label>Que contenga el texto...</mat-label>
-                <input matInput formControlName="nombreMascotaCtrl">
-                <mat-hint>Máximo 100</mat-hint>
-              </mat-form-field>
-            </div>
-
             <div class="col ">
 
-              <mat-form-field appearance="standard" style="width:100%!important">
-                <mat-label>De especie...</mat-label>
-                <mat-select placeholder="Especie" formControlName="especieMascotaCtrl">
-                  <mat-option *ngFor="let op of especies" [value]="op">
-                    <i class='{{op.icon}} mr-1'></i> {{op.name}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-
+              <div [formGroup]="formBusqueda2">
+                <mat-form-field appearance="standard" style="width:100%!important">
+                  <mat-label>De especie...</mat-label>
+                  <mat-select placeholder="Especie" formControlName="especieMascotaCtrl">
+                    <mat-option *ngFor="let op of especies" [value]="op">
+                      <i class='{{op.icon}} mr-1'></i> {{op.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
           </div>
+          <!-- </div> -->
           <div class="row">
             <div class="col ">
-              <button mat-mini-fab color="primary" class="ml-4 text-white pull-right" (click)="buscar()"
-                matTooltip="Filtrar">
+              <button class="btn btn-outline-primary pull-right redondo mt-2 mr-2" style="border:none"
+                (click)="buscar()" matTooltip="Filtrar">
                 <i class="fas fa-search"></i>
               </button>
-              <button mat-mini-fab class="white-icon text-primary pull-left" matTooltip="Limpiar filtros"
+              <button class="btn btn-outline-info pull-right redondo mt-2 mr-2" matTooltip="Limpiar filtros"
                 (click)="formBusqueda.reset()">
                 <i class="fas fa-redo"></i>
               </button>
+
+
             </div>
+          </div>
+          <!-- </div> -->
+        </mat-card>
+
+        <div class="row card-group mt-3">
+          <div class="col" *ngFor="let p of publications">
+
+            <!-- se piden las publicaciones del usuario -->
+            <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false">
+            </app-card-mascota>
+
           </div>
         </div>
       </mat-card>
-
-      <div class="row card-group mt-3">
-        <div class="col-md-4" *ngFor="let p of publications">
-
-          <!-- se piden las publicaciones del usuario -->
-          <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false">
-          </app-card-mascota>
-
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
