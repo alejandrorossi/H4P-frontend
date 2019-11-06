@@ -51,13 +51,10 @@
         <p>
           <span class="h5">Mis publicaciones </span>
 
-          <button class="btn btn-outline-primary redondo mat-elevation-z4 ml-4" matTooltip="Filtrar publicaciones"
+          <button class="btn btn-outline-primary redondo ml-2" style="border:none" matTooltip="Filtrar publicaciones"
             (click)="filtra=!filtra">
-            <i class="fas fa-filter " style="font-size:0.9em"></i>
-            <span style="font-size:0.5em">
-              <i class="fas fa-plus ml-1" *ngIf="!filtra"></i>
-              <i class="fas fa-angle-up ml-1" *ngIf="filtra"></i>
-            </span>
+            <i class="fas fa-filter "></i>
+
           </button>
         </p>
         <hr>
@@ -67,24 +64,29 @@
 
           <div class="row">
             <div class="col ">
-              <div class="text-center">
-                <section class="mt-2">
-                  <mat-checkbox class="" [(ngModel)]="pubPrivadas">Publicas</mat-checkbox>
-                  <mat-checkbox class="ml-3" [(ngModel)]="pubPublicas">Publicas</mat-checkbox>
-                </section>
-              </div>
-
-          
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+              <!-- <div class="text-center"> -->
+              <section class="mt-3">
+                <mat-checkbox class="ml-3" [(ngModel)]="pubPrivadas">Privadas</mat-checkbox>
+                <mat-checkbox class="ml-3" [(ngModel)]="pubPublicas">Públicas</mat-checkbox>
+              </section>
+              
+            </div>
+            
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col ">
+              <mat-form-field appearance="standard">
+                <input matInput [matDatepicker]="pickerDesd" placeholder="Desde..." [(ngModel)]="fechaDesde">
+                <mat-datepicker-toggle matSuffix [for]="pickerDesd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerDesd></mat-datepicker>
               </mat-form-field>
-
-              <mat-form-field>
-                <input matInput [matDatepicker]="pickerH" placeholder="...Hasta">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #pickerH></mat-datepicker>
+            </div>
+            <div class="col ">
+              <mat-form-field appearance="standard">
+                <input matInput [matDatepicker]="pickerHasta" placeholder="...Hasta" [(ngModel)]="fechaHasta">
+                <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
+                <mat-datepicker #pickerHasta></mat-datepicker>
               </mat-form-field>
 
             </div>
@@ -94,7 +96,7 @@
                 <!-- <div class="col "> -->
                 <mat-form-field appearance="standard" style="width:100%!important">
                   <mat-label>Que contenga el texto...</mat-label>
-                  <input matInput formControlName="nombreMascotaCtrl">
+                  <input matInput formControlName="textoMascotaCtrl">
                   <mat-hint>Máximo 100</mat-hint>
                 </mat-form-field>
               </div>
@@ -120,8 +122,8 @@
                 (click)="buscar()" matTooltip="Filtrar">
                 <i class="fas fa-search"></i>
               </button>
-              <button class="btn btn-outline-info pull-right redondo mt-2 mr-2" matTooltip="Limpiar filtros"
-                (click)="formBusqueda.reset()">
+              <button class="btn btn-outline-primary pull-left redondo mt-2 mr-2" style="border:none"
+                matTooltip="Limpiar filtros" (click)="formBusqueda.reset()">
                 <i class="fas fa-redo"></i>
               </button>
 

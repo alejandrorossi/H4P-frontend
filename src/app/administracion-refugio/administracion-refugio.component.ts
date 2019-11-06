@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PublicationService } from '../service/publication.service';
 import { Publication } from '../model/publication.model';
 import { SolicitudService } from '../service/solicitud.service';
+import { Filtro } from '../model/filtro.model';
 
 @Component({
   selector: 'app-administracion-refugio',
@@ -26,6 +27,8 @@ export class AdministracionRefugioComponent implements OnInit {
   flagFiltroTiempo: boolean;
   pubPrivadas: boolean;
   pubPublicas: boolean;
+  fechaDesde
+  fechaHasta
 
   constructor(private mService: MascotasService,
     private formBuilder: FormBuilder,
@@ -44,6 +47,7 @@ export class AdministracionRefugioComponent implements OnInit {
     this.flagFiltroTiempo = false;
     this.pubPrivadas = true;
     this.pubPublicas = true;
+
   }
 
   ngOnInit() {
@@ -51,7 +55,7 @@ export class AdministracionRefugioComponent implements OnInit {
     this.solicitudes = [];
 
     this.formBusqueda = this.formBuilder.group({
-      nombreMascotaCtrl: ['', [Validators.maxLength(100)]],
+      textoMascotaCtrl: ['', [Validators.maxLength(100)]],
     });
     this.formBusqueda2 = this.formBuilder.group({
       especieMascotaCtrl: ['', []],
@@ -59,7 +63,27 @@ export class AdministracionRefugioComponent implements OnInit {
   }
 
   buscar() {
-    alert("implementar buscar")
+    var filtro = new Filtro();
+    filtro.desde = this.fechaDesde;
+    filtro.hasta = this.fechaHasta;
+    filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value;
+    filtro.texto = this.formBusqueda.get('textoMascotaCtrl').value;
+    filtro.privada = this.pubPrivadas;
+    filtro.publica = this.pubPublicas;
+
+    this.publicationService.buscarPublicacionesFiltradas(filtro)
+    .subscribe(res => {
+      
+      // const resList: Publication[] = [];
+      // if (res.data) {
+      //   res.data.forEach(pres => {
+      //     const publ = new Publication(pres); //se maneja a nivel front la diferencia
+      //     resList.push(publ);
+      //   });
+      //   this.publications = resList;
+      // }
+    });
+
   }
 
 
@@ -114,8 +138,8 @@ export class AdministracionRefugioComponent implements OnInit {
       });
   }
 
-  private vaciarSiNoHay(res){
-    if(!res.data)
+  private vaciarSiNoHay(res) {
+    if (!res.data)
       this.solicitudes = []
   }
 

@@ -1,10 +1,11 @@
 import { StorageService } from './storage.service';
 import { Publication } from './../model/publication.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Response } from '../model/response.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Filtro } from '../model/filtro.model';
 
 
 @Injectable({
@@ -53,6 +54,9 @@ export class PublicationService {
     return this.httpClient.get<Response>(`${environment.URL_API}publication/${idPublicacion}`);
   }
 
-
+  buscarPublicacionesFiltradas(filtro: Filtro): Observable<Response> {
+    // const params = new HttpParams().set('filtros', filtro);
+    return this.httpClient.post<Response>(`${environment.URL_API}buscarFiltradas`, {params: filtro} );
+  };
 
 }
