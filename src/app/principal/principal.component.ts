@@ -1,9 +1,9 @@
-import { Publication } from './../model/publication.model';
-import { StorageService } from './../service/storage.service';
-import { PublicationService } from '../service/publication.service';
+import { Publication } from '../models/publication.model';
+import { StorageService } from '../services/storage.service';
+import { PublicationService } from '../services/publication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MascotasService } from '../service/mascotas.service';
+import { MascotasService } from '../services/mascotas.service';
 
 @Component({
   selector: 'app-principal',

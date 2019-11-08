@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MascotasService } from '../service/mascotas.service';
+import { MascotasService } from '../services/mascotas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PublicationService } from '../service/publication.service';
-import { Publication } from '../model/publication.model';
-import { SolicitudService } from '../service/solicitud.service';
+import { PublicationService } from '../services/publication.service';
+import { Publication } from '../models/publication.model';
+import { SolicitudService } from '../services/solicitud.service';
 
 @Component({
   selector: 'app-administracion-refugio',

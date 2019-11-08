@@ -1,6 +1,6 @@
 import { Component, OnInit,  OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { UtilsService } from '../service/utils.service';
+import { UtilsService } from '../services/utils.service';
 
 
 @Component({

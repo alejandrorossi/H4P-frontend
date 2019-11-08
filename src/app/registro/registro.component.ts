@@ -1,6 +1,6 @@
 import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
-import { UtilsService } from './../service/utils.service';
-import { AuthService } from './../service/auth.service';
+import { UtilsService } from '../services/utils.service';
+import { AuthService } from '../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 

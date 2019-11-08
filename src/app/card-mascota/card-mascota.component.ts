@@ -1,12 +1,12 @@
 import { DialogConfirmacionComponent } from './../dialog-confirmacion/dialog-confirmacion.component';
 import { DialogData } from '../dialog-confirmacion/dialog-confirmacion.component';
-import { UtilsService } from './../service/utils.service';
-import { StorageService } from './../service/storage.service';
-import { PublicationService } from './../service/publication.service';
-import { Pet } from './../model/pet.model';
+import { UtilsService } from '../services/utils.service';
+import { StorageService } from '../services/storage.service';
+import { PublicationService } from '../services/publication.service';
+import { Pet } from '../models/pet.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ImageService } from '../service/image.service';
-import { ImgResponse } from '../model/image.model';
+import { ImageService } from '../services/image.service';
+import { ImgResponse } from '../models/image.model';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,11 +1,11 @@
-import { UsuarioService } from './../service/usuario.service';
+import { UsuarioService } from '../services/usuario.service';
 import { DialogConfirmacionComponent, DialogData } from './../dialog-confirmacion/dialog-confirmacion.component';
-import { StorageService } from './../service/storage.service';
-import { UtilsService } from './../service/utils.service';
+import { StorageService } from '../services/storage.service';
+import { UtilsService } from '../services/utils.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
 import { Component, OnInit } from '@angular/core';
-import { Response } from '../model/response.model';
+import { Response } from '../models/response.model';
 
 @Component({
   selector: 'app-perfil-usuario',

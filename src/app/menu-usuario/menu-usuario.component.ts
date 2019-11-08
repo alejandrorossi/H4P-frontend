@@ -1,7 +1,7 @@
-import { UtilsService } from './../service/utils.service';
-import { StorageService } from './../service/storage.service';
+import { UtilsService } from '../services/utils.service';
+import { StorageService } from '../services/storage.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../model/user.model';
+import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 
 @Component({

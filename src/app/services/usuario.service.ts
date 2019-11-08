@@ -1,7 +1,7 @@
-import { Response } from './../model/response.model';
+import { Response } from '../models/response.model';
 import { StorageService } from './storage.service';
 import { Observable } from 'rxjs';
-import { User } from './../model/user.model';
+import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

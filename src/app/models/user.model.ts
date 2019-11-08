@@ -7,6 +7,7 @@ export class User {
   public age: Number;
   public email: String;
   public password: String;
+  public roles: String[];
   public createdDate: Date;
 
   constructor(){}
