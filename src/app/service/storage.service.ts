@@ -57,6 +57,25 @@ export class StorageService {
   }
 
   /**
+   * Update the user from currentSession.
+   */
+  updateCurrentUser(user: User) {
+    const Response: Response = this.getCurrentSession();
+    if(Response && Response.data){
+      let userUpdated =  Response.data as User;
+
+      //TODO: ver porque no funciona.
+      //userUpdated.actualizar(user);
+      userUpdated.name = user.name;
+      userUpdated.surname = user.surname;
+      userUpdated.username = user.username;
+      userUpdated.age = user.age;
+      userUpdated.email = user.email;
+      this.setCurrentSession(Response);
+    }
+  }
+
+  /**
    * Returns true if the currentToken not is null.
    */
   // isAuthenticated(): boolean {

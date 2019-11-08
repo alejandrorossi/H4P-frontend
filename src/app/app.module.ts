@@ -52,6 +52,7 @@ import { InfoComponent } from './info/info.component';
 import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confirmacion.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ListadoPostulantesComponent,
     FormularioBaseComponent,
     InfoComponent,
-    DialogConfirmacionComponent
+    DialogConfirmacionComponent,
+    PerfilUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -109,9 +111,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatTooltipModule,
     MatPaginatorModule,
     HttpClientModule
-    
-    
-
   ],
   exports: [
     BrowserAnimationsModule,

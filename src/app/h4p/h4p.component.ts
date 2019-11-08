@@ -13,7 +13,7 @@ export class H4pComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   // private _mobileQueryListener: () => void;
 
-  constructor(private router: Router, private utils: UtilsService) {
+  constructor(private utilsService: UtilsService) {
 
   }
 
@@ -24,9 +24,16 @@ export class H4pComponent implements OnInit, OnDestroy {
     // this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  irAPrincipal(){
+    this.utilsService.irA('h4p/principal');
+  }
 
-  irA(ruta){
-    this.router.navigate([ruta]);
+  irCargarMascota(){
+    this.utilsService.irA('/h4p/cargar-mascota');
+  }
+
+  irAdministracion(){
+    this.utilsService.irA('/h4p/administracion');
   }
 
 }

@@ -1,3 +1,4 @@
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
          //path para poder editar las publicaciones.
         path: 'cargar-mascota/:idPublicacion',
         component: CargarComponent
+      },
+      {
+       path: 'perfil-usuario',
+       component: PerfilUsuarioComponent
       }
     ]
   }
