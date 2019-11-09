@@ -66,24 +66,28 @@ export class AdministracionRefugioComponent implements OnInit {
     var filtro = new Filtro();
     filtro.desde = this.fechaDesde;
     filtro.hasta = this.fechaHasta;
-    filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value;
+    filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
     filtro.texto = this.formBusqueda.get('textoMascotaCtrl').value;
     filtro.privada = this.pubPrivadas;
     filtro.publica = this.pubPublicas;
 
     this.publicationService.buscarPublicacionesFiltradas(filtro)
     .subscribe(res => {
-      
-      // const resList: Publication[] = [];
-      // if (res.data) {
-      //   res.data.forEach(pres => {
-      //     const publ = new Publication(pres); //se maneja a nivel front la diferencia
-      //     resList.push(publ);
-      //   });
-      //   this.publications = resList;
-      // }
-    });
+      console.log(res)
+      const resList: Publication[] = [];
 
+      if (res.data) {
+        // console.log("AAAAAAAAAAAAAAAAAA")
+        console.log(res.data)
+        res.data.forEach(pres => {
+          const publ = new Publication(pres); //se maneja a nivel front la diferencia
+          console.log(publ)
+          resList.push(publ);
+
+        });
+        this.publications = resList;
+      }
+    });
   }
 
 

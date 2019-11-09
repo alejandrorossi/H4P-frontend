@@ -55,7 +55,6 @@ export class PublicationService {
   }
 
   buscarPublicacionesFiltradas(filtro: Filtro): Observable<Response> {
-    // const params = new HttpParams().set('filtros', filtro);
     return this.httpClient.post<Response>(`${environment.URL_API}buscarFiltradas`, {params: filtro} );
   };
 

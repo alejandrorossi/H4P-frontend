@@ -31,19 +31,13 @@
       </div>
     </div>
     <div class="row">
-
+      <p class="ml-4" *ngIf="!solicitudes?.length">No hay solicitudes pendientes.</p>
       <div class=" col mx-2 mt-2" *ngFor="let sols of solicitudes">
         <app-solicitud [publicacion]="sols" (eventoRefrescar)="actualizarSolicitudes($event)"></app-solicitud>
-
-
-        <p *ngIf="!solicitudes.length > 0"> No hay solicitufdsdes</p>
-
       </div>
     </div>
   </mat-card>
-  <hr>
-
-
+  <br>
 
   <div class="row">
     <div class="col ">
@@ -51,7 +45,7 @@
         <p>
           <span class="h5">Mis publicaciones </span>
 
-          <button class="btn btn-outline-primary redondo ml-2" style="border:none" matTooltip="Filtrar publicaciones"
+          <button class="btn btn-outline-primary redondo ml-2 pull-right" style="border:none" matTooltip="Filtrar publicaciones"
             (click)="filtra=!filtra">
             <i class="fas fa-filter "></i>
 
@@ -61,39 +55,43 @@
 
         <!-- BARRA DE BUSQUEDA -->
         <mat-card class="mt-3 mat-elevation-z6" style="padding: 10px; padding-top: 0px" *ngIf="filtra">
+          <div class="row">
+            <div class="col">
+              <div class="mt-2">
+                <mat-checkbox class="ml-3 " [(ngModel)]="pubPrivadas">Privadas</mat-checkbox>
+                <mat-checkbox class="ml-3 " [(ngModel)]="pubPublicas">Públicas</mat-checkbox>
+
+
+                <button class="btn btn-outline-primary pull-right redondo  mr-2" style="border:none" (click)="buscar()"
+                  matTooltip="Filtrar">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-outline-primary pull-right redondo mr-2" style="border:none"
+                  matTooltip="Limpiar filtros" (click)="formBusqueda.reset()">
+                  <i class="fas fa-redo"></i>
+                </button>
+              </div>
+            </div>
+          </div>
 
           <div class="row">
-            <div class="col ">
-              <!-- <div class="text-center"> -->
-              <section class="mt-3">
-                <mat-checkbox class="ml-3" [(ngModel)]="pubPrivadas">Privadas</mat-checkbox>
-                <mat-checkbox class="ml-3" [(ngModel)]="pubPublicas">Públicas</mat-checkbox>
-              </section>
-              
-            </div>
-            
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col ">
+            <div class="col">
               <mat-form-field appearance="standard">
                 <input matInput [matDatepicker]="pickerDesd" placeholder="Desde..." [(ngModel)]="fechaDesde">
                 <mat-datepicker-toggle matSuffix [for]="pickerDesd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerDesd></mat-datepicker>
               </mat-form-field>
             </div>
-            <div class="col ">
+            <div class="col">
               <mat-form-field appearance="standard">
                 <input matInput [matDatepicker]="pickerHasta" placeholder="...Hasta" [(ngModel)]="fechaHasta">
                 <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
                 <mat-datepicker #pickerHasta></mat-datepicker>
               </mat-form-field>
-
             </div>
 
             <div class="col ">
               <div [formGroup]="formBusqueda">
-                <!-- <div class="col "> -->
                 <mat-form-field appearance="standard" style="width:100%!important">
                   <mat-label>Que contenga el texto...</mat-label>
                   <input matInput formControlName="textoMascotaCtrl">
@@ -102,7 +100,6 @@
               </div>
             </div>
             <div class="col ">
-
               <div [formGroup]="formBusqueda2">
                 <mat-form-field appearance="standard" style="width:100%!important">
                   <mat-label>De especie...</mat-label>
@@ -115,27 +112,10 @@
               </div>
             </div>
           </div>
-          <!-- </div> -->
-          <div class="row">
-            <div class="col ">
-              <button class="btn btn-outline-primary pull-right redondo mt-2 mr-2" style="border:none"
-                (click)="buscar()" matTooltip="Filtrar">
-                <i class="fas fa-search"></i>
-              </button>
-              <button class="btn btn-outline-primary pull-left redondo mt-2 mr-2" style="border:none"
-                matTooltip="Limpiar filtros" (click)="formBusqueda.reset()">
-                <i class="fas fa-redo"></i>
-              </button>
-
-
-            </div>
-          </div>
-          <!-- </div> -->
         </mat-card>
 
         <div class="row card-group mt-3">
           <div class="col" *ngFor="let p of publications">
-
             <!-- se piden las publicaciones del usuario -->
             <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false">
             </app-card-mascota>
