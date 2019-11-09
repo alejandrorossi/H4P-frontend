@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 // Import for contact Angular with Rest API.
 import { HttpClient } from '@angular/common/http';
 // Imports necesary interfaces
-import { User } from '../model/user.model';
-import { Response } from './../model/response.model';
+import { User } from '../models/user.model';
+import { Response } from '../models/response.model';
 import { Observable } from 'rxjs';
 
 @Injectable({

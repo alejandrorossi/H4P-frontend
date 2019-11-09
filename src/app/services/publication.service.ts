@@ -1,11 +1,11 @@
 import { StorageService } from './storage.service';
-import { Publication } from './../model/publication.model';
+import { Publication } from '../models/publication.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Response } from '../model/response.model';
+import { Response } from '../models/response.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Filtro } from '../model/filtro.model';
+import { Filtro } from '../models/filtro.model';
 
 
 @Injectable({

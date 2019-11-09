@@ -44,7 +44,7 @@ import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
 import { CargarComponent } from './cargar/cargar.component';
 import { AdministracionRefugioComponent } from './administracion-refugio/administracion-refugio.component';
 import { MatSelectModule } from '@angular/material';
-import { SanitizeHtmlPipe } from './pipe/sanitizehtlm.pipe';
+import { SanitizeHtmlPipe } from './pipes/sanitizehtlm.pipe';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { ListadoPostulantesComponent } from './listado-postulantes/listado-postulantes.component';
 import { FormularioBaseComponent } from './formulario-base/formulario-base.component';

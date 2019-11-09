@@ -1,15 +1,15 @@
 import { DialogData } from './../dialog-confirmacion/dialog-confirmacion.component';
-import { ImgResponse } from './../model/image.model';
-import { Publication } from './../model/publication.model';
+import { ImgResponse } from '../models/image.model';
+import { Publication } from '../models/publication.model';
 import { ActivatedRoute } from '@angular/router';
-import { PublicationService } from './../service/publication.service';
+import { PublicationService } from '../services/publication.service';
 import { FormularioBaseComponent } from './../formulario-base/formulario-base.component';
-import { UtilsService } from './../service/utils.service';
-import { StorageService } from './../service/storage.service';
+import { UtilsService } from '../services/utils.service';
+import { StorageService } from '../services/storage.service';
 import { Component, OnInit } from '@angular/core';
-import { MascotasService } from '../service/mascotas.service';
+import { MascotasService } from '../services/mascotas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ImageService } from '../service/image.service';
+import { ImageService } from '../services/image.service';
 import { DialogConfirmacionComponent } from '../dialog-confirmacion/dialog-confirmacion.component';
 
 

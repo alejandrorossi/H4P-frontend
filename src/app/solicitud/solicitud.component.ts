@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ListadoPostulantesComponent } from '../listado-postulantes/listado-postulantes.component';
-import { Publication } from '../model/publication.model';
+import { Publication } from '../models/publication.model';
 import { MatDialog } from '@angular/material';
-import { Application } from '../model/application.model';
-import { SolicitudService } from '../service/solicitud.service';
-import { UtilsService } from '../service/utils.service';
+import { Application } from '../models/application.model';
+import { SolicitudService } from '../services/solicitud.service';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-solicitud',

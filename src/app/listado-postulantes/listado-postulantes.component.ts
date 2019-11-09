@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, Inject, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { User } from '../model/user.model';
-import { Application } from '../model/application.model';
-import { SolicitudService } from '../service/solicitud.service';
-import { UtilsService } from '../service/utils.service';
+import { User } from '../models/user.model';
+import { Application } from '../models/application.model';
+import { SolicitudService } from '../services/solicitud.service';
+import { UtilsService } from '../services/utils.service';
 
 export interface DialogData {
   postulantes: Application[];

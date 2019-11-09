@@ -1,6 +1,6 @@
-import { StorageService } from './../service/storage.service';
+import { StorageService } from '../services/storage.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../model/user.model';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-menu-usuario',
