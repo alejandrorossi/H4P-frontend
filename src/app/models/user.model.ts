@@ -1,5 +1,6 @@
 
 export class User {
+
   public _id: String;
   public name: String;
   public surname: String;
@@ -19,4 +20,5 @@ export class User {
     this.age = other.age;
     this.email = other.email;
   };
+
 }

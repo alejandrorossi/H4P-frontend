@@ -59,6 +59,7 @@ export class StorageService {
   }
 
   /**
+
    * Update the user from currentSession.
    */
   updateCurrentUser(user: User) {
@@ -78,6 +79,7 @@ export class StorageService {
   }
 
   /**
+
    * Returns true if the currentToken not is null.
    */
   // isAuthenticated(): boolean {
@@ -93,6 +95,7 @@ export class StorageService {
   // }
 
   /**
+
    * Set the rol refugio if the user includes it.
    */
   setCurrentRol() {

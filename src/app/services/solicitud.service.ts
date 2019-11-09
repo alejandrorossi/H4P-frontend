@@ -1,3 +1,4 @@
+
 import { Injectable, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -30,6 +31,5 @@ export class SolicitudService {
   putRechazarSolicitante(idPostulacion, idPublicacion): Observable<Response>{
     return this.httpClient.put<Response>(`${environment.URL_API}rechazarSolicitud/${idPostulacion}`, {idPublicacion});
   };
-
 
 }
