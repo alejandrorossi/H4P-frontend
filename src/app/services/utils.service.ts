@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ import { ValidatorFn, AbstractControl } from '@angular/forms';
 export class UtilsService {
 
   constructor(
+
+    private router: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog) { }
 
@@ -25,6 +28,10 @@ export class UtilsService {
       data: data,
       disableClose: false
     });
+  }
+
+  irA(path){
+    this.router.navigate([path]);
   }
 
   //Metodos utiles

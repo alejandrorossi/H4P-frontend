@@ -1,6 +1,12 @@
+
 import { StorageService } from '../services/storage.service';
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from './../services/usuario.service';
+import { UtilsService } from '../services/utils.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-menu-usuario',
@@ -9,12 +15,26 @@ import { User } from '../models/user.model';
 })
 export class MenuUsuarioComponent implements OnInit {
 
+  @Input() snav: any;
+
   uActual: User;
-  constructor(private storageService: StorageService) {
+
+  modoRefugio: Boolean;
+  
+  constructor(
+    private usuarioService: UsuarioService,
+    private utilsService: UtilsService,
+    private storageService: StorageService) {
     this.uActual = this.storageService.getCurrentUser();
+    this.modoRefugio = this.usuarioService.esModoRefugio();
    }
 
   ngOnInit() {
+  }
+
+  verPerfil(){
+    this.snav.toggle();
+    this.utilsService.irA("/h4p/perfil-usuario");
   }
 
   public signOut() {

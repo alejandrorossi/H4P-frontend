@@ -3,7 +3,7 @@
     <div class="col nopadding">
       <mat-toolbar color="primary" #toolB>
         <i class="fas fa-bars ml-3 tipo-btn" (click)="snav.toggle()"></i>
-        <span class="ml-5" (click)="irA('h4p/principal')" style="cursor:pointer"> Hero for Pets </span>
+        <span class="ml-5" (click)="irAPrincipal()" style="cursor:pointer"> Hero for Pets </span>
         <span class="rellenar-tb"></span>
         <i class="far fa-bell mr-3" style="cursor:pointer"></i>
         <div [matMenuTriggerFor]="menu" matRipple [matRippleRadius]="'25'" [matRippleUnbounded]="true"
@@ -12,8 +12,8 @@
         </div>
 
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="irA('/h4p/cargar-mascota')"> Cargar </button>
-          <button mat-menu-item (click)="irA('/h4p/administracion')"> Administración </button>
+          <button mat-menu-item *ngIf="esModoRefugio" (click)="irCargarMascota()"> Cargar </button>
+          <button mat-menu-item *ngIf="esModoRefugio" (click)="irAdministracion()"> Administración </button>
         </mat-menu>
 
       </mat-toolbar>
@@ -35,7 +35,7 @@
 
           <br> <br>
 
-          <app-menu-usuario></app-menu-usuario>
+          <app-menu-usuario [snav]="snav"></app-menu-usuario>
           <!--sidenav-->
 
         </mat-sidenav>

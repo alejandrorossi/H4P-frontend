@@ -1,3 +1,4 @@
+import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit,  OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilsService } from '../services/utils.service';
@@ -10,11 +11,15 @@ import { UtilsService } from '../services/utils.service';
 })
 export class H4pComponent implements OnInit, OnDestroy {
 
+  esModoRefugio: Boolean;
+
   mobileQuery: MediaQueryList;
   // private _mobileQueryListener: () => void;
 
-  constructor(private router: Router, private utils: UtilsService) {
-
+  constructor(
+    private usuarioService: UsuarioService,
+    private utilsService: UtilsService) {
+    this.esModoRefugio = this.usuarioService.esModoRefugio();
   }
 
   ngOnInit() {
@@ -24,9 +29,16 @@ export class H4pComponent implements OnInit, OnDestroy {
     // this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  irAPrincipal(){
+    this.utilsService.irA('h4p/principal');
+  }
 
-  irA(ruta){
-    this.router.navigate([ruta]);
+  irCargarMascota(){
+    this.utilsService.irA('/h4p/cargar-mascota');
+  }
+
+  irAdministracion(){
+    this.utilsService.irA('/h4p/administracion');
   }
 
 }

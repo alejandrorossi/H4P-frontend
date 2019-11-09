@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Filtro } from '../models/filtro.model';
 
-
 @Injectable({
   providedIn: 'root'
 })

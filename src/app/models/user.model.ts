@@ -1,11 +1,24 @@
 
 export class User {
-  _id: String;
-  name: String;
-  surname: String;
-  username: String;
-  age: Number;
-  email: String;
-  password: String;
-  createdDate: Date;
+
+  public _id: String;
+  public name: String;
+  public surname: String;
+  public username: String;
+  public age: Number;
+  public email: String;
+  public password: String;
+  public roles: String[];
+  public createdDate: Date;
+
+  constructor(){}
+
+  actualizar(other: User){
+    this.name = other.name;
+    this.surname = other.surname;
+    this.username = other.username;
+    this.age = other.age;
+    this.email = other.email;
+  };
+
 }

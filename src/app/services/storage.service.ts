@@ -23,6 +23,7 @@ export class StorageService {
   setCurrentSession(Response: Response): void {
     this.currentSession = Response;
     this.localStorageService.setItem('currentUser', JSON.stringify(Response));
+    this.setCurrentRol();
   }
 
   /**
@@ -45,6 +46,7 @@ export class StorageService {
    */
   removeCurrentSession(): void {
     this.localStorageService.removeItem('currentUser');
+    this.localStorageService.removeItem('currentRol');
     this.currentSession = null;
   }
 
@@ -57,6 +59,27 @@ export class StorageService {
   }
 
   /**
+
+   * Update the user from currentSession.
+   */
+  updateCurrentUser(user: User) {
+    const Response: Response = this.getCurrentSession();
+    if(Response && Response.data){
+      let userUpdated =  Response.data as User;
+
+      //TODO: ver porque no funciona.
+      //userUpdated.actualizar(user);
+      userUpdated.name = user.name;
+      userUpdated.surname = user.surname;
+      userUpdated.username = user.username;
+      userUpdated.age = user.age;
+      userUpdated.email = user.email;
+      this.setCurrentSession(Response);
+    }
+  }
+
+  /**
+
    * Returns true if the currentToken not is null.
    */
   // isAuthenticated(): boolean {
@@ -70,6 +93,26 @@ export class StorageService {
   //   const Response = this.getCurrentSession();
   //   return (Response && Response.token) ? Response.token : null;
   // }
+
+  /**
+
+   * Set the rol refugio if the user includes it.
+   */
+  setCurrentRol() {
+    const
+      user = this.getCurrentUser(),
+      rol = (user.roles.includes("refugio"))? "refugio" : null;
+
+    if(rol)
+      this.localStorageService.setItem('currentRol', rol);
+  }
+
+  /**
+   * Returns the current rol.
+   */
+  getCurrentRol(): any {
+    return this.localStorageService.getItem('currentRol');
+  }
 
   /**
    * Remove the current Response and redirect for route login.
