@@ -1,3 +1,4 @@
+import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit,  OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilsService } from '../services/utils.service';
@@ -10,11 +11,15 @@ import { UtilsService } from '../services/utils.service';
 })
 export class H4pComponent implements OnInit, OnDestroy {
 
+  esModoRefugio: Boolean;
+
   mobileQuery: MediaQueryList;
   // private _mobileQueryListener: () => void;
 
-  constructor(private utilsService: UtilsService) {
-
+  constructor(
+    private usuarioService: UsuarioService,
+    private utilsService: UtilsService) {
+    this.esModoRefugio = this.usuarioService.esModoRefugio();
   }
 
   ngOnInit() {

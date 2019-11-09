@@ -18,10 +18,15 @@ export class UsuarioService {
     private storageService: StorageService,
     private httpClient: HttpClient) { }
 
-  // METHODS API
+  // METODOS API
   // Editar usuario
   public editarUsuario(user: User): Observable<Response> {
     return this.httpClient
       .put<Response>(`${this.URL_API}/${this.storageService.getCurrentUser()._id}`, user);
+  }
+
+  //Metodos
+  public esModoRefugio(){
+    return this.storageService.getCurrentRol() === "refugio";
   }
 }

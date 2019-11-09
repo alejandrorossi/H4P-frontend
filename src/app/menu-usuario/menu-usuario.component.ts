@@ -1,3 +1,4 @@
+import { UsuarioService } from './../services/usuario.service';
 import { UtilsService } from '../services/utils.service';
 import { StorageService } from '../services/storage.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -14,11 +15,15 @@ export class MenuUsuarioComponent implements OnInit {
   @Input() snav: any;
 
   uActual: User;
+
+  modoRefugio: Boolean;
   
   constructor(
+    private usuarioService: UsuarioService,
     private utilsService: UtilsService,
     private storageService: StorageService) {
     this.uActual = this.storageService.getCurrentUser();
+    this.modoRefugio = this.usuarioService.esModoRefugio();
    }
 
   ngOnInit() {

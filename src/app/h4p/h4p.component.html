@@ -12,8 +12,8 @@
         </div>
 
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="irCargarMascota()"> Cargar </button>
-          <button mat-menu-item (click)="irAdministracion()"> Administración </button>
+          <button mat-menu-item *ngIf="esModoRefugio" (click)="irCargarMascota()"> Cargar </button>
+          <button mat-menu-item *ngIf="esModoRefugio" (click)="irAdministracion()"> Administración </button>
         </mat-menu>
 
       </mat-toolbar>

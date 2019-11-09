@@ -76,10 +76,7 @@ export class PerfilUsuarioComponent extends FormularioBaseComponent implements O
 
   private cargarDatos(){
     let usuario = this.storageService.getCurrentUser();
-
-    console.log(usuario);
     
-
     this.setName(usuario.name);
     this.setSurname(usuario.surname);
     this.setUsername(usuario.username);
