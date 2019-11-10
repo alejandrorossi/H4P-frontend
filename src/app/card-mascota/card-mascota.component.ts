@@ -18,6 +18,7 @@ export class CardMascotaComponent implements OnInit {
 
   @Input() pet: Pet;
   @Input() isOwner: Boolean;
+  @Input() esPostulante: Boolean;
   @Input() idPublication: String;
   @Input() completa: Boolean;
 

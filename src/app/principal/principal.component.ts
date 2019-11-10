@@ -38,9 +38,14 @@ export class PrincipalComponent implements OnInit {
     )
   }
 
-  isOwnerOrPostulant(publication: Publication): Boolean{
+  isOwner(publication: Publication): Boolean {
     var currentUserName: String = this.storageService.getCurrentUser().username;
-    return publication.isOwner(currentUserName) || publication.hasPostulant(currentUserName);
+    return publication.isOwner(currentUserName);
+  }
+  
+  esPostulante(publication: Publication): Boolean{
+    var currentUserName: String = this.storageService.getCurrentUser().username;    
+    return publication.hasPostulant(currentUserName);
   }
 
   onNotifyActualizarPrincipal(notifyActualizarEstadoCuenta: boolean){

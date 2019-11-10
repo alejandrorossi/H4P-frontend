@@ -1,6 +1,5 @@
 
 import { StorageService } from '../services/storage.service';
-import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from './../services/usuario.service';
 import { UtilsService } from '../services/utils.service';
 import { Component, OnInit, Input } from '@angular/core';
