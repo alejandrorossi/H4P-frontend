@@ -101,10 +101,9 @@ export class StorageService {
   setCurrentRol() {
     const
       user = this.getCurrentUser(),
-      rol = (user.roles.includes("refugio"))? "refugio" : null;
+      rol = (user.roles.includes("refugio"))? "refugio" : "postulante";
 
-    if(rol)
-      this.localStorageService.setItem('currentRol', rol);
+    this.localStorageService.setItem('currentRol', rol);
   }
 
   /**

@@ -1,5 +1,5 @@
 <mat-card class="publicacion mat-elevation-z6" style="width:fit-content">
-  <div class="suscrito pull-right" *ngIf="isOwner && completa">
+  <div class="suscrito pull-right" *ngIf="isOwner && completa || esPostulante">
     <i class="fas fa-bookmark" matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i>
   </div>
   <mat-card-header>
@@ -24,8 +24,8 @@
     </p>
   </mat-card-content>
 
-  <mat-card-actions *ngIf="completa">
-    <button class="btn btn-outline-primary pull-right" (click)="addPostulant()" *ngIf="!isOwner">¡Adoptar!</button>
+  <mat-card-actions *ngIf="completa && !isOwner && !esPostulante">
+    <button class="btn btn-outline-primary pull-right" (click)="addPostulant()">¡Adoptar!</button>
   </mat-card-actions>
 
   <mat-card-footer *ngIf="completa">
