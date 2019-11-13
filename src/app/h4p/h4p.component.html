@@ -1,7 +1,7 @@
 <div class="container-fluid fondo" style="min-height:100vh !important">
   <div class="row">
-    <div class="col nopadding">
-      <mat-toolbar color="primary" #toolB>
+    <!-- <div class="col nopadding"> -->
+      <mat-toolbar style="background-color:rgb(48, 196, 156); color:#ffff" #toolB>
         <i class="fas fa-bars ml-3 tipo-btn" (click)="snav.toggle()"></i>
         <span class="ml-5" (click)="irAPrincipal()" style="cursor:pointer"> Hero for Pets </span>
         <span class="rellenar-tb"></span>
@@ -9,7 +9,7 @@
         <div [matMenuTriggerFor]="menu" matRipple [matRippleRadius]="'25'" [matRippleUnbounded]="true"
           [matRippleCentered]="true" title="Menú" class="tipo-btn">
           <i class="fas fa-ellipsis-v  ml-3 mr-3"> </i>
-        </div>
+        <!-- </div> -->
 
         <mat-menu #menu="matMenu">
           <button mat-menu-item *ngIf="esModoRefugio" (click)="irCargarMascota()"> Cargar </button>
