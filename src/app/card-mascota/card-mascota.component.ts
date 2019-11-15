@@ -1,3 +1,4 @@
+import { DialogPerfilUsuarioComponent } from './../dialog-perfil-usuario/dialog-perfil-usuario.component';
 import { DialogConfirmacionComponent } from './../dialog-confirmacion/dialog-confirmacion.component';
 import { DialogData } from '../dialog-confirmacion/dialog-confirmacion.component';
 import { UtilsService } from '../services/utils.service';
@@ -92,5 +93,13 @@ export class CardMascotaComponent implements OnInit {
         )
       }
     });
+  };
+
+  verPerfilUsuario(){
+    const dialogRef = this.utilsService.getDialog(
+      DialogPerfilUsuarioComponent,
+      this.pet.user,
+      '400px'
+    );
   }
 }

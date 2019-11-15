@@ -54,6 +54,7 @@ import { DialogConfirmacionComponent } from './dialog-confirmacion/dialog-confir
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { DialogPerfilUsuarioComponent } from './dialog-perfil-usuario/dialog-perfil-usuario.component';
 import {MatProgressBarModule, MatProgressBar} from '@angular/material/progress-bar';
 
 @NgModule({
@@ -75,7 +76,8 @@ import {MatProgressBarModule, MatProgressBar} from '@angular/material/progress-b
     FormularioBaseComponent,
     InfoComponent,
     DialogConfirmacionComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    DialogPerfilUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -123,6 +125,7 @@ import {MatProgressBarModule, MatProgressBar} from '@angular/material/progress-b
   entryComponents: [
     ListadoPostulantesComponent,
     DialogConfirmacionComponent,
+    DialogPerfilUsuarioComponent,
     MatProgressBar,
   ],
   providers: [
