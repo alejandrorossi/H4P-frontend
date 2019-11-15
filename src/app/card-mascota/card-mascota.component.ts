@@ -60,7 +60,7 @@ export class CardMascotaComponent implements OnInit {
           if (res.code != 200) {
             console.log('Error!');
           } else {
-            this.isOwner = true;
+            this.esPostulante = true;
             this.utilsService.notificacion("Suscripción de adopcion enviada, el refugio se contactará contigo.", "")
           }
         },
