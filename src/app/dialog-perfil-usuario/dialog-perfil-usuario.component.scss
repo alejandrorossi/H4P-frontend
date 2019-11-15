@@ -1,0 +1,31 @@
+
+.perfil-image {
+  background-image: url('./../../assets/img/perfil-image.png');
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+}
+
+.dialog-center-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linea-negra {
+  background: black;
+  height: 10px;
+}
+
+.mr-5px {
+  margin-right: 5px;
+}
+
+.ml-5px  {
+  margin-left: 5px;
+}
+
+.full-width {
+  width: 100vw;
+  position: relative;
+}
