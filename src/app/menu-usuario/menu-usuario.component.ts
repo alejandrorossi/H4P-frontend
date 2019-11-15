@@ -4,7 +4,6 @@ import { UsuarioService } from './../services/usuario.service';
 import { UtilsService } from '../services/utils.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../models/user.model';
-import { Router } from '@angular/router';
 
 
 @Component({

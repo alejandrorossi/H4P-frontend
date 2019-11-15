@@ -38,6 +38,7 @@ import { H4pComponent } from './h4p/h4p.component';
 import { RegistroComponent } from './registro/registro.component';
 import { CardMascotaComponent } from './card-mascota/card-mascota.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgHttpLoaderModule } from 'ng-http-loader'; 
 import { RouterModule } from '@angular/router';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
@@ -54,6 +55,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { DialogPerfilUsuarioComponent } from './dialog-perfil-usuario/dialog-perfil-usuario.component';
+import {MatProgressBarModule, MatProgressBar} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -101,6 +103,8 @@ import { DialogPerfilUsuarioComponent } from './dialog-perfil-usuario/dialog-per
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
     MatRadioModule,
     MatRippleModule,
     MatSelectModule,
@@ -111,19 +115,22 @@ import { DialogPerfilUsuarioComponent } from './dialog-perfil-usuario/dialog-per
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatPaginatorModule,
-    HttpClientModule
+    HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   exports: [
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
   ],
   entryComponents: [
     ListadoPostulantesComponent,
     DialogConfirmacionComponent,
-    DialogPerfilUsuarioComponent
+    DialogPerfilUsuarioComponent,
+    MatProgressBar,
   ],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
