@@ -2,18 +2,11 @@
   max-width: 18rem;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  //TODO: cambiar por imagenes del refugio que carga esto
-  background-size: cover;
-}
-
 .text-footer {
   margin: 10px;
 }
 
 .suscrito{
-
   color:rgb(18, 206, 18);
   width:50px;
   margin-top:0;
@@ -25,3 +18,10 @@ a.perfil-usuario {
   cursor: pointer;
   color:#007bff;
 }
+
+// .control-size{
+//   width:100%;
+//   width: 200px;
+//   max-width:200px!important;
+// }
+

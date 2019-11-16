@@ -44,7 +44,7 @@ export class CardMascotaComponent implements OnInit {
       .subscribe(
         res => {
           let img = res.data as ImgResponse;
-          this.preimage = `<img mat-card-image src="${img.dataURL}" alt="{{pet.name}}">`;
+          this.preimage = `<img mat-card-image class="control-size" src="${img.dataURL}" alt="{{pet.name}}">`;
         },
         error => {
           console.log('Error!');
