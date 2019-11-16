@@ -26,11 +26,11 @@ export class ListadoPostulantesComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(public solicitudSrv: SolicitudService, 
+  constructor(
+    public solicitudSrv: SolicitudService, 
     private utilsService: UtilsService,
     public dialogRef: MatDialogRef<ListadoPostulantesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.ELEMENT_DATA = data.postulantes;
     this.dataSource = new MatTableDataSource<Application>(this.ELEMENT_DATA);
   }
@@ -88,6 +88,9 @@ export class ListadoPostulantesComponent implements OnInit, OnDestroy {
     return ret;
   }
 
+  esUsuarioRechazado(){
+    return this.data.aceptado.status =='rechazado';
+  }
   
 
 

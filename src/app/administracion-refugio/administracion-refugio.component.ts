@@ -186,5 +186,4 @@ export class AdministracionRefugioComponent implements OnInit {
       this.solicitudes.sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime())
     }
   }
-
 }

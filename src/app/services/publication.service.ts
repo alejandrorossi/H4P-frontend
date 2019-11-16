@@ -34,7 +34,7 @@ export class PublicationService {
   };
 
   postPublicacion(publicacion): Observable<Response>{
-    return this.httpClient.post<Response>(environment.URL_API+'publication', publicacion);
+    return this.httpClient.post<Response>(`${this.URL_API}`, publicacion);
   };
 
   putPublicacion(publicacion): Observable<Response>{
@@ -42,19 +42,19 @@ export class PublicationService {
   };
 
   deletePublicacion(idPublicacion: String): Observable<Response>{
-    return this.httpClient.delete<Response>(`${environment.URL_API}publication/${idPublicacion}`);
+    return this.httpClient.delete<Response>(`${this.URL_API}/${idPublicacion}`);
   };
 
   addPostulant(idUser: String, idPublication: String ): Observable<Response>{
-    return this.httpClient.post<Response>(`${environment.URL_API}publication/${idUser}`, {publication: idPublication});
+    return this.httpClient.post<Response>(`${this.URL_API}/${idUser}`, {publication: idPublication});
   }
 
   getPublicacion(idPublicacion: String): Observable<Response>{
-    return this.httpClient.get<Response>(`${environment.URL_API}publication/${idPublicacion}`);
+    return this.httpClient.get<Response>(`${this.URL_API}/${idPublicacion}`);
   }
 
   buscarPublicacionesFiltradas(filtro: Filtro): Observable<Response> {
-    return this.httpClient.post<Response>(`${environment.URL_API}buscarFiltradas`, {params: filtro} );
+    return this.httpClient.post<Response>(`${this.URL_API}/buscarFiltradas`, {params: filtro} );
   };
 
 }
