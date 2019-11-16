@@ -63,9 +63,10 @@ export class AdministracionRefugioComponent implements OnInit {
   }
 
   buscar() {
+    //moment(date).format('YYYYMMDD')
     var filtro = new Filtro();
-    filtro.desde = this.fechaDesde;
-    filtro.hasta = this.fechaHasta;
+    filtro.desde = this.fechaDesde.toISOString();
+    filtro.hasta = this.fechaHasta.toISOString();
     filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
     filtro.texto = this.formBusqueda.get('textoMascotaCtrl').value;
     filtro.privada = this.pubPrivadas;
@@ -73,17 +74,11 @@ export class AdministracionRefugioComponent implements OnInit {
 
     this.publicationService.buscarPublicacionesFiltradas(filtro)
     .subscribe(res => {
-      console.log(res)
       const resList: Publication[] = [];
-
       if (res.data) {
-        // console.log("AAAAAAAAAAAAAAAAAA")
-        console.log(res.data)
         res.data.forEach(pres => {
           const publ = new Publication(pres); //se maneja a nivel front la diferencia
-          console.log(publ)
           resList.push(publ);
-
         });
         this.publications = resList;
       }
@@ -92,7 +87,6 @@ export class AdministracionRefugioComponent implements OnInit {
 
 
   actualizarSolicitudes() {
-
     this.getSolicitudesPendientes();
   }
 
@@ -109,7 +103,6 @@ export class AdministracionRefugioComponent implements OnInit {
   }
 
   getSolicitudesPendientes() {
-
     this.statusSolicitud = "Pendientes";
     this.solicitudService.getSolicitudesPendientes()
       .subscribe(res => {
@@ -192,11 +185,6 @@ export class AdministracionRefugioComponent implements OnInit {
       this.creacionTiempo = 'más antiguas';
       this.solicitudes.sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime())
     }
-
-
   }
-
-
-
 
 }
