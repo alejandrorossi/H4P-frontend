@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +38,7 @@ import { H4pComponent } from './h4p/h4p.component';
 import { RegistroComponent } from './registro/registro.component';
 import { CardMascotaComponent } from './card-mascota/card-mascota.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NgHttpLoaderModule } from 'ng-http-loader'; 
+import { NgHttpLoaderModule } from 'ng-http-loader';
 import { RouterModule } from '@angular/router';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { MenuUsuarioComponent } from './menu-usuario/menu-usuario.component';
@@ -130,6 +130,7 @@ import {MatProgressBarModule, MatProgressBar} from '@angular/material/progress-b
   ],
   providers: [
     MatDatepickerModule,
+    { provide: LOCALE_ID, useValue: 'es-Ar' },
   ],
   bootstrap: [AppComponent]
 })

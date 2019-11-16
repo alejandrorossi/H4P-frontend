@@ -6,19 +6,19 @@
       <form [formGroup]="formCarga" (ngSubmit)="cargarMascota()">
         <div class="row">
           <div class="col">
-            <mat-card-title class="h6" mat-subheader>
+            <mat-card-title class="h5">
               {{tituloCargar}}
             </mat-card-title>
             <mat-card-subtitle *ngIf="!esEdicion">
-              (Se creará también una publicación)
+              (Se creará una publicación)
               <span class="badge badge-pill badge-primary ml-2" matTooltip="{{infoCreacionPublicacion}}"
-                style="font-size:0.8em; cursor:pointer"><i class="fas fa-info"></i>
+                style="font-size:0.7em; cursor:pointer"><i class="fas fa-info"></i>
               </span>
             </mat-card-subtitle>
           </div>
           <div class="col">
             <div class="pull-right mt-2">
-              <mat-slide-toggle [checked]="checkedPrivada">Privada</mat-slide-toggle>
+              <mat-slide-toggle class="mat-elevation-z" [checked]="checkedPrivada">Privada</mat-slide-toggle>
               <span class="badge badge-pill badge-primary ml-2" matTooltip="{{avisoVisibilidad}}"
                 style="font-size:0.6em; cursor:pointer; vertical-align: text-top;">
                 <i class="fas fa-info"></i>
@@ -129,8 +129,8 @@
 
             <mat-card-actions class="ml-1 mr-1">
               <span class="mt-3 small">*Campos requeridos</span>
-              <button type="submit" class="btn btn-outline-primary pull-right redondo">
-                <i class="far fa-paper-plane" style="vertical-align: super;"> </i>
+              <button type="submit" class="btn btn-outline-primary pull-right redondo" style="border:none; font-size:1.3em">
+                <i class="far fa-paper-plane"> </i>
               </button>
             </mat-card-actions>
           </div>

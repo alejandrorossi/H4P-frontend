@@ -23,7 +23,7 @@ export class CardMascotaComponent implements OnInit {
   @Input() idPublication: String;
   @Input() completa: Boolean;
 
-  @Output() notifyActualizarPrincipal: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() notifyActualizarPublicaciones: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   //Imagen de previsualizacion
   preimage: any;
@@ -85,7 +85,7 @@ export class CardMascotaComponent implements OnInit {
         this.publicationService.deletePublicacion(this.idPublication.toString()).subscribe(
           res => {
             this.utilsService.notificacion("Se elimino la publicación correctamente", "");
-            this.notifyActualizarPrincipal.emit(true);
+            this.notifyActualizarPublicaciones.emit(true);
           },
           error => {
             this.utilsService.notificacion("No se pudo eliminar la publicación", "");
