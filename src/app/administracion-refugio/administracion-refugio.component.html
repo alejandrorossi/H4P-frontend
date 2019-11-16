@@ -119,7 +119,9 @@
         <div class="row card-group mt-3">
           <div class="col" *ngFor="let p of publications">
             <!-- se piden las publicaciones del usuario -->
-            <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false">
+            <app-card-mascota 
+            (notifyActualizarPublicaciones)='onNotifyActualizarPublicaciones($event)' 
+            [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false">
             </app-card-mascota>
 
           </div>

@@ -47,8 +47,4 @@ export class PrincipalComponent implements OnInit {
     var currentUserName: String = this.storageService.getCurrentUser().username;    
     return publication.hasPostulant(currentUserName);
   }
-
-  onNotifyActualizarPrincipal(notifyActualizarEstadoCuenta: boolean){
-    if(notifyActualizarEstadoCuenta){ this.getOtrasPublicaciones(); }
-  }
 }

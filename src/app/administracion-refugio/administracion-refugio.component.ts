@@ -85,9 +85,12 @@ export class AdministracionRefugioComponent implements OnInit {
     });
   }
 
-
   actualizarSolicitudes() {
     this.getSolicitudesPendientes();
+  }
+
+  onNotifyActualizarPublicaciones(notifyActualizarPublicaciones: boolean){
+    if(notifyActualizarPublicaciones){ this.getUsuarioPublicaciones(); }
   }
 
   getUsuarioPublicaciones() {

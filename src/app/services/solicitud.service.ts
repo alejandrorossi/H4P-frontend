@@ -28,11 +28,15 @@ export class SolicitudService {
   };
 
   putAceptarSolicitante(idPostulacion, idPublicacion): Observable<Response>{
-    return this.httpClient.put<Response>(`${environment.URL_API}/aceptarSolicitud/${idPostulacion}`, {idPublicacion});
+    return this.httpClient.put<Response>(
+      `${environment.URL_API}/aceptarSolicitud/${idPostulacion}`, 
+      {idPublicacion: idPublicacion});
   };
 
   putRechazarSolicitante(idPostulacion, idPublicacion): Observable<Response>{
-    return this.httpClient.put<Response>(`${environment.URL_API}/rechazarSolicitud/${idPostulacion}`, {idPublicacion});
+    return this.httpClient.put<Response>(
+      `${environment.URL_API}/rechazarSolicitud/${idPostulacion}`, 
+      {idPublicacion: idPublicacion});
   };
 
 }
