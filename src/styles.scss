@@ -41,6 +41,6 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   outline: 0;
   }
 
-  [class*="btn-outline-"]:focus{
-    box-shadow: none!important;
-  }
+[class*="btn-outline-"]:focus{
+  box-shadow: none!important;
+}

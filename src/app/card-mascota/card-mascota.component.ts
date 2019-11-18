@@ -78,7 +78,7 @@ export class CardMascotaComponent implements OnInit {
     const dialogRef = this.utilsService.getDialog(
       DialogConfirmacionComponent,
       new DialogData("Eliminar", "¿Desea eliminar realmente la publicación?"),
-      '250px'
+      '250px' //TODO: usar porcentaje que es relativo, no tamanios fijos
     );
     dialogRef.afterClosed().subscribe(result => {
       if(result && result.aceptado){
@@ -99,7 +99,7 @@ export class CardMascotaComponent implements OnInit {
     const dialogRef = this.utilsService.getDialog(
       DialogPerfilUsuarioComponent,
       this.pet.user,
-      '400px'
+      '400px' //TODO: usar porcentaje que es relativo, no tamanios fijos
     );
   }
 }
