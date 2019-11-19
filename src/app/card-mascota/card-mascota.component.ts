@@ -44,7 +44,7 @@ export class CardMascotaComponent implements OnInit {
       .subscribe(
         res => {
           let img = res.data as ImgResponse;
-          this.preimage = `<img mat-card-image class="control-size" src="${img.dataURL}" alt="{{pet.name}}">`;
+          this.preimage = `<img mat-card-image  style="max-width: -webkit-fill-available!important;" src="${img.dataURL}" alt="{{pet.name}}">`;
         },
         error => {
           console.log('Error!');
@@ -78,7 +78,7 @@ export class CardMascotaComponent implements OnInit {
     const dialogRef = this.utilsService.getDialog(
       DialogConfirmacionComponent,
       new DialogData("Eliminar", "¿Desea eliminar realmente la publicación?"),
-      '250px'
+      '250px' //TODO: usar porcentaje que es relativo, no tamanios fijos
     );
     dialogRef.afterClosed().subscribe(result => {
       if(result && result.aceptado){
@@ -99,7 +99,7 @@ export class CardMascotaComponent implements OnInit {
     const dialogRef = this.utilsService.getDialog(
       DialogPerfilUsuarioComponent,
       this.pet.user,
-      '400px'
+      '400px' //TODO: usar porcentaje que es relativo, no tamanios fijos
     );
   }
 }

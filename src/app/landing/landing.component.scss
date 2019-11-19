@@ -21,6 +21,37 @@ i{
    margin-left:10px;
 }
 
-mat-card{
-   max-width: 60%;
+@media (min-width: 1500px){
+  mat-card {
+    
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 1500px){
+  mat-card {
+    
+    max-width: 65%;
+  }
+}
+
+@media (max-width: 1200px){
+  mat-card {
+    
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 1000px){
+  mat-card {
+    
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 800px){
+  mat-card {
+    
+    max-width: 100%;
+  }
 }

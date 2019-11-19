@@ -7,11 +7,17 @@
 }
 
 .suscrito{
-  color:rgb(18, 206, 18);
-  width:50px;
-  margin-top:0;
+  background: -webkit-linear-gradient(rgb(44, 204, 161), rgb(0, 255, 187));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width:2em;
+  top:0.3em;
+  position: absolute;
+  right: 0.3em;
   font-size:1.3em;
   cursor:pointer;
+  margin-bottom:0px;
 }
 
 a.perfil-usuario {
@@ -19,9 +25,7 @@ a.perfil-usuario {
   color:#007bff;
 }
 
-// .control-size{
-//   width:100%;
-//   width: 200px;
-//   max-width:200px!important;
-// }
+mat-card {
+  padding-top: 0px;
+}
 

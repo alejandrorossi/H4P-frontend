@@ -1,86 +1,115 @@
-<h4 class="titulo-login mt-2 text-center">Registro en H4P </h4>
+<!-- <div class="row"> -->
 
-<form [formGroup]="myForm" (ngSubmit)="signUp()" class="register-form">
+  <div class="register-c">
+    <h4 class="mt-2 text-center">Registro en H4P </h4>
 
-  <mat-form-field class="margin-right width-50">
-    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
-      maxlength="15" placeholder="Nombre" formControlName="name">
-    <mat-hint align="end">{{getName.value?.length || 0}}/15</mat-hint>
-    <mat-error *ngIf="getName.hasError('required')">
-      El nombre es <strong>requerido</strong>
-    </mat-error>
-    <mat-error *ngIf="getName.errors && (getName.value != '')">
-      Se permite <strong>solo texto</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="width-50">
-    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
-      maxlength="15" placeholder="Apellido" formControlName="surname">
-    <mat-hint align="end">{{getSurname.value?.length || 0}}/15</mat-hint>
-    <mat-error *ngIf="getSurname.hasError('required')">
-      El apellido es <strong>requerido</strong>
-    </mat-error>
-    <mat-error *ngIf="getSurname.errors && (getSurname.value != '') ">
-        Se permite <strong>solo texto</strong>
-    </mat-error>
-  </mat-form-field>
-  <br>
+    <form [formGroup]="myForm" (ngSubmit)="signUp()" class="register-form" style="font-size:0.9em">
+      <div class="row">
 
-  <mat-form-field class="margin-right width-50">
-    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
-      maxlength="10" placeholder="Usuario" formControlName="username">
-    <mat-hint align="end">{{getUsername.value?.length || 0}}/10</mat-hint>
-    <mat-error *ngIf="getUsername.hasError('required')">
-      El usuario es <strong>requerido</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="width-50">
-    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
-      type="number" min="18" placeholder="Edad" formControlName="age">
-    <mat-hint align="end">(min. 18)</mat-hint>
-    <mat-error *ngIf="getAge.hasError('required')">
-      La edad es <strong>requerida</strong>
-    </mat-error>
-    <mat-error *ngIf="getAge.hasError('min')">
-      La edad mínima es <strong>18</strong>
-    </mat-error>
-    <mat-error *ngIf="getAge.hasError('max')">
-        La edad máxima es <strong>100</strong>
-      </mat-error>
-  </mat-form-field>
-  <br>
+        <div class="col">
+          <mat-form-field>
+            <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()" maxlength="15"
+              placeholder="Nombre" formControlName="name">
+            <mat-hint align="end">{{getName.value?.length || 0}}/15</mat-hint>
+            <mat-error *ngIf="getName.hasError('required')">
+              El nombre es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="getName.errors && (getName.value != '')">
+              Se permite <strong>solo texto</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()" maxlength="15"
+              placeholder="Apellido" formControlName="surname">
+            <mat-hint align="end">{{getSurname.value?.length || 0}}/15</mat-hint>
+            <mat-error *ngIf="getSurname.hasError('required')">
+              El apellido es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="getSurname.errors && (getSurname.value != '') ">
+              Se permite <strong>solo texto</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
 
-  <mat-form-field class="width-100">
-    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
-      placeholder="E-mail" formControlName="email">
-    <mat-error *ngIf="getEmail.hasError('required')">
-      El e-mail es <strong>requerido</strong>
-    </mat-error>
-    <mat-error *ngIf="getEmail.hasError('email')">
-      Escriba un e-mail válido
-    </mat-error>
-  </mat-form-field>
-  <br>
+        <div class="col">
 
-  <mat-form-field class="width-100">
-    <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()"
-      placeholder="Contraseña" minlength="8" 
-      formControlName="password" [type]="hide ? 'password' : 'text'">
-    <mat-icon style="cursor:pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}} </mat-icon>
-    <mat-hint align="end">{{getPassword.value?.length || 0}}/min. 8</mat-hint>
-    <mat-error *ngIf="getPassword.hasError('required')">
-      La contraseña es <strong>requerida</strong>
-    </mat-error>
-    <mat-error *ngIf="getPassword.hasError('minlength')">
-      La contraseña es muy corta
-    </mat-error>
-  </mat-form-field>
+          <mat-form-field>
+            <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()" maxlength="10"
+              placeholder="Usuario" formControlName="username">
+            <mat-hint align="end">{{getUsername.value?.length || 0}}/10</mat-hint>
+            <mat-error *ngIf="getUsername.hasError('required')">
+              El usuario es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()" type="number" min="18"
+              placeholder="Edad" formControlName="age">
+            <mat-hint align="end">(min. 18)</mat-hint>
+            <mat-error *ngIf="getAge.hasError('required')">
+              La edad es <strong>requerida</strong>
+            </mat-error>
+            <mat-error *ngIf="getAge.hasError('min')">
+              La edad mínima es <strong>18</strong>
+            </mat-error>
+            <mat-error *ngIf="getAge.hasError('max')">
+              La edad máxima es <strong>100</strong>
+            </mat-error>
+          </mat-form-field>
 
-  <br><br>
-  <div class="text-center">
-    <mat-error *ngIf="submitted && error">{{error_message}}</mat-error>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col">
+
+          <mat-form-field>
+            <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()" placeholder="E-mail"
+              formControlName="email">
+            <mat-error *ngIf="getEmail.hasError('required')">
+              El e-mail es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="getEmail.hasError('email')">
+              Escriba un e-mail válido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput [errorStateMatcher]="errorMatcher" (change)="ifAllValid()" placeholder="Contraseña"
+              minlength="8" formControlName="password" [type]="hide ? 'password' : 'text'">
+            <mat-icon style="cursor:pointer" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+            <mat-hint align="end">{{getPassword.value?.length || 0}}/min. 8</mat-hint>
+            <mat-error *ngIf="getPassword.hasError('required')">
+              La contraseña es <strong>requerida</strong>
+            </mat-error>
+            <mat-error *ngIf="getPassword.hasError('minlength')">
+              La contraseña es muy corta
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col">
+          <div class="text-center mt-2">
+            <mat-error *ngIf="submitted && error">{{error_message}}</mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col text-center">
+          <button type="submit" class="btn btn-outline-dark">Registrarse!</button>
+        </div>
+      </div>
+    </form>
+
   </div>
-
-  <br>
-  <button type="submit" class="btn btn-outline-dark btn-block">Registrarse!</button>
-</form>
+<!-- </div> -->

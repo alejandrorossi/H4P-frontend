@@ -1,16 +1,17 @@
-<mat-card class="publicacion mat-elevation-z6" style="width:fit-content">
-  <div class="suscrito pull-right" *ngIf="isOwner && completa || esPostulante">
-    <i class="fas fa-bookmark" matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i>
+<mat-card class="publicacion mat-elevation-z6">
+  <div class="suscrito" *ngIf="isOwner && completa || esPostulante">
+    <i class="fas fa-bookmark pull-right"
+      matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i>
   </div>
-  <mat-card-header>
 
-    <mat-card-title>{{pet.name}} - <span class="text-muted small">{{pet.type}}</span> </mat-card-title>
+  <div class="mat-card-image" [innerHTML]="preimage | sanitizeHtml" style="max-width: -webkit-fill-available!important">
+  </div>
 
-  </mat-card-header>
+  <div class="h5">{{pet.name}} - <span class="text-muted small">{{pet.type}}</span> </div>
+  <mat-card-subtitle><span>Publicado por: </span>
+    <a class="perfil-usuario" (click)="verPerfilUsuario()">{{pet.user.name}}</a></mat-card-subtitle>
 
   <mat-card-content>
-    <div class="mat-elevation-z6 img-thumbnail" [innerHTML]="preimage | sanitizeHtml" ></div>
-
     <div *ngIf="isOwner" class="mt-2">
       <button class="btn btn-outline-primary redondo mat-elevation-z4 pull-right" (click)="editar()">
         <i class="fas fa-pencil-alt"></i>
@@ -19,19 +20,12 @@
         <i class="far fa-trash-alt"></i>
       </button>
     </div>
-    <p class="mt-3">
+    <p class="mt-2">
       {{pet.description}}
     </p>
   </mat-card-content>
-
   <mat-card-actions *ngIf="completa && !isOwner && !esPostulante">
     <button class="btn btn-outline-primary pull-right" (click)="addPostulant()">¡Adoptar!</button>
   </mat-card-actions>
-
-  <mat-card-footer *ngIf="completa">
-    <mat-card-subtitle class="text-footer">Publicado por: 
-      <a class="perfil-usuario" (click)="verPerfilUsuario()">{{pet.user.name}}</a>
-    </mat-card-subtitle>
-  </mat-card-footer>
 
 </mat-card>

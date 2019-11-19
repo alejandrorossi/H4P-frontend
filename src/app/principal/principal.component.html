@@ -2,7 +2,7 @@
 <hr>
 
 <div class="row card-group">
-  <div class="col-md-4" *ngFor="let p of publications">
+  <div class="col" *ngFor="let p of publications">
 
     <app-card-mascota [pet]="p.pet" [idPublication]="p._id" 
       [isOwner]="isOwner(p)" [esPostulante]="esPostulante(p)" [completa]="true"></app-card-mascota>
