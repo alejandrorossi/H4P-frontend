@@ -85,6 +85,7 @@ export class AdministracionRefugioComponent implements OnInit {
     });
   }
 
+
   actualizarSolicitudes() {
     this.getSolicitudesPendientes();
   }
