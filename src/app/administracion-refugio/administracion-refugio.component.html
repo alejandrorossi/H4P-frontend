@@ -1,4 +1,4 @@
-<div class="container-fluid fondo">
+<div class="container-fluid fondo" >
   <mat-card class="mat-elevation-z6">
     <div class="row">
       <div class="col ">
@@ -119,7 +119,7 @@
         <div class="row card-group mt-3">
           <div class="col" *ngFor="let p of publications">
             <!-- se piden las publicaciones del usuario -->
-            <app-card-mascota 
+            <app-card-mascota [usadaEnAdmin]="true"
             (notifyActualizarPublicaciones)='onNotifyActualizarPublicaciones($event)' 
             [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false">
             </app-card-mascota>
