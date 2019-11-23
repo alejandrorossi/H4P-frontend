@@ -149,7 +149,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
               }
               this.publicacionService.putPublicacion(publicacion).subscribe(
                 res => {
-                  this.utilsService.notificacion('La edición fue exitosa','');
+                  this.utilsService.toastr('La edición fue exitosa','');
                   this.resetearFormulario();
                 },
                 error => {
@@ -157,7 +157,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
                 });
             }
             else{
-              this.utilsService.notificacion(res.status,'');
+              this.utilsService.toastr(res.status,'');
             }
           },
           error => {
@@ -177,7 +177,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
           }
           this.publicacionService.postPublicacion(publicacion).subscribe(
             res => {
-              this.utilsService.notificacion('La mascota y publicación se crearon exitosamente','');
+              this.utilsService.toastr('La mascota y publicación se crearon exitosamente','');
               this.resetearFormulario();
             },
             error => {
@@ -185,7 +185,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
             });
         }
         else{
-          this.utilsService.notificacion(res.status,'');
+          this.utilsService.toastr(res.status,'');
         }
       },
       error => {
@@ -272,7 +272,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
         );
       },
       error => {
-        this.utilsService.notificacion('Ocurrio un error para la edición','');
+        this.utilsService.toastr('Ocurrio un error para la edición','');
       }
     )
   }

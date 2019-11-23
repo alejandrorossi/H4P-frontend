@@ -1,5 +1,4 @@
 import { StorageService } from './storage.service';
-import { Publication } from '../models/publication.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Response } from '../models/response.model';

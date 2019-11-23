@@ -72,7 +72,7 @@ export class CardMascotaComponent implements OnInit {
             console.log('Error!');
           } else {
             this.esPostulante = true;
-            this.utilsService.notificacion("Suscripción de adopcion enviada, el refugio se contactará contigo.", "")
+            this.utilsService.toastr("Suscripción de adopcion enviada, el refugio se contactará contigo.", "")
           }
         },
         error => {
@@ -95,11 +95,11 @@ export class CardMascotaComponent implements OnInit {
       if(result && result.aceptado){
         this.publicationService.deletePublicacion(this.idPublication.toString()).subscribe(
           res => {
-            this.utilsService.notificacion("Se elimino la publicación correctamente", "");
+            this.utilsService.toastr("Se elimino la publicación correctamente", "");
             this.notifyActualizarPublicaciones.emit(true);
           },
           error => {
-            this.utilsService.notificacion("No se pudo eliminar la publicación", "");
+            this.utilsService.toastr("No se pudo eliminar la publicación", "");
           }
         )
       }
