@@ -55,7 +55,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { DialogPerfilUsuarioComponent } from './dialog-perfil-usuario/dialog-perfil-usuario.component';
-import {MatProgressBarModule, MatProgressBar} from '@angular/material/progress-bar';
+import { MatProgressBarModule, MatProgressBar } from '@angular/material/progress-bar';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {MatProgressBarModule, MatProgressBar} from '@angular/material/progress-b
     InfoComponent,
     DialogConfirmacionComponent,
     PerfilUsuarioComponent,
-    DialogPerfilUsuarioComponent
+    DialogPerfilUsuarioComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -116,6 +118,7 @@ import {MatProgressBarModule, MatProgressBar} from '@angular/material/progress-b
     MatToolbarModule,
     MatTooltipModule,
     HttpClientModule,
+    NgbModule,
     NgHttpLoaderModule.forRoot(),
   ],
   exports: [

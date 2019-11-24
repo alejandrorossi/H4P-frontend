@@ -64,15 +64,17 @@ export class CardMascotaComponent implements OnInit {
   }
 
   public addPostulant() {
-    this.publicationService.addPostulant(this.storageService.getCurrentUser()._id, this.idPublication)
+    const user = this.storageService.getCurrentUser();
+    this.publicationService.addPostulant(user._id, this.idPublication)
       .subscribe(
         res => {
-          console.log(res.status);
           if (res.code != 200) {
             console.log('Error!');
           } else {
             this.esPostulante = true;
-            this.utilsService.notificacion("Suscripción de adopcion enviada, el refugio se contactará contigo.", "")
+            this.utilsService.notificar('Has recibido una nueva suscripción', this.pet.user);
+            this.utilsService.notificar("Te suscribiste a una nueva publicación.", user);
+            this.utilsService.toastr("Suscripción de adopcion enviada, el refugio se contactará contigo.", "")
           }
         },
         error => {
@@ -95,11 +97,11 @@ export class CardMascotaComponent implements OnInit {
       if(result && result.aceptado){
         this.publicationService.deletePublicacion(this.idPublication.toString()).subscribe(
           res => {
-            this.utilsService.notificacion("Se elimino la publicación correctamente", "");
+            this.utilsService.toastr("Se elimino la publicación correctamente", "");
             this.notifyActualizarPublicaciones.emit(true);
           },
           error => {
-            this.utilsService.notificacion("No se pudo eliminar la publicación", "");
+            this.utilsService.toastr("No se pudo eliminar la publicación", "");
           }
         )
       }

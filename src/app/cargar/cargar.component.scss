@@ -1,30 +1,13 @@
-
-
-  .espaciado {
-    padding-right: 8px;
-  }
-
-  mat-form-field{
-    width:90%;
-  }
-
-  .example-header-image {
-    background-image: url('https://www.ecured.cu/Perro#/media/File:Perros1.jpg');
-    background-size: cover;
-  }
-
-::ng-deep .mat-slide-toggle-thumb {
-    background-color: #cce4e4;
+.espaciado {
+  padding-right: 8px;
 }
 
-::ng-deep  .mat-slide-toggle-bar {
-    background-color: rgba(0, 0, 0, 0.24);
-  }
-
-::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-    background-color: #3ae4b6!important;
+mat-form-field{
+  width:90%;
 }
 
-::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-  background-color: rgba(156, 240, 226, 0.54);
+.example-header-image {
+  background-image: url('https://www.ecured.cu/Perro#/media/File:Perros1.jpg');
+  background-size: cover;
 }
+

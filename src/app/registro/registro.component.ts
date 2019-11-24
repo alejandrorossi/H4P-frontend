@@ -69,7 +69,7 @@ export class RegistroComponent extends FormularioBaseComponent implements OnInit
 
     this.authService.registerUser(this.myForm.value).subscribe(
       res => {
-        this.utilsService.notificacion('El registro fue exitoso', '');
+        this.utilsService.toastr('El registro fue exitoso', '');
         this.myForm.reset();
       },
       error => {

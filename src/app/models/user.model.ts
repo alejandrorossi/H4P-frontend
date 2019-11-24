@@ -10,6 +10,7 @@ export class User {
   public password: String;
   public roles: String[];
   public createdDate: Date;
+  public notifications: string[]
 
   constructor(){}
 
@@ -20,5 +21,7 @@ export class User {
     this.age = other.age;
     this.email = other.email;
   };
+
+
 
 }

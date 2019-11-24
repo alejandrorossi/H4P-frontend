@@ -45,6 +45,7 @@ export class ListadoPostulantesComponent implements OnInit, OnDestroy {
   }
 
   aceptar(application: Application) {
+    this.utilsService.notificar('Has sido aceptado en una publicación', application.user);
     this.data.aceptado = application;
   }
 
@@ -57,9 +58,10 @@ export class ListadoPostulantesComponent implements OnInit, OnDestroy {
     this.rechazados.push(user)
     this.solicitudSrv.putRechazarSolicitante(user._id, this.data.publicationId).subscribe(
       res => {
-        this.utilsService.notificacion('Usuario Rechazado!', '');
+        this.utilsService.toastr('Usuario Rechazado!', '');
+        this.utilsService.notificar('Has sido rechazado en una publicación', user);
         if(user.status=="aceptado"){
-          this.utilsService.notificacion("Se ha cambiado al usuario de aceptado a rechazado", "");
+          this.utilsService.toastr("Se ha cambiado al usuario de aceptado a rechazado", "");
           this.dialogRef.close()
         }
           

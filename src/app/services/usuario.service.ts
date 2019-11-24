@@ -29,4 +29,11 @@ export class UsuarioService {
   public esModoRefugio(){
     return this.storageService.getCurrentRol() === "refugio";
   }
+
+
+  public getNotificaciones(user: User): Observable<Response> {
+    return this.httpClient
+      .get<Response>(`${this.URL_API}/notifications/${user._id}`);
+  }
+
 }

@@ -105,7 +105,7 @@ export class PerfilUsuarioComponent extends FormularioBaseComponent implements O
       if(result && result.aceptado){
         this.usuarioService.editarUsuario(this.myForm.value).subscribe(
           res => {
-            this.utilsService.notificacion(res.status, '');
+            this.utilsService.toastr(res.status, '');
             this.storageService.updateCurrentUser(res.data);
           },
           error => {
