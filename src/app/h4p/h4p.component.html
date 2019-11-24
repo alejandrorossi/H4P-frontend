@@ -1,28 +1,44 @@
 <div class="container-fluid fondo" style="min-height:100vh !important">
   <div class="row">
     <!-- <div class="col nopadding"> -->
-      <mat-toolbar style="background-color:rgb(48, 196, 156); color:#ffff" #toolB>
-        <i class="fas fa-bars ml-3 tipo-btn" (click)="snav.toggle()"></i>
-        <span class="ml-5" (click)="irAPrincipal()" style="cursor:pointer" mat-tooltip="Volver al inicio"> <i class="fas fa-home"></i> Hero for Pets </span>
-        <span class="rellenar-tb"></span>
-        
-        <!-- Campana de notificaciones -->
-        <i class="far fa-bell mr-3" style="cursor:pointer"></i>
-        
-        <!-- Menu de acciones -->
-        <div *ngIf="esModoRefugio" [matMenuTriggerFor]="menu" matRipple [matRippleRadius]="'25'" [matRippleUnbounded]="true"
-          [matRippleCentered]="true" title="Menú" class="tipo-btn">
-          <i class="fas fa-ellipsis-v  ml-3 mr-3"> </i>
-        </div>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="irCargarMascota()"> Cargar </button>
-          <button mat-menu-item (click)="irAdministracion()"> Administración </button>
-        </mat-menu>
+    <mat-toolbar style="background-color:rgb(48, 196, 156); color:#ffff" #toolB>
+      <i class="fas fa-bars ml-3 tipo-btn" (click)="snav.toggle()"></i>
+      <span class="ml-5" (click)="irAPrincipal()" style="cursor:pointer" mat-tooltip="Volver al inicio"> <i
+          class="fas fa-home"></i> Hero for Pets </span>
+      <span class="rellenar-tb"></span>
 
-      </mat-toolbar>
-    </div>
+      <!-- Campana de notificaciones -->
+      <i class="far fa-bell mr-4" (click)="updateNotifications()" style="cursor:pointer" [ngbPopover]="popContent"
+        [popoverTitle]="popTitle" [autoClose]="'outside'" 
+        ></i>
+      <ng-template #popTitle>
 
-  
+        <!-- <mat-slide-toggle> -->
+          <span style="color:rgb(48, 196, 156)!important; font-size:0.8em!important"><i class="far fa-comment"></i> Notificaciones </span>
+        <!-- </mat-slide-toggle> -->
+
+      </ng-template>
+
+      <ng-template #popContent>
+        <p *ngFor="let notification of notifications"> {{notification}} </p>
+      </ng-template>
+
+      <!-- Menu de acciones -->
+      <div *ngIf="esModoRefugio" [matMenuTriggerFor]="menu" matRipple [matRippleRadius]="'25'"
+        [matRippleUnbounded]="true" [matRippleCentered]="true" title="Menú" class="tipo-btn">
+        <i class="fas fa-ellipsis-v  ml-3 mr-3"> </i>
+      </div>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="irCargarMascota()"> Cargar </button>
+        <button mat-menu-item (click)="irAdministracion()"> Administración </button>
+        <button mat-menu-item (click)="notificar()"> notificar </button>
+      </mat-menu>
+
+    </mat-toolbar>
+  </div>
+
+
   <div class="row">
     <div class="col nopadding">
 
@@ -30,10 +46,10 @@
         <mat-sidenav #snav mode="over" class="sd-container" [fixedInViewport]="true"
           style="min-width: 40%; max-width: 70%;">
           <p>
-              <button class="btn btn-outline-danger pull-right redondo mt-2 mr-2" 
-              (click)="snav.toggle()" style="border:none">
-                  <i class="fas fa-times"></i>
-              </button>
+            <button class="btn btn-outline-danger pull-right redondo mt-2 mr-2" (click)="snav.toggle()"
+              style="border:none">
+              <i class="fas fa-times"></i>
+            </button>
           </p>
 
           <br> <br>

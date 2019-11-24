@@ -20,6 +20,7 @@ export class DialogConfirmacionComponent implements OnInit {
 
   aceptar(){
     this.data.aceptado = true;
+    
     return this.data;
   }
 

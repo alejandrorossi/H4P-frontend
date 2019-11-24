@@ -64,14 +64,16 @@ export class CardMascotaComponent implements OnInit {
   }
 
   public addPostulant() {
-    this.publicationService.addPostulant(this.storageService.getCurrentUser()._id, this.idPublication)
+    const user = this.storageService.getCurrentUser();
+    this.publicationService.addPostulant(user._id, this.idPublication)
       .subscribe(
         res => {
-          console.log(res.status);
           if (res.code != 200) {
             console.log('Error!');
           } else {
             this.esPostulante = true;
+            this.utilsService.notificar('Has recibido una nueva suscripción', this.pet.user);
+            this.utilsService.notificar("Te suscribiste a una nueva publicación.", user);
             this.utilsService.toastr("Suscripción de adopcion enviada, el refugio se contactará contigo.", "")
           }
         },

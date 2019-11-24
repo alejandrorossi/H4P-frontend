@@ -40,17 +40,28 @@ export class UtilsService {
     this.router.navigate([path]);
   }
 
-
-  enviarNotificacion(mensaje: string, usuario: User): Observable<Response> {
-
-    return this.httpClient.put<Response>(
-      `${environment.URL_API}/user/notification`,
+  // comunicacion con backend
+  putNotificacion(mensaje: string, usuario: User): Observable<Response> {
+    return this.httpClient.put<Response>(`${environment.URL_API}/notification`,
       {
-        user: usuario,
+        user: usuario._id,
         message: mensaje,
       },
     );
 
+  }
+
+  // metodo para solo enviar notificaciones
+  public notificar(mensaje, user) {
+    this.putNotificacion(mensaje, user)
+      .subscribe(
+        res => {
+          console.log(res.status);
+        },
+        error => {
+          console.log('Error!');
+        }
+      );
   }
 
 
