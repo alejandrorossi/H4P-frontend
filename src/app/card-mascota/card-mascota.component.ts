@@ -27,7 +27,7 @@ export class CardMascotaComponent implements OnInit {
   @Output() notifyActualizarPublicaciones: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   //Imagen de previsualizacion
-  preimage: any;
+  preimage: string;
   
   constructor(
     private _router: Router,
@@ -40,17 +40,8 @@ export class CardMascotaComponent implements OnInit {
     this.loadPreImage();
   }
 
-  private loadPreImage() {    
-    this.imageService.getImage(this.pet.images[0]._id)
-      .subscribe(
-        res => {
-          let img = res.data as ImgResponse;
-          this.preimage = `<img mat-card-image  style="max-width: -webkit-fill-available!important;" src="${img.dataURL}" alt="{{pet.name}}">`;
-        },
-        error => {
-          console.log('Error!');
-        }
-      );
+  private loadPreImage() {
+    this.preimage = `${this.imageService.URL_UPLOADS}/${this.pet.images[0].path}`;
   }
 
 

@@ -114,12 +114,15 @@
               Elegir imagen*
             </button>
 
-            <div class="mt-2" *ngIf="preimage" [innerHTML]="preimage | sanitizeHtml"></div>
+            <img class="mt-2" [src]="photoSelected" *ngIf="photoSelected"
+            style="max-width: -webkit-fill-available!important;" required>
+
+            <!-- <div class="mt-2" *ngIf="preimage && !photoSelected" [innerHTML]="preimage | sanitizeHtml"></div> -->
 
             <!-- <p> <img class="mt-2" [src]="url" *ngIf="url" required> </p> -->
 
 
-            <mat-error *ngIf="submitted && (imagenes.length < 1)">
+            <mat-error *ngIf="submitted && !photoSelected">
               Debe ingresar una imagen.
             </mat-error>
 
