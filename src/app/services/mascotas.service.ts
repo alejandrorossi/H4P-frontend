@@ -1,3 +1,4 @@
+import { Pet } from './../models/pet.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -58,12 +59,21 @@ export class MascotasService {
     return this.especies;
   }
 
-  public crearMascota(mascota): Observable<Response> {
-    return this.httpClient.post<Response>(`${this.URL_API}`, mascota);
+  public crearMascota(mascota: Pet, file: File): Observable<Response> {
+    const fd = new FormData();
+    fd.append('mascota', JSON.stringify(mascota));
+    fd.append('image', file);
+
+    return this.httpClient.post<Response>(`${this.URL_API}`, fd);
   }
 
-  public editarMascota(mascota): Observable<Response> {
-    return this.httpClient.put<Response>(`${this.URL_API}/${mascota._id}`, mascota);
+  public editarMascota(mascota, file: File): Observable<Response> {
+    const fd = new FormData();
+    fd.append('mascota', JSON.stringify(mascota));
+    if(file)
+      fd.append('image', file);
+
+    return this.httpClient.put<Response>(`${this.URL_API}/${mascota._id}`, fd);
   }
 
 }

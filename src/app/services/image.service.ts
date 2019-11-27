@@ -11,6 +11,9 @@ export class ImageService {
   // URL of th Rest API server
   readonly URL_API = 'http://localhost:8080/app/image';
 
+  // URL get uploads
+  readonly URL_UPLOADS = 'http://localhost:8080';
+
   constructor(private http: HttpClient) {}
 
   // Methods
