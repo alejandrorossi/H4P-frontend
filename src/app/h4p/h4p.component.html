@@ -1,6 +1,6 @@
 <div class="container-fluid fondo" style="min-height:100vh !important">
   <div class="row">
-    <!-- <div class="col nopadding"> -->
+
     <mat-toolbar style="background-color:rgb(48, 196, 156); color:#ffff" #toolB>
       <i class="fas fa-bars ml-3 tipo-btn" (click)="snav.toggle()"></i>
       <span class="ml-5" (click)="irAPrincipal()" style="cursor:pointer" mat-tooltip="Volver al inicio"> <i
@@ -13,9 +13,9 @@
         ></i>
       <ng-template #popTitle>
 
-        <!-- <mat-slide-toggle> -->
-          <span style="color:rgb(48, 196, 156)!important; font-size:0.8em!important"><i class="far fa-comment"></i> Notificaciones </span>
-        <!-- </mat-slide-toggle> -->
+
+        <span style="color:rgb(48, 196, 156)!important; font-size:0.8em!important"><i class="far fa-comment"></i> Notificaciones </span>
+
 
       </ng-template>
 
@@ -32,7 +32,7 @@
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="irCargarMascota()"> Cargar </button>
         <button mat-menu-item (click)="irAdministracion()"> Administración </button>
-        <button mat-menu-item (click)="notificar()"> notificar </button>
+
       </mat-menu>
 
     </mat-toolbar>
@@ -55,7 +55,6 @@
           <br> <br>
 
           <app-menu-usuario [snav]="snav"></app-menu-usuario>
-          <!--sidenav-->
 
         </mat-sidenav>
 

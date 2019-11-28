@@ -37,10 +37,6 @@ export class H4pComponent implements OnInit {
     this.utilsService.irA('/h4p/administracion');
   }
 
-  notificar() {
-    this.utilsService.notificar('sarasaa', this.storageService.getCurrentUser());
-  }
-
   updateNotifications() {
     const user = this.storageService.getCurrentUser();
 
@@ -55,7 +51,6 @@ export class H4pComponent implements OnInit {
     );
 
   }
-
 
 
 }

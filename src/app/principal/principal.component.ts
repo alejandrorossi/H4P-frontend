@@ -4,6 +4,8 @@ import { PublicationService } from '../services/publication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MascotasService } from '../services/mascotas.service';
+import { Filtro } from '../models/filtro.model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-principal',
@@ -13,20 +15,30 @@ import { MascotasService } from '../services/mascotas.service';
 export class PrincipalComponent implements OnInit {
 
   publications: Publication[] = [];
+  formBusqueda2: FormGroup;
+  fechaDesde;
+  especies: any;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private publicationService: PublicationService,
     public storageService: StorageService,
+    private mService: MascotasService,
+    private formBuilder: FormBuilder,
     public masc: MascotasService) {
     this.getOtrasPublicaciones();
+
+    this.especies = this.mService.getAllEspecies();
   }
-    
+
   ngOnInit() {
+    this.formBusqueda2 = this.formBuilder.group({
+      especieMascotaCtrl: ['', []],
+    });
   }
 
   // Publicaciones que no son propias, a las cuales me puedo postular.
-  getOtrasPublicaciones(){
+  getOtrasPublicaciones() {
     this.publicationService.getOtrasPublicaciones().subscribe(
       res => {
         this.publications = [];
@@ -42,9 +54,20 @@ export class PrincipalComponent implements OnInit {
     var currentUserName: String = this.storageService.getCurrentUser().username;
     return publication.isOwner(currentUserName);
   }
-  
-  esPostulante(publication: Publication): Boolean{
-    var currentUserName: String = this.storageService.getCurrentUser().username;    
+
+  esPostulante(publication: Publication): Boolean {
+    var currentUserName: String = this.storageService.getCurrentUser().username;
     return publication.hasPostulant(currentUserName);
   }
+
+  filtrar(){
+    var filtro = new Filtro();
+    filtro.desde = this.fechaDesde.toISOString();
+  
+    filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
+
+    //que vaya a otro metodo de servicio, que ya tenga el privates, 
+  }
+
+
 }

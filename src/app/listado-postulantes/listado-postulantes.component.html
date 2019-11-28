@@ -7,7 +7,7 @@
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>
           Estado actual
-          <i class="fas fa-info-circle text-info" style="font-size: 1.2em"></i>
+          <!-- <i class="fas fa-info-circle text-info" style="font-size: 1.2em"></i> -->
         </th>
         <td mat-cell *matCellDef="let element"
           [ngClass]="(esRechazado(element))?'roja': element.status=='aceptado' ?'verde':' '">
@@ -35,7 +35,7 @@
         </th>
         <td mat-cell *matCellDef="let element">
           <div class="text-center" *ngIf="!hayAceptado()">
-            <button class="btn btn-outline-primary redondo mat-elevation-z6" (click)="aceptar(element)">
+            <button class="btn btn-outline-primary sin-borde redondo" (click)="aceptar(element)">
               <i class="fas fa-check"></i>
               <i class="fas fa-undo" *ngIf="element.status=='rechazado'" style="font-size:9px"></i>
             </button>
@@ -50,7 +50,7 @@
         <td mat-cell *matCellDef="let element">
           <div class="text-center"
             *ngIf="(element.status != 'rechazado' || element.status=='pendiente' && !hayAceptado()) || (element.status=='aceptado') ">
-            <button class="btn btn-outline-danger redondo mat-elevation-z6" (click)="rechazar(element)">
+            <button class="btn btn-outline-danger sin-borde redondo" (click)="rechazar(element)">
               <i class="fas fa-times"></i>
 
             </button></div>
