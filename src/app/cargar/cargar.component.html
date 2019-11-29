@@ -18,7 +18,7 @@
           </div>
           <div class="col">
             <div class="pull-right mt-2">
-              <mat-slide-toggle class="mat-elevation-z" [checked]="checkedPrivada">Privada</mat-slide-toggle>
+              <mat-slide-toggle class="mat-elevation-z" [checked]="checkedPrivada" (change)="changedPrivada()">Privada</mat-slide-toggle>
               <span class="badge badge-pill badge-primary ml-2" matTooltip="{{avisoVisibilidad}}"
                 style="font-size:0.6em; cursor:pointer; vertical-align: text-top;">
                 <i class="fas fa-info"></i>

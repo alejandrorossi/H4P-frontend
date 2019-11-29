@@ -99,6 +99,10 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
     this.masInf = true;
   }
 
+  changedPrivada(){
+    this.checkedPrivada = !this.checkedPrivada
+  }
+
   public ifAllValid() {
     this.mascotaValida() ? this.limpiarError() : this.cargarError('Campos invalidos');
   }
@@ -147,6 +151,9 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
                 pet: res.data._id,
                 status: this.getCheckedPrivada
               }
+              console.log("check: ");              
+              console.log(this.getCheckedPrivada);
+              
               this.publicacionService.putPublicacion(publicacion).subscribe(
                 res => {
                   this.utilsService.toastr('La edición fue exitosa','');
