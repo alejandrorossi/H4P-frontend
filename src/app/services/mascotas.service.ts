@@ -30,7 +30,7 @@ export class MascotasService {
       },
       {
         value: "pa",
-        name: "Pájaro",
+        name: "Pajaro",
         icon: "fas fa-crow "
       },
       {

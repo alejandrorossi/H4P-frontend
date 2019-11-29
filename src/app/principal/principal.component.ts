@@ -21,15 +21,11 @@ export class PrincipalComponent implements OnInit {
   especies: any;
 
   constructor(
-    private router: Router,
-    private publicationService: PublicationService,
-    public storageService: StorageService,
-    private mService: MascotasService,
-    private formBuilder: FormBuilder,
-    private utilsService: UtilsService,
-    public masc: MascotasService) {
-    this.getOtrasPublicaciones();
+    private router: Router, private publicationService: PublicationService,
+    public storageService: StorageService,  private mService: MascotasService,
+    private formBuilder: FormBuilder,  private utilsService: UtilsService, public masc: MascotasService) {
 
+    this.getOtrasPublicaciones();
     this.especies = this.mService.getAllEspecies();
   }
 
@@ -66,23 +62,29 @@ export class PrincipalComponent implements OnInit {
     const especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
     var filtro = new Filtro();
 
-    if(this.fechaDesde)
-      filtro.desde = this.fechaDesde.toISOString();
+    filtro.idUsuario = this.storageService.getCurrentUser()._id.toString();
+    filtro.desde = (this.fechaDesde) ? this.fechaDesde.toISOString() : null;
 
-    filtro.especie = especie;
+    filtro.especie = (especie) ? especie : null;
 
     if(this.fechaDesde || especie)
       this.publicationService.buscarPublFiltradasAdoptante(filtro)
-        .subscribe(res => {
-          const resList: Publication[] = [];
-          if (res.data) {
-            res.data.forEach(pres => {
-              const publ = new Publication(pres); //se maneja a nivel front la diferencia
-              resList.push(publ);
-            });
-            this.publications = resList;
-          }
-        });
+      .subscribe(res => {
+        console.log(res)
+        const resList: Publication[] = [];
+        if (res.data.length>0) {
+
+          res.data.forEach(pres => {
+            const publ = new Publication(pres); //se maneja a nivel front la diferencia
+            resList.push(publ);
+            
+          });
+        }else{
+          this.utilsService.toastr("No se han encontrado mascotas","")
+        }
+
+        this.publications = resList;
+      });
     else
         this.utilsService.toastr('No se han ingresado filtros!','');
   }
