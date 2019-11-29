@@ -56,4 +56,8 @@ export class PublicationService {
     return this.httpClient.post<Response>(`${this.URL_API}/buscarFiltradas`, {params: filtro} );
   };
 
+  buscarPublFiltradasAdoptante(filtro: Filtro): Observable<Response> {
+    return this.httpClient.post<Response>(`${this.URL_API}/buscarFiltradasAdoptante`, {params: filtro} );
+  };
+
 }

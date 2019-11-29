@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MascotasService } from '../services/mascotas.service';
 import { Filtro } from '../models/filtro.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-principal',
@@ -60,13 +60,26 @@ export class PrincipalComponent implements OnInit {
     return publication.hasPostulant(currentUserName);
   }
 
-  filtrar(){
+  filtrar() {
     var filtro = new Filtro();
-    filtro.desde = this.fechaDesde.toISOString();
-  
+
+    if(this.fechaDesde)
+      filtro.desde = this.fechaDesde.toISOString();
+
     filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
 
-    //que vaya a otro metodo de servicio, que ya tenga el privates, 
+
+    this.publicationService.buscarPublFiltradasAdoptante(filtro)
+      .subscribe(res => {
+        const resList: Publication[] = [];
+        if (res.data) {
+          res.data.forEach(pres => {
+            const publ = new Publication(pres); //se maneja a nivel front la diferencia
+            resList.push(publ);
+          });
+          this.publications = resList;
+        }
+      });
   }
 
 
