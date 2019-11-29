@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MascotasService } from '../services/mascotas.service';
 import { Filtro } from '../models/filtro.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-principal',
@@ -25,6 +26,7 @@ export class PrincipalComponent implements OnInit {
     public storageService: StorageService,
     private mService: MascotasService,
     private formBuilder: FormBuilder,
+    private utilsService: UtilsService,
     public masc: MascotasService) {
     this.getOtrasPublicaciones();
 
@@ -61,25 +63,28 @@ export class PrincipalComponent implements OnInit {
   }
 
   filtrar() {
+    const especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
     var filtro = new Filtro();
 
     if(this.fechaDesde)
       filtro.desde = this.fechaDesde.toISOString();
 
-    filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
+    filtro.especie = especie;
 
-
-    this.publicationService.buscarPublFiltradasAdoptante(filtro)
-      .subscribe(res => {
-        const resList: Publication[] = [];
-        if (res.data) {
-          res.data.forEach(pres => {
-            const publ = new Publication(pres); //se maneja a nivel front la diferencia
-            resList.push(publ);
-          });
-          this.publications = resList;
-        }
-      });
+    if(this.fechaDesde || especie)
+      this.publicationService.buscarPublFiltradasAdoptante(filtro)
+        .subscribe(res => {
+          const resList: Publication[] = [];
+          if (res.data) {
+            res.data.forEach(pres => {
+              const publ = new Publication(pres); //se maneja a nivel front la diferencia
+              resList.push(publ);
+            });
+            this.publications = resList;
+          }
+        });
+    else
+        this.utilsService.toastr('No se han ingresado filtros!','');
   }
 
 
