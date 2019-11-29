@@ -1,6 +1,7 @@
 
 export class Filtro {
  
+  public idUsuario: string;
   public desde: string;
   public hasta: string;
   public especie: string;

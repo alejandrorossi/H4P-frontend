@@ -1,3 +1,4 @@
+import { StorageService } from './../services/storage.service';
 import { Component, OnInit } from '@angular/core';
 import { MascotasService } from '../services/mascotas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -30,7 +31,9 @@ export class AdministracionRefugioComponent implements OnInit {
   fechaDesde
   fechaHasta
 
-  constructor(private mService: MascotasService,
+  constructor(
+    private storageService: StorageService,
+    private mService: MascotasService,
     private formBuilder: FormBuilder,
     private publicationService: PublicationService,
     private solicitudService: SolicitudService) {
@@ -65,8 +68,9 @@ export class AdministracionRefugioComponent implements OnInit {
   buscar() {
     //moment(date).format('YYYYMMDD')
     var filtro = new Filtro();
-    filtro.desde = this.fechaDesde.toISOString();
-    filtro.hasta = this.fechaHasta.toISOString();
+    filtro.idUsuario = this.storageService.getCurrentUser()._id.toString();
+    filtro.desde = (this.fechaDesde) ? this.fechaDesde.toISOString() : null;
+    filtro.hasta = (this.fechaHasta) ? this.fechaHasta.toISOString() : null;
     filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
     filtro.texto = this.formBusqueda.get('textoMascotaCtrl').value;
     filtro.privada = this.pubPrivadas;
