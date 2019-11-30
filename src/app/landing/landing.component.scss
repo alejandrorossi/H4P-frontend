@@ -1,3 +1,7 @@
+// <style>
+@import url('https://fonts.googleapis.com/css?family=Calistoga|Indie+Flower|Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Handlee|Hind+Guntur&display=swap');
+// </style>
 
 .lan-page{
      height:100vh!important;
@@ -20,6 +24,19 @@ i{
    vertical-align: super;
    margin-left:10px;
 }
+
+.titulo{
+  font-family: 'Hind Guntur', sans-serif;
+}
+
+.texto{
+  font-size: 1.1em;
+}
+
+.item{
+  font-family: 'Pacifico', cursive;
+}
+
 
 @media (min-width: 1500px){
   mat-card {
