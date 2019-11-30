@@ -20,6 +20,8 @@ export class PrincipalComponent implements OnInit {
   fechaDesde;
   especies: any;
 
+  filtra: boolean;
+
   constructor(
     private router: Router, private publicationService: PublicationService,
     public storageService: StorageService,  private mService: MascotasService,
@@ -39,6 +41,11 @@ export class PrincipalComponent implements OnInit {
   getOtrasPublicaciones() {
     this.publicationService.getOtrasPublicaciones().subscribe(
       res => {
+
+        console.log("otras: ");        
+        console.log(res);
+        
+
         this.publications = [];
         res.data.forEach(pub => {
           const publication = new Publication(pub);
@@ -62,7 +69,7 @@ export class PrincipalComponent implements OnInit {
     const especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
     var filtro = new Filtro();
 
-    filtro.idUsuario = this.storageService.getCurrentUser()._id.toString();
+    // filtro.idUsuario = this.storageService.getCurrentUser()._id.toString();
     filtro.desde = (this.fechaDesde) ? this.fechaDesde.toISOString() : null;
 
     filtro.especie = (especie) ? especie : null;

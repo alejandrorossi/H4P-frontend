@@ -79,6 +79,10 @@ export class AdministracionRefugioComponent implements OnInit {
     this.publicationService.buscarPublicacionesFiltradas(filtro)
     .subscribe(res => {
       const resList: Publication[] = [];
+
+      console.log(res);
+      
+
       if (res.data) {
         res.data.forEach(pres => {
           const publ = new Publication(pres); //se maneja a nivel front la diferencia
