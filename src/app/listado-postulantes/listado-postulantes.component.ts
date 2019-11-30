@@ -1,3 +1,4 @@
+import { DialogPerfilUsuarioComponent } from './../dialog-perfil-usuario/dialog-perfil-usuario.component';
 import { Component, OnInit, ViewChild, Inject, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../models/user.model';
@@ -94,7 +95,13 @@ export class ListadoPostulantesComponent implements OnInit, OnDestroy {
     return this.data.aceptado.status =='rechazado';
   }
   
-
+  verPerfilUsuario(usuario){
+    const dialogRef = this.utilsService.getDialog(
+      DialogPerfilUsuarioComponent,
+      usuario,
+      '400px' //TODO: usar porcentaje que es relativo, no tamanios fijos
+    );
+  }
 
 
 }

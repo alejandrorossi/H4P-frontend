@@ -1,8 +1,12 @@
+
+<h3>Administraci&oacute;n del refugio</h3>
+<hr>
+
 <div class="container-fluid fondo" >
   <mat-card class="mat-elevation-z6">
     <div class="row">
       <div class="col ">
-        <span class="h5">Solicitudes </span> - {{statusSolicitud}} {{creacionTiempo}} {{ordenSolicitud}}
+        <span class="h5">Solicitudes de adopción </span> - {{statusSolicitud}} {{creacionTiempo}} {{ordenSolicitud}}
         <hr>
         <p>
           <mat-chip-list>
@@ -31,7 +35,7 @@
       </div>
     </div>
     <div class="row">
-      <p class="ml-4" *ngIf="!solicitudes?.length">No hay solicitudes pendientes.</p>
+      <p class="ml-4" *ngIf="!solicitudes?.length">No hay solicitudes.</p>
       <div class=" col mx-2 mt-2" *ngFor="let sols of solicitudes">
         <app-solicitud [publicacion]="sols" (eventoRefrescar)="actualizarSolicitudes($event)"></app-solicitud>
       </div>
@@ -117,6 +121,7 @@
         </mat-card>
 
         <div class="row card-group mt-3">
+          <p class="ml-4" *ngIf="!publications?.length">No se encontro ninguna publicación.</p>
           <div class="col" *ngFor="let p of publications">
             <!-- se piden las publicaciones del usuario -->
             <app-card-mascota [usadaEnAdmin]="true"
