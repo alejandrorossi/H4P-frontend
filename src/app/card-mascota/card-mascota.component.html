@@ -4,7 +4,8 @@
       matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i>
   </div>
 
-  <img mat-card-image  style="max-width: -webkit-fill-available!important;" [src]="preimage" alt="{{pet.name}}">
+  <img mat-card-image [src]="preimage" alt="{{pet.name}}"
+    style="max-width: -webkit-fill-available!important;" >
 
   <div class="h5">{{pet.name}} - <span class="text-muted small">{{pet.type}}</span> </div>
   <mat-card-subtitle *ngIf="completa">

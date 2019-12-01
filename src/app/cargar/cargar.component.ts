@@ -238,6 +238,8 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
       res => {
         publicacion = res.data;
 
+        console.log(publicacion);
+        
         this.setNombreMascota(publicacion.pet.name);
         this.setEspecieMascota(this.mascotaService.getEspecie(publicacion.pet.type));
         this.setDescripcionMascota(publicacion.pet.description);

@@ -65,24 +65,23 @@ export class AdministracionRefugioComponent implements OnInit {
     });
   }
 
+  get getEspecie() { return this.formBusqueda2.get('especieMascotaCtrl'); }
+  get getTexto() { return this.formBusqueda.get('textoMascotaCtrl'); }
+
   buscar() {
     //moment(date).format('YYYYMMDD')
     var filtro = new Filtro();
     filtro.idUsuario = this.storageService.getCurrentUser()._id.toString();
     filtro.desde = (this.fechaDesde) ? this.fechaDesde.toISOString() : null;
     filtro.hasta = (this.fechaHasta) ? this.fechaHasta.toISOString() : null;
-    filtro.especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
-    filtro.texto = this.formBusqueda.get('textoMascotaCtrl').value;
+    filtro.especie = (this.getEspecie.value)? this.getEspecie.value.name : null;
+    filtro.texto = (this.getTexto.value)? this.getTexto.value : null;
     filtro.privada = this.pubPrivadas;
     filtro.publica = this.pubPublicas;
 
     this.publicationService.buscarPublicacionesFiltradas(filtro)
     .subscribe(res => {
       const resList: Publication[] = [];
-
-      console.log(res);
-      
-
       if (res.data) {
         res.data.forEach(pres => {
           const publ = new Publication(pres); //se maneja a nivel front la diferencia
@@ -197,5 +196,12 @@ export class AdministracionRefugioComponent implements OnInit {
       this.creacionTiempo = 'más antiguas';
       this.solicitudes.sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime())
     }
+  }
+
+  resetFiltro(){
+    this.fechaHasta = undefined;
+    this.fechaDesde = undefined;
+    this.formBusqueda.reset(); 
+    this.formBusqueda2.reset();
   }
 }
