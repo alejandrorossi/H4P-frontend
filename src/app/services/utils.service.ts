@@ -56,7 +56,6 @@ export class UtilsService {
     this.putNotificacion(mensaje, user)
       .subscribe(
         res => {
-          console.log(res.status);
         },
         error => {
           console.log('Error!');

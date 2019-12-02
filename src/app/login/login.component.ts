@@ -54,7 +54,6 @@ export class LoginComponent extends FormularioBaseComponent implements OnInit {
           }
         },
         error => {
-          console.log('Error en el servidor:'+ error);
           this.cargarError('Error en el servidor');
         }
       );

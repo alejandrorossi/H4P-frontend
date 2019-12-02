@@ -150,10 +150,7 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
                 _id: this.idPublicacionEditar,
                 pet: res.data._id,
                 status: this.getCheckedPrivada
-              }
-              console.log("check: ");              
-              console.log(this.getCheckedPrivada);
-              
+              }         
               this.publicacionService.putPublicacion(publicacion).subscribe(
                 res => {
                   this.utilsService.toastr('La edición fue exitosa','');
@@ -237,9 +234,6 @@ export class CargarComponent extends FormularioBaseComponent implements OnInit {
     this.publicacionService.getPublicacion(this.idPublicacionEditar).subscribe(
       res => {
         publicacion = res.data;
-
-        console.log(publicacion);
-        
         this.setNombreMascota(publicacion.pet.name);
         this.setEspecieMascota(this.mascotaService.getEspecie(publicacion.pet.type));
         this.setDescripcionMascota(publicacion.pet.description);
