@@ -1,9 +1,6 @@
 .publicacion {
   max-width: 18rem;
-}
-
-.text-footer {
-  margin: 10px;
+  max-height: 30rem;
 }
 
 .suscrito{
@@ -26,11 +23,11 @@ a.perfil-usuario {
 }
 
 mat-card {
-  padding-top: 0px;
+  // padding-top: 0px;
 }
 
 
-.contenido-ajuste{
-  width: fit-content!important;
-}
+// .contenido-ajuste{
+//   width: fit-content!important;
+// }
 

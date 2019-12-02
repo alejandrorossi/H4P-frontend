@@ -45,14 +45,14 @@ export class CardMascotaComponent implements OnInit {
   }
 
 
-  esAdministracion(){
-    let ret = 'publicacion mat-elevation-z4 mt-3 mb-2';
+  // esAdministracion(){
+  //   let ret = 'publicacion mat-elevation-z4 mt-3 mb-2 contenido-ajuste';
 
-    if (this.usadaEnAdmin)
-      ret = ret + ' contenido-ajuste';
+  //   if (this.usadaEnAdmin)
+  //     ret = ret + ' contenido-ajuste';
 
-    return ret;
-  }
+  //   return ret;
+  // }
 
   public addPostulant() {
     const user = this.storageService.getCurrentUser();

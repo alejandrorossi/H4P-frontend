@@ -24,8 +24,8 @@ export class PrincipalComponent implements OnInit {
 
   constructor(
     private router: Router, private publicationService: PublicationService,
-    public storageService: StorageService,  private mService: MascotasService,
-    private formBuilder: FormBuilder,  private utilsService: UtilsService, public masc: MascotasService) {
+    public storageService: StorageService, private mService: MascotasService,
+    private formBuilder: FormBuilder, private utilsService: UtilsService, public masc: MascotasService) {
 
     this.getOtrasPublicaciones();
     this.especies = this.mService.getAllEspecies();
@@ -41,11 +41,6 @@ export class PrincipalComponent implements OnInit {
   getOtrasPublicaciones() {
     this.publicationService.getOtrasPublicaciones().subscribe(
       res => {
-
-        console.log("otras: ");        
-        console.log(res);
-        
-
         this.publications = [];
         res.data.forEach(pub => {
           const publication = new Publication(pub);
@@ -69,32 +64,35 @@ export class PrincipalComponent implements OnInit {
     const especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
     var filtro = new Filtro();
 
-    // filtro.idUsuario = this.storageService.getCurrentUser()._id.toString();
     filtro.desde = (this.fechaDesde) ? this.fechaDesde.toISOString() : null;
 
     filtro.especie = (especie) ? especie : null;
 
-    if(this.fechaDesde || especie)
+    if (this.fechaDesde || especie)
       this.publicationService.buscarPublFiltradasAdoptante(filtro)
-      .subscribe(res => {
-        console.log(res)
-        const resList: Publication[] = [];
-        if (res.data.length>0) {
+        .subscribe(res => {
+          const resList: Publication[] = [];
+          if (res.data.length > 0) {
+            res.data.forEach(pres => {
+              const publ = new Publication(pres);
+              resList.push(publ);
+            });
+            this.filtra = !this.filtra;
+          } else {
+            this.utilsService.toastr("No se han encontrado mascotas", "")
+          }
 
-          res.data.forEach(pres => {
-            const publ = new Publication(pres); //se maneja a nivel front la diferencia
-            resList.push(publ);
-            
-          });
-        }else{
-          this.utilsService.toastr("No se han encontrado mascotas","")
-        }
-
-        this.publications = resList;
-      });
-    else
-        this.utilsService.toastr('No se han ingresado filtros!','');
+          this.publications = resList;
+        });
+    else{
+      this.utilsService.toastr('No se han ingresado filtros!', '');
+      this.getOtrasPublicaciones();
+    }
+      
   }
+
+
+
 
 
 }

@@ -1,24 +1,27 @@
-<mat-card  [ngClass]="esAdministracion()">
-  <div class="suscrito" *ngIf="isOwner && completa || esPostulante">
-    <i class="fas fa-bookmark pull-right"
-      matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i>
-  </div>
+<mat-card  class="publicacion mat-elevation-z4 mt-3 mb-2">
 
-  <img mat-card-image [src]="preimage" alt="{{pet.name}}"
-    style="max-width: -webkit-fill-available!important;" >
+  <!-- <div class="suscrito" *ngIf="isOwner && completa || esPostulante">
+    <i class="fas fa-bookmark pull-right" matTooltip="Ya se ha enviado una solicitud de adopción para esta mascota."></i>
+  </div> -->
+
+  <img mat-card-image [src]="preimage" alt="{{pet.name}}" >
 
   <div class="h5">{{pet.name}} - <span class="text-muted small">{{pet.type}}</span> </div>
   <mat-card-subtitle *ngIf="completa">
     <span>Publicado por: </span>
     <a class="perfil-usuario" (click)="verPerfilUsuario()">{{pet.user.name}}</a>
+
   </mat-card-subtitle>
 
   <mat-card-content>
-    <span >
+    <span>
       {{pet.description}}
     </span>
+    <div class="text-center"  *ngIf="isOwner && completa || esPostulante">
+        <button class="btn btn-outline-success sin-borde redondo" style="font-size: 1.5em;"><i class="far fa-check-circle"></i></button>
+      </div>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions *ngIf="(completa && !isOwner && !esPostulante) || isOwner">
 
       <div *ngIf="isOwner" class="text-center">
 
@@ -32,8 +35,9 @@
         </div>
 
     <div class="text-center" *ngIf="completa && !isOwner && !esPostulante">
-      <button class="btn btn-outline-primary" (click)="addPostulant()">¡Quiero adoptar!</button>
+      <button class="btn btn-outline-primary sin-borde" (click)="addPostulant()">¡Quiero adoptar!</button>
     </div>
+  
   </mat-card-actions>
 
 </mat-card>

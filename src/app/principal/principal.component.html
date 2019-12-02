@@ -6,41 +6,44 @@
     <i class="fas fa-filter "></i>
   </button></h5>
 
-
-<mat-card class="mt-3 mat-elevation-z6" style="padding: 10px; padding-top: 0px" *ngIf="filtra">
-  <div class="row">
-
-    <div class="col">
-
-      <mat-form-field appearance="standard">
-        <input autocomplete="off" matInput (click)="pickerDesd.open()" [matDatepicker]="pickerDesd"
-          placeholder="En adopción desde" [(ngModel)]="fechaDesde">
-        <mat-datepicker-toggle matSuffix [for]="pickerDesd"></mat-datepicker-toggle>
-        <mat-datepicker #pickerDesd></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-
-    <div class="col">
-      <div [formGroup]="formBusqueda2">
-        <mat-form-field appearance="standard">
-          <mat-label>De especie...</mat-label>
-          <mat-select placeholder="Especie" formControlName="especieMascotaCtrl">
-            <mat-option *ngFor="let op of especies" [value]="op">
-              <i class='{{op.icon}} mr-1'></i> {{op.name}}
-            </mat-option>
-          </mat-select>
+<div class="row" *ngIf="filtra">
+  <div class="col"></div>
+  <div class="col">
+    <mat-card style="padding:0">
+      <div class="col">
+        <mat-form-field appearance="standard" style="width:100%">
+          <input autocomplete="off" matInput (click)="pickerDesd.open()" [matDatepicker]="pickerDesd"
+            placeholder="En adopción desde" [(ngModel)]="fechaDesde" style="width:100%!important">
+          <mat-datepicker-toggle matSuffix [for]="pickerDesd"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDesd></mat-datepicker>
         </mat-form-field>
+
       </div>
-    </div>
-    <button class="btn btn-outline-primary pull-right redondo mt-2 mr-2" style="border:none" 
-      (click)="filtrar()" matTooltip="Filtrar">
-    <i class="fas fa-search"></i>
-  </button>
+
+      <div class="col">
+        <div [formGroup]="formBusqueda2" style="width:100%!important">
+          <mat-form-field appearance="standard" style="width:100%">
+            <mat-label>De especie...</mat-label>
+            <mat-select placeholder="Especie" formControlName="especieMascotaCtrl">
+              <mat-option *ngFor="let op of especies" [value]="op">
+                <i class='{{op.icon}} mr-1'></i> {{op.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="text-right">
+            <button class="btn btn-outline-primary sin-borde redondo mt-2 mr-2" (click)="filtrar()"
+              matTooltip="Filtrar">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </mat-card>
   </div>
-
-</mat-card>
-
+  <div class="col"></div>
+</div>
 
 <div class="row mt-3">
 
@@ -51,4 +54,6 @@
     </app-card-mascota>
 
   </div>
+  <div class="col" *ngIf="publications.length<3"></div>
+  <div class="col" *ngIf="publications.length<4"></div>
 </div>
