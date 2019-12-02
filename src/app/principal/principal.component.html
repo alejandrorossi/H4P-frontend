@@ -49,7 +49,7 @@
 
   <div class="col" *ngFor="let p of publications">
 
-    <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [usadaEnAdmin]="false" [isOwner]="isOwner(p)"
+    <app-card-mascota [pet]="p.pet" [idPublication]="p._id" [status]="p.status" [isOwner]="isOwner(p)"
       [esPostulante]="esPostulante(p)" [completa]="true">
     </app-card-mascota>
 

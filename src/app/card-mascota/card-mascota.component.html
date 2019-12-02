@@ -6,7 +6,9 @@
 
   <img mat-card-image [src]="preimage" alt="{{pet.name}}" >
 
-  <div class="h5">{{pet.name}} - <span class="text-muted small">{{pet.type}}</span> </div>
+  <div class="h5">{{pet.name}} - <span class="text-muted small">{{pet.type}}</span> 
+    <i class="fas fa-user-lock ml-2" style="color:#2cac8a!important" *ngIf="status=='privado'"></i>
+  </div>
   <mat-card-subtitle *ngIf="completa">
     <span>Publicado por: </span>
     <a class="perfil-usuario" (click)="verPerfilUsuario()">{{pet.user.name}}</a>
@@ -17,8 +19,11 @@
     <span>
       {{pet.description}}
     </span>
-    <div class="text-center"  *ngIf="isOwner && completa || esPostulante">
-        <button class="btn btn-outline-success sin-borde redondo" style="font-size: 1.5em;"><i class="far fa-check-circle"></i></button>
+    <div class="text-right"  *ngIf="isOwner && completa || esPostulante">
+        <button class="btn btn-outline-success sin-borde redondo" style="font-size: 1.5em;"
+        matTooltip="Se ha enviado una solicitud de adopción para esta mascota." >
+          <i class="far fa-check-circle"></i>
+        </button>
       </div>
   </mat-card-content>
   <mat-card-actions *ngIf="(completa && !isOwner && !esPostulante) || isOwner">

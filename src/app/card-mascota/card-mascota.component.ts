@@ -22,7 +22,7 @@ export class CardMascotaComponent implements OnInit {
   @Input() esPostulante: Boolean;
   @Input() idPublication: String;
   @Input() completa: Boolean;
-  @Input() usadaEnAdmin: Boolean;
+  @Input() status: Boolean;
 
   @Output() notifyActualizarPublicaciones: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -44,15 +44,6 @@ export class CardMascotaComponent implements OnInit {
     this.preimage = `${this.imageService.URL_UPLOADS}/${this.pet.images[0].path}`;
   }
 
-
-  // esAdministracion(){
-  //   let ret = 'publicacion mat-elevation-z4 mt-3 mb-2 contenido-ajuste';
-
-  //   if (this.usadaEnAdmin)
-  //     ret = ret + ' contenido-ajuste';
-
-  //   return ret;
-  // }
 
   public addPostulant() {
     const user = this.storageService.getCurrentUser();
