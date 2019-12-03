@@ -1,6 +1,7 @@
 .publicacion {
   max-width: 18rem;
   max-height: 50rem;
+  min-width: 13rem;
 }
 
 .suscrito{
@@ -22,12 +23,7 @@ a.perfil-usuario {
   color:#007bff;
 }
 
-mat-card {
-  // padding-top: 0px;
+.example-spacer {
+  flex: 1 1 auto;
 }
-
-
-// .contenido-ajuste{
-//   width: fit-content!important;
-// }
 
