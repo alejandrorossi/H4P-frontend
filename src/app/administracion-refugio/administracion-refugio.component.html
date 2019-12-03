@@ -1,8 +1,7 @@
-
-<h3>Administraci&oacute;n del refugio</h3>
+<h3>Administraci&oacute;n del refugio <i class="fas fa-cogs ml-2"></i></h3>
 <hr>
 
-<div class="container-fluid fondo" >
+<div class="container-fluid fondo">
   <mat-card class="mat-elevation-z6">
     <div class="row">
       <div class="col ">
@@ -36,10 +35,12 @@
     </div>
     <div class="row">
       <p class="ml-4" *ngIf="!solicitudes?.length">No hay solicitudes.</p>
-      <div class=" col mx-2 mt-2" *ngFor="let sols of solicitudes">
+      <div class="col-sm-2 mx-2 mt-2" *ngFor="let sols of solicitudes">
         <app-solicitud [publicacion]="sols" (eventoRefrescar)="actualizarSolicitudes($event)"></app-solicitud>
       </div>
     </div>
+    <!-- <div class="col" *ngIf="solicitudes?.length <= 3"> </div> -->
+    <!-- <div class="col" *ngIf="solicitudes?.length <= 4"> </div> -->
   </mat-card>
   <br>
 
@@ -125,11 +126,13 @@
           <div class="col" *ngFor="let p of publications">
             <!-- se piden las publicaciones del usuario -->
             <app-card-mascota [status]="p.status"
-            (notifyActualizarPublicaciones)='onNotifyActualizarPublicaciones($event)' 
-            [pet]="p.pet" [idPublication]="p._id" [isOwner]="true" [completa]="false">
+              (notifyActualizarPublicaciones)='onNotifyActualizarPublicaciones($event)' [pet]="p.pet"
+              [idPublication]="p._id" [isOwner]="true" [completa]="false">
             </app-card-mascota>
 
           </div>
+          <div class="col" *ngIf="publications?.length <= 3"> </div>
+          <div class="col" *ngIf="publications?.length <= 4"> </div>
         </div>
       </mat-card>
     </div>

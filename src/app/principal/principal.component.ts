@@ -27,7 +27,7 @@ export class PrincipalComponent implements OnInit {
     public storageService: StorageService, private mService: MascotasService,
     private formBuilder: FormBuilder, private utilsService: UtilsService, public masc: MascotasService) {
 
-    this.getOtrasPublicaciones();
+    
     this.especies = this.mService.getAllEspecies();
   }
 
@@ -35,6 +35,7 @@ export class PrincipalComponent implements OnInit {
     this.formBusqueda2 = this.formBuilder.group({
       especieMascotaCtrl: ['', []],
     });
+    this.getOtrasPublicaciones();
   }
 
   // Publicaciones que no son propias, a las cuales me puedo postular.
