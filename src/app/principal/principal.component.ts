@@ -64,9 +64,8 @@ export class PrincipalComponent implements OnInit {
   filtrar() {
     const especie = this.formBusqueda2.get('especieMascotaCtrl').value.name;
     var filtro = new Filtro();
-
+    filtro.idUsuario = this.storageService.getCurrentUser()._id.toString();
     filtro.desde = (this.fechaDesde) ? this.fechaDesde.toISOString() : null;
-
     filtro.especie = (especie) ? especie : null;
 
     if (this.fechaDesde || especie)

@@ -83,7 +83,7 @@
             <div class="col">
               <mat-form-field appearance="standard">
                 <input autocomplete="off" matInput (click)="pickerDesd.open()" [matDatepicker]="pickerDesd"
-                  placeholder="Desde..." [(ngModel)]="fechaDesde">
+                  placeholder="Desde" [(ngModel)]="fechaDesde">
                 <mat-datepicker-toggle matSuffix [for]="pickerDesd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerDesd></mat-datepicker>
               </mat-form-field>
@@ -91,7 +91,7 @@
             <div class="col">
               <mat-form-field appearance="standard">
                 <input autocomplete="off" matInput (click)="pickerHasta.open()" [matDatepicker]="pickerHasta"
-                  placeholder="...Hasta" [(ngModel)]="fechaHasta">
+                  placeholder="Hasta" [(ngModel)]="fechaHasta">
                 <mat-datepicker-toggle matSuffix [for]="pickerHasta"></mat-datepicker-toggle>
                 <mat-datepicker #pickerHasta></mat-datepicker>
               </mat-form-field>
