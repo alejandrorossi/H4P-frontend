@@ -105,4 +105,8 @@ export class CardMascotaComponent implements OnInit {
       '400px' //TODO: usar porcentaje que es relativo, no tamanios fijos
     );
   }
+
+  esPrivado(){
+    return this.publication.status == 'privado';
+  }
 }

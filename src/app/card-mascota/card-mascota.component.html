@@ -7,7 +7,7 @@
   <img mat-card-image [src]="preimage" alt="{{pet.name}}">
 
   <div class="h5">{{pet.name}} - <span class="text-muted small">{{pet.type}}</span>
-    <i class="fas fa-user-lock ml-2" style="color:#2cac8a!important" *ngIf="status=='privado'"
+    <i class="fas fa-user-lock ml-2" style="color:#2cac8a!important" *ngIf="esPrivado()"
       matTooltip="Publicación privada, edita la misma para hacerla pública."></i>
   </div>
   <mat-card-subtitle *ngIf="completa">
