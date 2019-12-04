@@ -9,6 +9,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ImageService } from '../services/image.service';
 import { ImgResponse } from '../models/image.model';
 import { Router } from '@angular/router';
+import { Publication } from '../models/publication.model';
 
 @Component({
   selector: 'app-card-mascota',
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
 export class CardMascotaComponent implements OnInit {
 
   @Input() pet: Pet;
+  @Input() publication: Publication;
   @Input() isOwner: Boolean;
   @Input() esPostulante: Boolean;
   @Input() idPublication: String;

@@ -125,7 +125,7 @@
           <p class="ml-4" *ngIf="!publications?.length">No se encontro ninguna publicación.</p>
           <div class="col" *ngFor="let p of publications">
             <!-- se piden las publicaciones del usuario -->
-            <app-card-mascota [status]="p.status"
+            <app-card-mascota [status]="p.status" [publication]="p"
               (notifyActualizarPublicaciones)='onNotifyActualizarPublicaciones($event)' [pet]="p.pet"
               [idPublication]="p._id" [isOwner]="true" [completa]="false">
             </app-card-mascota>

@@ -20,6 +20,7 @@
     <span>
       {{pet.description}}
     </span>
+    <p>{{publication.createdDate | date:"DD/MM/YYYY"}}</p>
     <div class="text-right" *ngIf="isOwner && completa || esPostulante">
       <button class="btn btn-outline-success sin-borde redondo" style="font-size: 1.5em;"
         matTooltip="Se ha enviado una solicitud de adopción para esta mascota.">
