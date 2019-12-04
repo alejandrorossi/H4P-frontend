@@ -10,6 +10,7 @@ import { ImageService } from '../services/image.service';
 import { ImgResponse } from '../models/image.model';
 import { Router } from '@angular/router';
 import { Publication } from '../models/publication.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-card-mascota',
@@ -30,6 +31,9 @@ export class CardMascotaComponent implements OnInit {
 
   //Imagen de previsualizacion
   preimage: string;
+
+  //Fecha creacion publicacion.
+  createdDate: any;
   
   constructor(
     private _router: Router,
@@ -40,6 +44,8 @@ export class CardMascotaComponent implements OnInit {
 
   ngOnInit() {
     this.loadPreImage();
+
+    this.createdDate = moment(this.publication.pet.createdDate).format('L');
   }
 
   private loadPreImage() {
