@@ -110,17 +110,12 @@
           <div class="col">
             <input hidden #fileInput class="mt-3" type='file' accept=".jpg,.jpeg,.png,.PNG,.JPG"
               (change)="onSelectFile($event)">
-            <button mat-raised-button  class="btn btn-outline-secondary" (click)="fileInput.click()">
+            <div class="btn btn-outline-secondary" style="cursor:pointer" (click)="fileInput.click()">
               Elegir imagen*
-            </button>
+            </div>
 
             <img class="mt-2" [src]="photoSelected" *ngIf="photoSelected"
             style="max-width: -webkit-fill-available!important;" required>
-
-            <!-- <div class="mt-2" *ngIf="preimage && !photoSelected" [innerHTML]="preimage | sanitizeHtml"></div> -->
-
-            <!-- <p> <img class="mt-2" [src]="url" *ngIf="url" required> </p> -->
-
 
             <mat-error *ngIf="submitted && !photoSelected">
               Debe ingresar una imagen.
